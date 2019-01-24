@@ -1,0 +1,238 @@
+\section{Introduction} 
+\label{sec:intro}
+
+\subsection{Canalyzing and Nested Canalyzing Functions}
+\label{sse:ncf_def}
+
+
+\begin{definition}\label{def:canalyzing}
+Let $X = $ $\{x_1, x_2, \ldots, x_n\}$ be a set of $n$  Boolean variables.
+A Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{canalyzing}
+if there is a variable $x_i \in X$ and values $a$, $b$ $\in \{0,1\}$ such that 
+$f(x_1, \ldots, x_{i-1}, a, x_{i+1}, \ldots, x_n)$ $~=~ b$, regardless of the values
+assigned to the variables in $X - \{x_i\}$.
+\end{definition}
+
+\medskip
+
+\noindent
+\textbf{Example 1:}~ Consider the function 
+$f(x_1, x_2, x_3) ~=~ x_1 \vee (x_2 \wedge x_3)$.
+This function is canalyzing since if we set to $x_1 = 1$,
+$f(1, x_2, x_3) ~=~ 1$, regardless of the values assigned to $x_2$ and $x_3$. \qed
+
+\medskip
+
+A class of Boolean functions, called \textbf{nested canalyzing functions} (NCFs),
+was introduced in \cite{Kauffman-etal-2003} to model the behavior of
+certain biological systems.
+We follow the presentation in \cite{Layne-2011} in defining 
+such a Boolean function. 
+(For a Boolean value $b$,~ the complement is denoted by $\overline{b}$.)
+
+\begin{definition}\label{def:nested_canalyzing}
+Let $X = $ $\{x_1, x_2, \ldots, x_n\}$ denote a set of $n$  Boolean variables.
+Let $\pi$ be a permutation of $\{1, 2, \ldots, n\}$.
+A Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{nested canalyzing}
+in the variable order $x_{\pi(1)}, x_{\pi(2)}, \ldots, x_{\pi(n)}$ with
+\textbf{canalyzing values} $a_1, a_2, \ldots, a_n$ and 
+\textbf{canalyzed values} $b_1, b_2, \ldots, b_n$ 
+if $f$ can be expressed in the following form:
+\[
+f(x_1, x_2, \ldots, x_n) ~=~ 
+   \begin{cases}
+       \:b_1 & \mathrm{if~~} x_{\pi(1)} ~=~ a_1 \\
+       \:b_2 & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~}
+            x_{\pi(2)} ~=~ a_2 \\
+       \:\vdots & \vdots \\
+       \:b_n & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots~
+             x_{\pi(n-1)} ~\neq~ a_{n-1} \mathrm{~~and~~} x_{\pi(n)} ~=~ a_n \\
+       \:\overline{b_n} & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots~
+            x_{\pi(n)} ~\neq~ a_n \\
+   \end{cases}
+\]
+\end{definition}
+
+\medskip
+%% \clearpage
+For convenience, we will use a computational notation to represent NCFs.
+For $1 \leq i \leq n$, line $i$ of our representation has the following form:
+
+\medskip
+
+\noindent
+\hspace*{1.1in} $x_{\pi(i)}:~ a_i ~~\longrightarrow~~ b_i$
+
+\medskip
+
+\noindent 
+We say that $x_{\pi(i)}$ is the \textbf{canalyzing variable} that is
+\textbf{tested} in line $i$, 
+with $a_i$ and $b_i$ denoting respectively the canalyzing and 
+canalyzed values in line $i$ as before,~ $1 \leq i \leq n$.
+We refer to each such line as a \textbf{rule}.
+When none of the conditions ``$x_{\pi(i)} ~=~ a_i$" 
+is satisfied, we have line $n+1$ with the ``Default" rule
+for which the canalyzed value is~ $\overline{b_n}$: 
+
+\medskip
+
+\noindent
+\hspace*{1.1in} Default:~ $\overline{b_n}$
+
+\medskip
+\noindent
+In the remainder of this paper, we will refer to the above specification
+of an NCF as the \textbf{simplified representation} and assume
+(without loss of generality) that each NCF is specified in this manner.
+The simplified representation provides the following 
+convenient computational view of an NCF.~
+Lines defining an NCF are 
+considered sequentially in a top-down manner.
+The computation stops at the first line where the 
+specified condition is satisfied, and the value of the function
+is the canalyzed value on that line. 
+We now present an example of an NCF using the two representations
+mentioned above.
+
+
+\medskip
+\noindent
+\textbf{Example 2:}~ Consider the function 
+$f(x_1, x_2, x_3) ~=~ x_1 \vee (x_2 \wedge x_3)$.
+This function is nested canalyzing using the identity permutation $\pi$ on $\{1,2,3\}$
+with canalyzing values $1,0,0$ and canalyzed values $1, 0, 0$.
+We first show how this function can be expressed using the syntax of
+Definition~\ref{def:nested_canalyzing}.
+
+\[
+f(x_1, x_2, x_3) ~=~ 
+   \begin{cases}
+       \:1 & \mathrm{if~~} x_{1} ~=~ 1 \\
+       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
+            x_{2} ~=~ 0 \\
+       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
+            x_{2} ~\neq~ 0 \mathrm{~~and~~} x_{3} = 0 \\
+       \:1 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
+            x_{2} ~\neq~ 0 \mathrm{~~and~~} x_{3} ~\neq~ 0 \\
+   \end{cases}
+\]
+
+\medskip
+\noindent
+A simplified representation of the same function is as follows.
+
+\bigskip
+
+\noindent
+\begin{tabular}{ll}
+\hspace*{1.1in} & $x_1:~$  $1 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & $x_2:~$  $0 ~\longrightarrow~ 0$ \\ [1ex]
+\hspace*{1.1in} & $x_3:~$  $0 ~\longrightarrow~ 0$ \\ [1ex]
+\hspace*{1.1in} & Default:~ $1$ \\
+\end{tabular}
+
+\noindent
+\qed
+
+
+\noindent
+\underline{\textsf{Generalized NCFs:}}~
+For some problems, we will also consider a more general form
+of NCFs defined below.
+
+\begin{definition}\label{def:generalized ncf}
+A {\bf generalized NCF} is a function represented as either a constant
+or an NCF representation of a subset (not necessarily proper) 
+of the function's variables.
+\end{definition}
+
+\noindent
+\textbf{Example 3:}~ For $b \in \{0,1\}$, the constant function which takes 
+on the value $b$ for every input is a generalized NCF since 
+it can be represented by the following rule: 
+
+\smallskip
+
+\hspace*{1.1in} Default:~ $b$ 
+
+\smallskip
+
+\noindent
+The following generalized NCF specification for 
+a function $f(x_1, x_2, x_3, x_4)$ indicates that the function
+depends only on variables $x_1$ and $x_3$.
+
+\medskip
+
+\noindent
+\begin{tabular}{ll}
+\hspace*{1.1in} & $x_1:~$  $0 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & $x_3:~$  $1 ~\longrightarrow~ 0$ \\ [1ex]
+\hspace*{1.1in} & Default:~ $1$ \\
+\end{tabular}
+
+\noindent
+\qed
+
+\bigskip
+
+\noindent
+\textbf{Note:} If a generalized NCF is not a constant, 
+there is an assignment to its variables
+such that the value of the function is 0,
+and there is an assignment to its variables
+such that the value of the function is 1.
+
+
+
+%\noindent
+
+\subsection{Summary of Results}
+\label{sse:contrib}
+
+Our focus is on the relationship between NCFs and symmetric
+Boolean functions.
+
+
+\subsection{Related Work}
+
+
+Many researchers have studied mathematical properties of NCFs and
+pointed out the importance of NCFs in modeling biological
+phenomena (e.g., \cite{Kauffman-etal-2003,Kauffman-etal-2004,Layne-2011,
+Layne-etal-2012,Li-etal-2011,Li-etal-2012,Li-etal-2013}).
+
+\medskip
+
+\noindent
+\textbf{Equivalence and Implication Problems.}~
+We note that for general Boolean formulas, the implication and equivalence problems
+are \cnp-hard \cite{GJ-1979}.
+
+\bigskip
+
+\noindent
+\textbf{Sensitivity of Boolean Functions.}~
+There is extensive literature on the sensitivity of various classes
+of Boolean functions
+(e.g., \cite{Buhrman-etal-2002,Nisan-etal-1994,Zhang-2011}).
+For a discussion on how the sensitivity of a Boolean function provides
+an indication of its stability, the reader is referred to \cite{Kauffman-etal-2004,
+Layne-2011,Layne-etal-2012}.
+Observations regarding relationships between sensitivities of Boolean functions
+and their computational complexity are presented
+in \cite{Buhrman-etal-2002,Nisan-etal-1994}.
+Li and Adeyeye \cite{Li-etal-2012} present lower and upper bounds on the
+sensitivity of any NCF.
+Li et al. \cite{Li-etal-2011,Li-etal-2013} conjectured that the average
+sensitivity of any NCF is strictly less than  $4/3$.
+This conjecture was proved by Klotz et al. \cite{Klotz-etal-2013} by establishing
+a tight upper bound on the average sensitivity of any NCF.
+Their methods rely on Fourier analysis of Boolean functions
+\cite{Odonnell-2014}.
+In \cite{Stearns-etal-2018}, 
+we presented a characterization of NCFs with maximum average sensitivity.
+This characterization allowed us to present an alternative proof 
+of the upper bound in \cite{Klotz-etal-2013} and derive a closed
+form expression for the number of such NCFs.

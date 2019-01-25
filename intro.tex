@@ -1,9 +1,9 @@
 \section{Introduction} 
 \label{sec:intro}
 
+
 \subsection{Canalyzing and Nested Canalyzing Functions}
 \label{sse:ncf_def}
-
 
 \begin{definition}\label{def:canalyzing}
 Let $X = $ $\{x_1, x_2, \ldots, x_n\}$ be a set of $n$  Boolean variables.
@@ -136,6 +136,9 @@ A simplified representation of the same function is as follows.
 \qed
 
 
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
 \underline{\textsf{Generalized NCFs:}}~
 For some problems, we will also consider a more general form
@@ -183,7 +186,31 @@ there is an assignment to its variables
 such that the value of the function is 0,
 and there is an assignment to its variables
 such that the value of the function is 1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
 
+
+\subsection{Use of NCFs in Modeling Biological Systems}
+
+The term \textbf{canalization} was first used by
+Conrad Waddington (a British geneticist)
+in 1942 \cite{Waddington-1942}
+to express the ability of a species
+to produce members with very similar observable features over a period
+of time even when there are significant changes in the environment
+during that period.
+Since that time, the term ``canalization'' has been used to describe
+the stability of a biological system with changes
+in external conditions.
+In 1969, Kauffman \cite{Kauffman-1969} introduced a Boolean network model
+to explain the stability of gene regulatory networks.
+Kauffman observed that the use of canalyzing Boolean
+functions in the model captured many observed properties of
+gene regulatory networks.
+The subclass of NCFs was
+introduced later by Kauffman et al. \cite{Kauffman-etal-2003} 
+to facilitate a rigorous analysis of the Boolean network model
+for gene regulatory networks.
 
 
 %\noindent

@@ -1,24 +1,12 @@
 \section{Symmetry of Nested Canalyzing Functions}
 \label{sse:ncf_and_symmetry}
 
-A pair of variables of a Boolean function $f(x_1, x_2, \ldots, x_n)$ is
-said to be \textbf{symmetric} if their values can be interchanged without
-affecting the value of the function.
-This form of interchange symmetry partitions the set of variables into a set of 
- \textbf{symmetry groups}, where the members of each group are pairwise symmetric.
-Function $f$ is said to be
-$r$-\textbf{symmetric} if it has at most $r$ symmetry groups.
-In this case, the value of $f$
-depends only on how many of the variables in each symmetry group have the value 1.
-We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if 
-it is $r$-symmetric, but not $(r-1)$-symmetric.
+\subsection{Overview}
+\label{sse:res_overview}
 
-In the literature, a 1-symmetric function $f$ is referred to simply 
-as a \textbf{symmetric} function. 
-Thus, if $f$ is a symmetric function, then for any
-input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for 
-$1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
-$f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
+
+\subsection{Symmetric Canalyzing and Nested Canalyzing Functions}
+\label{sse:sym_and_cf_ncf}
 
 \begin{theorem}\label{thm:ncf_symmetric}
 The only symmetric canalyzing functions are OR, AND, NOR, NAND, 
@@ -28,21 +16,26 @@ The only symmetric NCFs are OR, AND, NOR, and NAND.
 \end{theorem}
 \noindent
 \textbf{Proof:}~
-Suppose symmetric function $f$ is a canalyzing function. Then there is a variable $x$,
-and values $a$ and $b$ such that whenever $x = a$, function $f$ has value $b$.
-Since $f$ is symmetric, $f$  has value $b$ whenever any of its variables have value $a$.
-Thus, if at least one of its variables has value $a$, then $f$ has value $b$.
-If $f$ has value $\bar{b}$ when none of its variables has value $a$,
-the four possible combinations of values for $a$ and $b$ correspond to the four functions
-OR, AND, NOR, and NAND.
-If $f$ has value $b$ when none of its variables has value $a$, then $f$ is the constant function $b$.
+Suppose symmetric function $f$ is a canalyzing function. Then there
+is a variable $x$, and values $a$ and $b$ such that whenever $x =
+a$, function $f$ has value $b$.  Since $f$ is symmetric, $f$  has
+value $b$ whenever any of its variables have value $a$.  Thus, if
+at least one of its variables has value $a$, then $f$ has value
+$b$.  If $f$ has value $\bar{b}$ when none of its variables has
+value $a$, the four possible combinations of values for $a$ and $b$
+correspond to the four functions OR, AND, NOR, and NAND.  If $f$
+has value $b$ when none of its variables has value $a$, then $f$
+is the constant function $b$.
 
-Suppose that $f$ is a NCF.
-Since constant functions are not NCFs, 
+Suppose that $f$ is a NCF.  Since constant functions are not NCFs,
 $f$ has value $\bar{b}$ when none of its variables has value $a$.
-The four possible combinations of values for $a$ and $b$ correspond to the four functions
-OR, AND, NOR, and NAND, each of which is a NCF.
-\QED
+The four possible combinations of values for $a$ and $b$ correspond
+to the four functions OR, AND, NOR, and NAND, each of which is a
+NCF.  \QED
+
+\subsection{Symmetric Pairs of Variables in an NCF: A Characterization
+and Its Applictions}
+\label{sse:ncf_strong_sym}
 
 \begin{theorem}\label{thm:ncf_symmetric_variables}
 A pair of variables of a NCF are symmetric iff
@@ -51,18 +44,20 @@ they occur in the same layer and have the same canalyzing value.
 \end{theorem}
 \noindent
 \textbf{Proof:}~
-Suppose that a pair of variables occur in the same layer of a canalyzing representation, 
-and the lines containing these variables have the same canalyzing value.
-Then in any input assignment, the values of these two variables can be interchanged,
-and the evaluation of the lines in that layer will have the same effect.
-Thus, the variables are symmetric.
+Suppose that a pair of variables occur in the same layer of a
+canalyzing representation, and the lines containing these variables
+have the same canalyzing value.  Then in any input assignment, the
+values of these two variables can be interchanged, and the evaluation
+of the lines in that layer will have the same effect.  Thus, the
+variables are symmetric.
 
 Now, let $f$ be the normalized NCF representation for the function.
-For purposes of notational simplicity, 
-wlog we assume that the canalyzing variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.
-Let  $x_j$ and $x_k$ be a pair of variables that occur in different layers of $f$,
-or occur in the same layer, but with different canalyzing values.
-Wlog, assume that $j < k$, so that the line for $x_j$ occurs above the line for $x_k$.
+For purposes of notational simplicity, wlog we assume that the
+canalyzing variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.
+Let  $x_j$ and $x_k$ be a pair of variables that occur in different
+layers of $f$, or occur in the same layer, but with different
+canalyzing values.  Wlog, assume that $j < k$, so that the line for
+$x_j$ occurs above the line for $x_k$.
 
 Suppose that line $i$ of $f$, $1 \leq i \leq n$, is 
 
@@ -79,79 +74,81 @@ For $j < i < k$, and for  $k < i \leq n$,
 if $b_i = b_j$, then set $c_i =  \overline{a_i}$,
 else set $c_i =  a_i$.
 
-Note that $f(\alpha) = b_j$,
-since the variables in all lines above line $j$ have the complement of their canalyzing value,
-and variable $x_j$ has its canalyzing value.
+Note that $f(\alpha) = b_j$, since the variables in all lines above
+line $j$ have the complement of their canalyzing value, and variable
+$x_j$ has its canalyzing value.
 
-Now let $\alpha'$ be the assignment that is obtained from $\alpha$ by interchanging the values
-of variables $x_j$ and $x_k$,
-so that after the interchange variable $x_j$ has value $\overline{a_j}$
-and variable $x_k$ has value $a_j$.
-We will show that 
-$f(\alpha') = \overline{b_j}$,
-so variables $x_j$ and $x_k$ are not symmetric.
+Now let $\alpha'$ be the assignment that is obtained from $\alpha$
+by interchanging the values of variables $x_j$ and $x_k$, so that
+after the interchange variable $x_j$ has value $\overline{a_j}$ and
+variable $x_k$ has value $a_j$.  We will show that $f(\alpha') =
+\overline{b_j}$, so variables $x_j$ and $x_k$ are not symmetric.
 
-In line $k$ of $f$, canalyzing value $a_k$ is either the same or the complement of canalyzing value $a_j$,
-and canalyzed output $b_k$ is either the same or the complement of canalyzed output $b_j$,
-Thus, there are four possible cases for the form of line $k$.
-We now consider each of the four cases.
+In line $k$ of $f$, canalyzing value $a_k$ is either the same or
+the complement of canalyzing value $a_j$, and canalyzed output $b_k$
+is either the same or the complement of canalyzed output $b_j$,
+Thus, there are four possible cases for the form of line $k$.  We
+now consider each of the four cases.
 
-{\bf Case 1:} $(x_k : a_j \rightarrow b_j)$. \\
-Since line $k$ has the same canalyzing value and canalyzed output as line $j$,
-line $k$ must occur in a lower layer than that of line $j$.
-Thus, there is at least one line between line $j$ and line $k$ 
-for which the canalyzed output is $\overline{b_j}$.
-Let line $q$ be the first such line.
-Note that for all $i$ such that $1 \leq i < q$, 
-the value of variable $x_i$ in assignment $\alpha'$ does not match the canalyzing value of line $i$,
-but the value of variable $x_q$ does match the canalyzing value of line $q$.
-Since canalyzed output $b_q$ equals $\overline{b_j}$,
+{\bf Case 1:} $(x_k : a_j \rightarrow b_j)$. \\ Since line $k$ has
+the same canalyzing value and canalyzed output as line $j$, line
+$k$ must occur in a lower layer than that of line $j$.  Thus, there
+is at least one line between line $j$ and line $k$ for which the
+canalyzed output is $\overline{b_j}$.  Let line $q$ be the first
+such line.  Note that for all $i$ such that $1 \leq i < q$, the
+value of variable $x_i$ in assignment $\alpha'$ does not match the
+canalyzing value of line $i$, but the value of variable $x_q$ does
+match the canalyzing value of line $q$.  Since canalyzed output
+$b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
+\overline{b_j}$.
+
+{\bf Case 2:} $(x_k : a_j \rightarrow \overline{b_j})$. \\ Let line
+$q$ be the first line such that $j < q \leq k$ and the canalyzed
+output of line $q$ is $\overline{b_j}$.  Note that $q$ might possibly
+equal $k$.  For all $i$ such that $1 \leq i < q$, the value of
+variable $x_i$ in assignment $\alpha'$ does not match the canalyzing
+value of line $i$, but the value of variable $x_q$ does match the
+canalyzing value of line $q$.  Since canalyzed output $b_q$ equals
+$\overline{b_j}$, we have that $f(\alpha') = \overline{b_j}$.
+
+{\bf Case 3:} $(x_k : \overline{a_j} \rightarrow b_j)$. \\ Suppose
+there is a line below line $j$ for which the canalyzed output is
+$\overline{b_j}$.  Let $q$ be the first such line.  Note that for
+all $i$ such that $1 \leq i < q$, the value of variable $x_i$ in
+assignment $\alpha'$ does not match the canalyzing value of line
+$i$, but the value of variable $x_q$ does match the canalyzing value
+of line $q$.  Since canalyzed output $b_q$ equals $\overline{b_j}$,
 we have that $f(\alpha') = \overline{b_j}$.
 
-{\bf Case 2:} $(x_k : a_j \rightarrow \overline{b_j})$. \\
-Let line $q$ be the first line such that $j < q \leq k$ and
-the canalyzed output of line $q$ is $\overline{b_j}$.
-Note that $q$ might possibly equal $k$.
-For all $i$ such that $1 \leq i < q$, 
-the value of variable $x_i$ in assignment $\alpha'$ does not match the canalyzing value of line $i$,
-but the value of variable $x_q$ does match the canalyzing value of line $q$.
-Since canalyzed output $b_q$ equals $\overline{b_j}$,
-we have that $f(\alpha') = \overline{b_j}$.
+Now suppose there is no line below line $j$ for which the canalyzed
+output is $\overline{b_j}$.  Then lines $j$ and $k$ both occur in
+the last layer of $f$.  Thus, for every line $i$, $1 \leq i \leq
+n$, the value of variable $x_i$ in assignment $\alpha'$ does not
+match the canalyzing value of line $i$.  Consequently, $f(\alpha')
+= \overline{b_j}$, the complement of the canalyzed output in the
+last layer of $f$.
 
-{\bf Case 3:} $(x_k : \overline{a_j} \rightarrow b_j)$. \\
-Suppose there is a line below line $j$ for which the canalyzed output is $\overline{b_j}$.
-Let $q$ be the first such line.
-Note that for all $i$ such that $1 \leq i < q$, 
-the value of variable $x_i$ in assignment $\alpha'$ does not match the canalyzing value of line $i$,
-but the value of variable $x_q$ does match the canalyzing value of line $q$.
-Since canalyzed output $b_q$ equals $\overline{b_j}$,
-we have that $f(\alpha') = \overline{b_j}$.
+{\bf Case 4:} $(x_k : \overline{a_j} \rightarrow \overline{b_j})$.
+\\ Suppose there is a line, other than line $k$, below line $j$ for
+which the canalyzed output is $\overline{b_j}$.  Let $q$ be the
+first such line.  Note that for all $i$ such that $1 \leq i < q$,
+the value of variable $x_i$ in assignment $\alpha'$ does not match
+the canalyzing value of line $i$, but the value of variable $x_q$
+does match the canalyzing value of line $q$.  Since canalyzed output
+$b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
+\overline{b_j}$.
 
-Now suppose there is no line below line $j$ for which the canalyzed output is $\overline{b_j}$.
-Then lines $j$ and $k$ both occur in the last layer of $f$.
-Thus, for every line $i$, $1 \leq i \leq n$, 
-the value of variable $x_i$ in assignment $\alpha'$ does not match the canalyzing value of line $i$.
-Consequently, $f(\alpha') = \overline{b_j}$, the complement of the canalyzed output in the last layer of $f$.
-
-{\bf Case 4:} $(x_k : \overline{a_j} \rightarrow \overline{b_j})$. \\
-Suppose there is a line, other than line $k$, below line $j$ for which the canalyzed output is $\overline{b_j}$.
-Let $q$ be the first such line.
-Note that for all $i$ such that $1 \leq i < q$, 
-the value of variable $x_i$ in assignment $\alpha'$ does not match the canalyzing value of line $i$,
-but the value of variable $x_q$ does match the canalyzing value of line $q$.
-Since canalyzed output $b_q$ equals $\overline{b_j}$,
-we have that $f(\alpha') = \overline{b_j}$.
-
-Now suppose that line $k$ is the only line below line $j$ for which the canalyzed output is $\overline{b_j}$.
-Since line $j$ has canalyzed output $b_j$, line $k$ is the only line in its layer.
-Since $f$ is normalized, the last layer of $f$ contains at least two lines.
-Thus, there is a last layer following the layer containing line $k$.
-The canalyzed output of all the lines in this last layer is $b_j$.
-Thus, for every line $i$, $1 \leq i \leq n$, 
-the value of variable $x_i$ in assignment $\alpha'$ does not match the canalyzing value of line $i$.
-Consequently, $f(\alpha') = \overline{b_j}$, the complement of the canalyzed output in the last layer of $f$.
-\QED
-
+Now suppose that line $k$ is the only line below line $j$ for which
+the canalyzed output is $\overline{b_j}$.  Since line $j$ has
+canalyzed output $b_j$, line $k$ is the only line in its layer.
+Since $f$ is normalized, the last layer of $f$ contains at least
+two lines.  Thus, there is a last layer following the layer containing
+line $k$.  The canalyzed output of all the lines in this last layer
+is $b_j$.  Thus, for every line $i$, $1 \leq i \leq n$, the value
+of variable $x_i$ in assignment $\alpha'$ does not match the
+canalyzing value of line $i$.  Consequently, $f(\alpha') =
+\overline{b_j}$, the complement of the canalyzed output in the last
+layer of $f$.  \QED
 
 \begin{theorem}\label{thm:ncf_r_symmetric}
 Suppose the normalized representation of a given NCF contains 
@@ -161,7 +158,7 @@ Then the function is properly $(r_1 + 2 r_2)$-symmetric.
 \end{theorem}
 \noindent
 \textbf{Proof:}~
-From Theorem \ref{thm:ncf_symmetric_variables}, 
+From Theorem~\ref{thm:ncf_symmetric_variables}, 
 any pair of variables occurring in the same layer, with the same canalyzing value,
 are symmetric.
 Thus the function is at most $(r_1 + 2 r_2)$-symmetric.
@@ -174,12 +171,15 @@ For every $n \geq 2$, there is an $n$-variable NCF that is not $n-1$ symmetric.
 \end{corollary}
 
 \begin{corollary}\label{cor:ncf_r_symmetric_layers}
-A NCF with a normalized nested canalyzing representation consisting of $q$ layers is $2q$-symmetric,
-and is not $(q-1)$-symmetric.
+A NCF with a normalized nested canalyzing representation consisting
+of $q$ layers is $2q$-symmetric, and is not $(q-1)$-symmetric.
 
-A $r$-symmetric NCF has a normalized nested canalyzing representation with at most $r-1$ layers,
-and has an unnormalized nested canalyzing representation with at most $r$ layers.
-\end{corollary}
+An $r$-symmetric NCF has a normalized nested canalyzing representation
+with at most $r-1$ layers, and has an unnormalized nested canalyzing
+representation with at most $r$ layers.  \end{corollary}
+
+\subsection{Strong Asymmetry and NCFs}
+\label{sse:strong_asym_ncf}
 
 Generalized forms of symmetry have been considered \cite{KS-2000}
 in which a Boolean function is symmetric with respect to some permutation,
@@ -191,8 +191,8 @@ if for any permutation $\pi$ of $\{1, 2, \ldots, n\}$
 there exists an input $(a_1, a_2, \ldots,  a_n)$ 
 to $f$ such that $f(a_1, a_2, \ldots, a_n)$ $\neq$  
 $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-In general, there are functions with $n$ variables that are properly $n$-symmetric,
-but not strongly asymmetric \cite{KS-2000}.
+In general, there are functions with $n$ variables that are properly
+$n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
 
 We now show that any $n$ variable NCF that is properly $n$-symmetric
 is also strongly asymmetric.
@@ -206,111 +206,116 @@ it is properly $n$-symmetric.
 
 \noindent
 \textbf{Proof:}~ 
-If a NCF is $(n-1)$-symmetric, then consider a permutation than interchanges two variables 
-from a symmetry group with at least two members.
-The value of the function is invariant under any such permutation,
-so the function is not strongly asymmetric.
+If a NCF is $(n-1)$-symmetric, then consider a permutation than
+interchanges two variables from a symmetry group with at least two
+members.  The value of the function is invariant under any such
+permutation, so the function is not strongly asymmetric.
 
 Now consider a $n$ variable NCF that is properly $n$-symmetric.
-Let $f$ be the normalized NCF representation for the function.
-For purposes of notational simplicity, 
-wlog we assume that the canalyzing variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.
-Let $\pi$ be any permutation of $\{1, 2, \ldots, n\}$
-\emph{except} the identity permutation.
-We will construct an assignment $(c_1, c_2, \ldots,  c_n)$ 
-to the variables of $f$ such that $f(c_1, c_2, \ldots,  c_n)$ $\neq$  
-$f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.
+Let $f$ be the normalized NCF representation for the function.  For
+purposes of notational simplicity, wlog we assume that the canalyzing
+variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.  Let $\pi$
+be any permutation of $\{1, 2, \ldots, n\}$ \emph{except} the
+identity permutation.  We will construct an assignment $(c_1, c_2,
+\ldots,  c_n)$ to the variables of $f$ such that $f(c_1, c_2, \ldots,
+c_n)$ $\neq$ $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.
 
-Let $k$ be the smallest index such that $k \neq \pi(k)$.
-Since $\pi$ is a permutation, $k < n$.
-Overall, for $1 \leq i < k$, $\pi(i) = i$;
- $\pi(k) > k$;
- and for $k < i \leq n$, $\pi(i) \geq k$.
+Let $k$ be the smallest index such that $k \neq \pi(k)$.  Since
+$\pi$ is a permutation, $k < n$.  Overall, for $1 \leq i < k$,
+$\pi(i) = i$;
+ $\pi(k) > k$; and for $k < i \leq n$, $\pi(i) \geq k$.
 
-Suppose that line $i$ of $f$, $1 \leq i \leq n$, is 
-\noindent
-$(x_i : a_i \rightarrow b_i)$. \\
-Assignment $(c_1, c_2, \ldots,  c_n)$ is constructed as follows.
+Suppose that line $i$ of $f$, $1 \leq i \leq n$, is \noindent $(x_i
+: a_i \rightarrow b_i)$. \\ Assignment $(c_1, c_2, \ldots,  c_n)$
+is constructed as follows.
 
 \noindent
-For $1 \leq i < k$, set $c_i = \overline{a_i}$. \\
-For $i = k$, set $c_k =a_k$. \\
-For $i > k$, let $i' = \pi^{-1}(i)$, so that $\pi(i') = i$.
-Thus, after the permutation of values, variable $x_{i'}$ will have value $c_i$.
-If $b_{i'} = b_k$, then set $c_i =  \overline{a_{i'}}$,
-else set $c_i =  a_{i'}$.
+For $1 \leq i < k$, set $c_i = \overline{a_i}$. \\ For $i = k$, set
+$c_k =a_k$. \\ For $i > k$, let $i' = \pi^{-1}(i)$, so that $\pi(i')
+= i$.  Thus, after the permutation of values, variable $x_{i'}$
+will have value $c_i$.  If $b_{i'} = b_k$, then set $c_i =
+\overline{a_{i'}}$, else set $c_i =  a_{i'}$.
 
-Since $c_k$ matches the canalyzing value of line $k$ of $f$,
-and $c_i$ does not match the canalyzing value of any other earlier line $i$, $1 \leq i < k$, 
-we have that $f(c_1, c_2, \ldots,  c_n) = b_k$.
+Since $c_k$ matches the canalyzing value of line $k$ of $f$, and
+$c_i$ does not match the canalyzing value of any other earlier line
+$i$, $1 \leq i < k$, we have that $f(c_1, c_2, \ldots,  c_n) = b_k$.
 
-Now consider $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.
-We first note that for $1 \leq i < k$, 
-$c_{\pi(i)}$ does not match the canalyzing value of line $i$.
+Now consider $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.  We
+first note that for $1 \leq i < k$, $c_{\pi(i)}$ does not match the
+canalyzing value of line $i$.
 
-Let $k' = \pi^{-1}(k)$, so that $\pi(k') = k$.
-Canalyzing value $a_{k'}$ is either the same or the complement of $a_k$,
-and canalyzed output $b_{k'}$ is either the same or the complement of $b_k$,
-Thus, there are four possible cases for the form of line $k'$ of $f$.
-We will show that in each of the four cases,
-$f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
+Let $k' = \pi^{-1}(k)$, so that $\pi(k') = k$.  Canalyzing value
+$a_{k'}$ is either the same or the complement of $a_k$, and canalyzed
+output $b_{k'}$ is either the same or the complement of $b_k$, Thus,
+there are four possible cases for the form of line $k'$ of $f$.  We
+will show that in each of the four cases, $f(c_{\pi(1)}, c_{\pi(2)},
+\ldots, c_{\pi(n)}) = \overline{b_k}$.
 
-{\bf Case 1:} $(x_{k'} : a_k \rightarrow b_k)$. \\
-Since line $k'$ has the same canalyzing value and canalyzed output as line $k$,
-and $f$ is properly $n$-symmetric,
-line $k'$ must occur in a lower layer than that of line $k$.
-Thus, there is at least one line between line $k$ and line $k'$ for which the canalyzed output is $\overline{b_k}$.
-Let line $q$ be the first such line.
-Note that for all $i$ such that $1 \leq i < q$, 
-$c_{\pi(i)}$ does not match the canalyzing value of line $i$,
-but $c_{\pi(q)}$ does match the canalyzing value of line $q$.
-Since canalyzed output $b_q$ equals $\overline{b_k}$,
-we have that $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
+\noindent
+{\bf Case 1:} $(x_{k'} : a_k \rightarrow b_k)$. \\ 
 
+Since line $k'$
+has the same canalyzing value and canalyzed output as line $k$, and
+$f$ is properly $n$-symmetric, line $k'$ must occur in a lower layer
+than that of line $k$.  Thus, there is at least one line between
+line $k$ and line $k'$ for which the canalyzed output is $\overline{b_k}$.
+Let line $q$ be the first such line.  Note that for all $i$ such
+that $1 \leq i < q$, $c_{\pi(i)}$ does not match the canalyzing
+value of line $i$, but $c_{\pi(q)}$ does match the canalyzing value
+of line $q$.  Since canalyzed output $b_q$ equals $\overline{b_k}$,
+we have that $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) =
+\overline{b_k}$.
+
+\noindent
 {\bf Case 2:} $(x_{k'} : a_k \rightarrow \overline{b_k})$. \\
+
 Let line $q$ be the first line such that $k < q \leq k'$ and
 the canalyzed output of line $q$ is $\overline{b_k}$.
 Note that for all $i$ such that $1 \leq i < q$, 
 $c_{\pi(i)}$ does not match the canalyzing value of line $i$,
 so $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
+\noindent
 {\bf Case 3:} $(x_{k'} : \overline{a_k} \rightarrow b_k)$. \\
-Suppose there is a line below line $k$ for which the canalyzed output is $\overline{b_k}$.
-Let $q$ be the first such line.
-Note that for all $i$ such that $1 \leq i < q$, 
-$c_{\pi(i)}$ does not match the canalyzing value of line $i$,
-but $c_{\pi(q)}$ does match the canalyzing value of line $q$.
-Thus, $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
-Now suppose there is no line below line $k$ for which the canalyzed output is $\overline{b_k}$.
-Then line $k$ occurs in the last layer of $f$.
-Since $f$ is both normalized and properly $n$-symmetric,
-this last layer contains exactly two lines.
-Thus $k = n-1$ and $k' = n$.
-Note that for all $i$, 
-$c_{\pi(i)}$ does not match the canalyzing value of line $i$.
-Thus, $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
+Suppose there is a line below line $k$ for which the canalyzed
+output is $\overline{b_k}$.  Let $q$ be the first such line.  Note
+that for all $i$ such that $1 \leq i < q$, $c_{\pi(i)}$ does not
+match the canalyzing value of line $i$, but $c_{\pi(q)}$ does match
+the canalyzing value of line $q$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
+\ldots, c_{\pi(n)}) = \overline{b_k}$.
 
+Now suppose there is no line below line $k$ for which the canalyzed
+output is $\overline{b_k}$.  Then line $k$ occurs in the last layer
+of $f$.  Since $f$ is both normalized and properly $n$-symmetric,
+this last layer contains exactly two lines.  Thus $k = n-1$ and $k'
+= n$.  Note that for all $i$, $c_{\pi(i)}$ does not match the
+canalyzing value of line $i$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
+\ldots, c_{\pi(n)}) = \overline{b_k}$.
+
+\noindent
 {\bf Case 4:} $(x_{k'} : \overline{a_k} \rightarrow \overline{b_k})$. \\
-Suppose there is a line, other than line $k'$, below line $k$ for which the canalyzed output is $\overline{b_k}$.
-Let $q$ be the first such line.
-Note that for all $i$ such that $1 \leq i < q$, 
-$c_{\pi(i)}$ does not match the canalyzing value of line $i$,
-but $c_{\pi(q)}$ does match the canalyzing value of line $q$.
-Thus, $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
-Now suppose that line $k'$ is the only line below line $k$ for which the canalyzed output is $\overline{b_k}$.
-Since line $k$ has canalyzed output $b_k$, line $k'$ is the only line in its layer.
-Since $f$ is normalized, there is a last layer following the layer containing line $k'$.
-Thus, for all $i$, 
-$c_{\pi(i)}$ does not match the canalyzing value of line $i$,
-so $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
-\QED
+Suppose there is a line, other than line $k'$, below line $k$ for
+which the canalyzed output is $\overline{b_k}$.  Let $q$ be the
+first such line.  Note that for all $i$ such that $1 \leq i < q$,
+$c_{\pi(i)}$ does not match the canalyzing value of line $i$, but
+$c_{\pi(q)}$ does match the canalyzing value of line $q$.  Thus,
+$f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
+
+Now suppose that line $k'$ is the only line below line $k$ for which
+the canalyzed output is $\overline{b_k}$.  Since line $k$ has
+canalyzed output $b_k$, line $k'$ is the only line in its layer.
+Since $f$ is normalized, there is a last layer following the layer
+containing line $k'$.  Thus, for all $i$, $c_{\pi(i)}$ does not
+match the canalyzing value of line $i$, so $f(c_{\pi(1)}, c_{\pi(2)},
+\ldots, c_{\pi(n)}) = \overline{b_k}$.  \QED
 
 
-Examples of properly $n$-symmetric $n$-variable NCFs
-satisfying the conditions of Theorem \ref{thm:ncf_r_symmetric}
-are the following. For each $n > 1$, let $f_n$ be the function defined by the following formula.
+Examples of properly $n$-symmetric $n$-variable NCFs satisfying the
+conditions of Theorem \ref{thm:ncf_r_symmetric} are the following.
+For each $n > 1$, let $f_n$ be the function defined by the following
+formula.
 
 $$x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 (\cdots  ) )$$
 
@@ -319,7 +324,8 @@ $$f_6 = x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 ( x_5 \vee \bar{x}_6  ) ),$$
 and
 $$f_7 = x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 ( x_5 \vee \bar{x}_6   x_7) ).$$
 
-Function $f_n(x_1, x_2, \ldots, x_n)$ is the NCF corresponding to the following NCF representation:
+Function $f_n(x_1, x_2, \ldots, x_n)$ is the NCF corresponding to
+the following NCF representation:
 
 \medskip
 \noindent
@@ -347,9 +353,10 @@ and if $n$ is even, the last line is
 $x_n:~ (1 \rightarrow 0)$. \\
 
 Note that if $x_i = 0$ for all $i$, $1 \leq i \leq n$, then the
-value of $f_n$ is 0 if $n$ is odd and 1 if $n$ is even.
-Also, note that the above representation is unnormalized. To normalize the representation,
-the last line would be changed to have canalyzing value 0, and the same canalyzed output as the preceding line.
+value of $f_n$ is 0 if $n$ is odd and 1 if $n$ is even.  Also, note
+that the above representation is unnormalized. To normalize the
+representation, the last line would be changed to have canalyzing
+value 0, and the same canalyzed output as the preceding line.
 
 
 
@@ -486,6 +493,7 @@ f(a_1, a_2, \ldots, a_n) ~=~ f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)}).
 \end{equation}
 Equation~(\ref{eqn:f_contra}) contradicts 
 Equation~(\ref{eqn:f_asymmetry}), and the result follows. \QED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
 

@@ -172,101 +172,25 @@ Given an NCF representation for a function $f$, a normalized
 representation for $f$ can be obtained in polynomial time. \QED
 \end{observation}
 
-\subsection{Closure Properties of NCFs}
+\subsection{Defintions: Symmetric Boolean Functions}
+\label{sse:symmetry}
 
-\begin{observation}\label{complement}
-The set of NCFs and the set of generalized NCFs
-are each closed under complement.
-Moreover, given an NCF or a generalized NCF representation $f$, 
-an NCF or generalized NCF $f'$ representing the complement of $f$ 
-can be constructed in linear time.
-\end{observation}
+A pair of variables of a Boolean function $f(x_1, x_2, \ldots, x_n)$ is
+said to be \textbf{symmetric} if their values can be interchanged without
+affecting the value of the function.
+This form of interchange symmetry partitions the set of variables into a set of
+ \textbf{symmetry groups}, where the members of each group are pairwise symmetric.
+Function $f$ is said to be
+$r$-\textbf{symmetric} if it has at most $r$ symmetry groups.
+In this case, the value of $f$
+depends only on how many of the variables in each symmetry group have the value 1.
+We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
+it is $r$-symmetric, but not $(r-1)$-symmetric.
 
-\noindent
-\textbf{Proof:}~ We construct
-representation $f'$ by complementing 
-every canalyzed output in representation $f$.  \QED
+In the literature, a 1-symmetric function $f$ is referred to simply
+as a \textbf{symmetric} function.
+Thus, if $f$ is a symmetric function, then for any
+input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
+$1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
+$f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
 
-\medskip
-We also observe that the set of NCFs is not closed under OR,~ XOR~ or AND.
-To see this for OR and XOR,  note that the functions 
-$f_1 = x_1 \, \bar{x}_2$ and $f_2 = \bar{x}_1 \, x_2$
-are each NCFs, but their OR and XOR is the same Boolean function,
-and this Boolean function is not  a canalyzing function of either variable.
-To see this for AND, note that the functions 
-$f_1 = x_1 \vee \bar{x}_2$ and $f_2 = \bar{x}_1 \vee x_2$
-are each NCFs, but their AND is not  a canalyzing function of either variable.
-We now define a new operation (projection) on Boolean functions 
-and show through an explicit construction that
-NCFs are closed under this operation.
-This construction is used in Section~\ref{sse:gen_ncf_implication}
-where we present an efficient algorithm for the implication problem
-for generalized NCFs. 
-
-\begin{definition}\label{def:projection}
-Given a Boolean function $f$, a variable $x$, and a Boolean value $a$,
-the {\bf projection} of $f$ on $x = a$,
-denoted by $f_{x = a}$, is the function on the remaining variables
-whose value on any assignment $\alpha$ to these variables
-is the value of $f$ when $\alpha$ is extended to a complete assignment for $f$
-by setting the variable $x$ to the value $a$.
-\end{definition}
-
-\noindent
-We now show that generalized NCFs are closed under projection.
-
-\begin{lemma}\label{lem:projection}
-Given a generalized NCF representation $f$, a variable $x$, and a
-Boolean value $a$, a generalized NCF representing the projection
-$f_{x = a}$ can be constructed in linear time.
-\end{lemma}
-
-\noindent
-\textbf{Proof:}~ We use a simple case analysis.
-We will assume that the layers of the representation of $f$ have
-been identified and that they are numbered 
-from top to bottom, starting with 1.
-
-\smallskip
-
-\noindent
-{\bf Case 1}:~ Variable $x$ does not occur in $f$.
-Then  $f_{x = a}$ is the same as $f$.
-
-\smallskip
-
-\noindent
-{\bf Case 2}:~ For some value $b$, $f$ contains the line~ 
-``$x:~ a \longrightarrow b$".~
-We have two subcases.
-\begin{description}
-\item {(i)} If this line occurs in the first layer of $f$, 
-then $f_{x = a}$ is the constant $b$.
-
-\item{(ii)} If this line occurs in a layer of $f$ other than the first layer, 
-$f_{x = a}$ is obtained from $f$ by deleting 
-the layer containing this line and all subsequent layers.
-(Note that in this case, the preceding layer has canalyzed output $\bar{b}$.)
-\end{description}
-
-%%\smallskip
-
-\noindent
-{\bf Case 3}:~ For some value $b$, $f$ contains the line~
-``$x:~ \bar{a} \longrightarrow b$".~
-We have three subcases here.
-\begin{description}
-\item{(i)}
-If this line occurs in a layer with more than one line, 
-or if this line occurs in a layer that is not the last layer,
-then $f_{x = a}$ is obtained from $f$ by deleting this line.
-\item{(ii)}
-If this line is the last line in $f$, 
-and there is no other line in $f$ whose canalyzed output is $b$,
-then $f_{x = a}$ is  the constant $\bar{b}$.
-\item{(iii)}
-If this line is the last line in $f$, is the only line is its layer, 
-and there is at least one other line in $f$ whose canalyzed output is $b$,
-then $f_{x = a}$ is obtained from $f$ by deleting the last two layers.
-\end{description}
-\QED

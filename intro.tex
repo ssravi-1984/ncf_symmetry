@@ -5,6 +5,9 @@
 \subsection{Canalyzing and Nested Canalyzing Functions}
 \label{sse:ncf_def}
 
+The following definition of \textbf{canalyzing} Boolean functions was introduced
+in \cite{Kauffman-1969}.
+
 \begin{definition}\label{def:canalyzing}
 Let $X = $ $\{x_1, x_2, \ldots, x_n\}$ be a set of $n$  Boolean variables.
 A Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{canalyzing}
@@ -17,14 +20,14 @@ assigned to the variables in $X - \{x_i\}$.
 
 \noindent
 \textbf{Example 1:}~ Consider the function 
-$f(x_1, x_2, x_3) ~=~ x_1 \vee (x_2 \wedge x_3)$.
+$f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
 This function is canalyzing since if we set to $x_1 = 1$,
-$f(1, x_2, x_3) ~=~ 1$, regardless of the values assigned to $x_2$ and $x_3$. \qed
+$f(1, x_2, x_3) ~=~ 0$, regardless of the values assigned to $x_2$ and $x_3$. \qed
 
 \medskip
 
-A class of Boolean functions, called \textbf{nested canalyzing functions} (NCFs),
-was introduced in \cite{Kauffman-etal-2003} to model the behavior of
+Another class of Boolean functions, called \textbf{nested canalyzing functions} (NCFs),
+was introduced later in \cite{Kauffman-etal-2003} to model the behavior of
 certain biological systems.
 We follow the presentation in \cite{Layne-2011} in defining 
 such a Boolean function. 
@@ -55,8 +58,9 @@ f(x_1, x_2, \ldots, x_n) ~=~
 
 \medskip
 %% \clearpage
-For convenience, we will use a computational notation to represent NCFs.
-For $1 \leq i \leq n$, line $i$ of our representation has the following form:
+For convenience, we will use a computational notation to represent NCFs
+introduced in \cite{Stearns-etal-2018}.
+For $1 \leq i \leq n$, line $i$ of this representation has the following form:
 
 \medskip
 
@@ -66,11 +70,12 @@ For $1 \leq i \leq n$, line $i$ of our representation has the following form:
 \medskip
 
 \noindent 
-We say that $x_{\pi(i)}$ is the \textbf{canalyzing variable} that is
+Following the terminology in \cite{Stearns-etal-2018},
+ $x_{\pi(i)}$ is the \textbf{canalyzing variable} that is
 \textbf{tested} in line $i$, 
 with $a_i$ and $b_i$ denoting respectively the canalyzing and 
 canalyzed values in line $i$ as before,~ $1 \leq i \leq n$.
-We refer to each such line as a \textbf{rule}.
+each such line is called a \textbf{rule}.
 When none of the conditions ``$x_{\pi(i)} ~=~ a_i$" 
 is satisfied, we have line $n+1$ with the ``Default" rule
 for which the canalyzed value is~ $\overline{b_n}$: 
@@ -82,16 +87,16 @@ for which the canalyzed value is~ $\overline{b_n}$:
 
 \medskip
 \noindent
-In the remainder of this paper, we will refer to the above specification
+As in \cite{Stearns-etal-2018},, we will refer to the above specification
 of an NCF as the \textbf{simplified representation} and assume
 (without loss of generality) that each NCF is specified in this manner.
-The simplified representation provides the following 
-convenient computational view of an NCF.~
-Lines defining an NCF are 
-considered sequentially in a top-down manner.
-The computation stops at the first line where the 
-specified condition is satisfied, and the value of the function
-is the canalyzed value on that line. 
+%% The simplified representation provides the following 
+%% convenient computational view of an NCF.~
+%% Lines defining an NCF are 
+%% considered sequentially in a top-down manner.
+%% The computation stops at the first line where the 
+%% specified condition is satisfied, and the value of the function
+%% is the canalyzed value on that line. 
 We now present an example of an NCF using the two representations
 mentioned above.
 
@@ -99,22 +104,22 @@ mentioned above.
 \medskip
 \noindent
 \textbf{Example 2:}~ Consider the function 
-$f(x_1, x_2, x_3) ~=~ x_1 \vee (x_2 \wedge x_3)$.
+$f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
 This function is nested canalyzing using the identity permutation $\pi$ on $\{1,2,3\}$
-with canalyzing values $1,0,0$ and canalyzed values $1, 0, 0$.
+with canalyzing values $1,1,0$ and canalyzed values $0, 1, 1$.
 We first show how this function can be expressed using the syntax of
 Definition~\ref{def:nested_canalyzing}.
 
 \[
 f(x_1, x_2, x_3) ~=~ 
    \begin{cases}
-       \:1 & \mathrm{if~~} x_{1} ~=~ 1 \\
-       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
-            x_{2} ~=~ 0 \\
-       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
-            x_{2} ~\neq~ 0 \mathrm{~~and~~} x_{3} = 0 \\
+       \:0 & \mathrm{if~~} x_{1} ~=~ 1 \\
        \:1 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
-            x_{2} ~\neq~ 0 \mathrm{~~and~~} x_{3} ~\neq~ 0 \\
+            x_{2} ~=~ 1 \\
+       \:1 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
+            x_{2} ~\neq~ 1 \mathrm{~~and~~} x_{3} = 0 \\
+       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
+            x_{2} ~\neq~ 1 \mathrm{~~and~~} x_{3} ~\neq~ 0 \\
    \end{cases}
 \]
 
@@ -126,10 +131,10 @@ A simplified representation of the same function is as follows.
 
 \noindent
 \begin{tabular}{ll}
-\hspace*{1.1in} & $x_1:~$  $1 ~\longrightarrow~ 1$ \\ [1ex]
-\hspace*{1.1in} & $x_2:~$  $0 ~\longrightarrow~ 0$ \\ [1ex]
-\hspace*{1.1in} & $x_3:~$  $0 ~\longrightarrow~ 0$ \\ [1ex]
-\hspace*{1.1in} & Default:~ $1$ \\
+\hspace*{1.1in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [1ex]
+\hspace*{1.1in} & $x_2:~$  $1 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & $x_3:~$  $0 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & Default:~ $0$ \\
 \end{tabular}
 
 \noindent
@@ -189,8 +194,28 @@ such that the value of the function is 1.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fi
 
+\subsection{Symmetric Boolean Functions}
+\label{sse:symmetry}
 
+A pair of variables of a Boolean function $f(x_1, x_2, \ldots, x_n)$ is
+said to be \textbf{symmetric} if their values can be interchanged without
+affecting the value of the function.
+This form of interchange symmetry partitions the set of variables into a set of
+\textbf{symmetry groups}, where the members of each group are pairwise symmetric.
+Function $f$ is said to be
+$r$-\textbf{symmetric} if it has at most $r$ symmetry groups.
+In this case, the value of $f$
+depends only on how many of the variables in each symmetry group have the value 1.
+We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
+it is $r$-symmetric, but not $(r-1)$-symmetric.
 
+In the literature (see, e.g., \cite{Crama-Hammer-2011,HT-2016,Toth-etal-1977}),
+a 1-symmetric function $f$ is referred to simply
+as a \textbf{symmetric} function.
+Thus, if $f$ is a symmetric function, then for any
+input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
+$1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
+$f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
 
 %\noindent
 

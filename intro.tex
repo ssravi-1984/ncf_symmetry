@@ -1,7 +1,6 @@
 \section{Introduction} 
 \label{sec:intro}
 
-
 \subsection{Canalyzing and Nested Canalyzing Functions}
 \label{sse:ncf_def}
 
@@ -22,7 +21,8 @@ assigned to the variables in $X - \{x_i\}$.
 \textbf{Example 1:}~ Consider the function 
 $f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
 This function is canalyzing since if we set to $x_1 = 1$,
-$f(1, x_2, x_3) ~=~ 0$, regardless of the values assigned to $x_2$ and $x_3$. \qed
+$f(1, x_2, x_3) ~=~ 0$, no matter which combination of values is assigned 
+to $x_2$ and $x_3$. \qed
 
 \medskip
 
@@ -87,7 +87,7 @@ for which the canalyzed value is~ $\overline{b_n}$:
 
 \medskip
 \noindent
-As in \cite{Stearns-etal-2018},, we will refer to the above specification
+As in \cite{Stearns-etal-2018}, we will refer to the above specification
 of an NCF as the \textbf{simplified representation} and assume
 (without loss of generality) that each NCF is specified in this manner.
 %% The simplified representation provides the following 
@@ -208,6 +208,10 @@ In this case, the value of $f$
 depends only on how many of the variables in each symmetry group have the value 1.
 We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
 it is $r$-symmetric, but not $(r-1)$-symmetric.
+For a Boolean function $f$, the integer $r$ such that $f$ is properly $r$-symmetric
+will be referred to as the \textbf{symmetry level} of $f$.
+Thus the symmetry level of $f$ is the smallest integer $r$ such that
+$f$ is $r$-symmetric.
 
 In the literature (see, e.g., \cite{Crama-Hammer-2011,HT-2016,Toth-etal-1977}),
 a 1-symmetric function $f$ is referred to simply
@@ -216,6 +220,15 @@ Thus, if $f$ is a symmetric function, then for any
 input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
 $1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
 $f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
+
+The following result points out that given a Boolean function $f$
+in the form of a Boolean expression, it is \np-hard to approximate
+the symmetry level to within any factor $\rho \geq 1$.
+
+\begin{theorem}\label{thm:approx_sym_level_hard}
+For any $\rho \geq 1$, it is \cnp-hard to approx
+\end{theorem}
+
 
 %\noindent
 

@@ -172,29 +172,44 @@ Given an NCF representation for a function $f$, a normalized
 representation for $f$ can be obtained in polynomial time. \QED
 \end{observation}
 
-\iffalse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Defintions: Symmetric Boolean Functions}
-\label{sse:symmetry}
+\subsection{Complexity of Estimating the Symmetry Level of a i
+Boolean Function}
+\label{sse:symmetry_level_hardness}
 
-A pair of variables of a Boolean function $f(x_1, x_2, \ldots, x_n)$ is
-said to be \textbf{symmetric} if their values can be interchanged without
-affecting the value of the function.
-This form of interchange symmetry partitions the set of variables into a set of
- \textbf{symmetry groups}, where the members of each group are pairwise symmetric.
-Function $f$ is said to be
-$r$-\textbf{symmetric} if it has at most $r$ symmetry groups.
-In this case, the value of $f$
-depends only on how many of the variables in each symmetry group have the value 1.
-We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
-it is $r$-symmetric, but not $(r-1)$-symmetric.
+Recall that the symmetry level of a Boolean function $f$ is the smallest
+integer $r$ such that the following condition holds:
+the  inputs to $f$ can be partitioned into $r$ subsets 
+(symmetry groups) so that the value of $f$ depends only on 
+how many of the inputs in each group have the value 1.
+The following result shows that given a Boolean function $f$
+in the form of a Boolean expression, it is \cnp-hard to 
+approximate\footnote{An algorithm approximates the symmetry
+level of a Boolean function $f$ within the factor $\rho$ if it finds a
+partition of the inputs to $f$ into at most $\rho \timex r^*$ symmetry
+groups, where $r^*$ is the symmetry level of $f$.}
+the symmetry level of $f$ to within any factor $\rho \geq 1$.
 
-In the literature, a 1-symmetric function $f$ is referred to simply
-as a \textbf{symmetric} function.
-Thus, if $f$ is a symmetric function, then for any
-input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
-$1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
-$f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fi
+\newcommand{\cala}{\mbox{$\mathcal{A}$}}
 
+\begin{proposition}\label{pro:approx_sym_level_hard}
+For any $\rho \geq 1$, it is \cnp-hard to approximate the
+symmetry level of $f$ to within the factor $\rho$.
+\end{proposition}
+
+\noindent
+\textbf{Proof:}~ Suppose there is an efficient algorithm \cala{} 
+that provides a $\rho$ approximation for the symmetry level
+of a Boolean function for some $\rho \geq 1$.
+We will show that \cala{} can be used to efficiently solve
+the CNF Satisfiability problem (SAT) which is known 
+to be \cnp-hard \cite{GJ-1979}.
+
+Let $f$ be a CNF formula representing an instance of SAT.
+Let $X$ = $\{x_1, x_2, \ldots, x_n\}$ denote the set of
+Boolean variables used in $f$.
+
+
+\QED
+
+In contrast, we will show that the symmetry level of an NCF (or that of a
+generalized NCF) can be computed efficiently.

@@ -185,16 +185,19 @@ The following result shows that given a Boolean function $f$
 in the form of a Boolean expression, it is \cnp-hard to 
 approximate\footnote{An algorithm approximates the symmetry
 level of a Boolean function $f$ within the factor $\rho$ if it finds a
-partition of the inputs to $f$ into at most $\rho \timex r^*$ symmetry
+partition of the inputs to $f$ into at most $\rho \times r^*$ symmetry
 groups, where $r^*$ is the symmetry level of $f$.}
 the symmetry level of $f$ to within any factor $\rho \geq 1$.
 
 \newcommand{\cala}{\mbox{$\mathcal{A}$}}
 
-\begin{proposition}\label{pro:approx_sym_level_hard}
-For any $\rho \geq 1$, it is \cnp-hard to approximate the
-symmetry level of $f$ to within the factor $\rho$.
-\end{proposition}
+\begin{theorem}\label{thm:approx_sym_level_hard}
+Unless \textbf{P} = \cnp,
+for any $\rho \geq 1$, there is no polynomial time 
+algorithm for approximating the 
+symmetry level of a Boolean function $f$ to within the factor $\rho$.
+This result holds even when $f$ is a CNF expression.
+\end{theorem}
 
 \noindent
 \textbf{Proof:}~ Suppose there is an efficient algorithm \cala{} 
@@ -207,9 +210,88 @@ to be \cnp-hard \cite{GJ-1979}.
 Let $f$ be a CNF formula representing an instance of SAT.
 Let $X$ = $\{x_1, x_2, \ldots, x_n\}$ denote the set of
 Boolean variables used in $f$.
+We create another CNF formula $f'$ as follows.
+Let $Y = \{y_1, y_2, \ldots, y_{\rho+1}\}$ and
+$Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two new sets of variables.
+The expression for $f'$ is given by
+\[
+f'(x_1, \ldots, x_n, y_1, \ldots, y_{\rho+1},
+z_1, \ldots, z_{\rho+1}) ~=~ 
+    f(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) \wedge \ldots \wedge
+                              (y_{\rho+1} \vee \overline{z_{\rho+1}}).
+\]
+We note that $f'$ is also a CNF formula.
+We have the following claims.
 
+\medskip
 
+\noindent
+\textbf{Claim 1:}~ If $f$ is \emph{not} satisfiable, 
+the symmetry level of $f'$ is 1.
+
+\smallskip
+
+\noindent
+\textbf{Proof of Claim 1:}~ If $f$ is not satisfiable, $f'$ is also
+not satisfiable; that is, for all inputs, the value of $f'$ is 0.
+Thus, all the variables in $X \cup Y \cup Z$ can be put in one
+symmetry group; regardless of the number of variables 
+which are 1 in the group, the value of $f'$ is always 0. 
+\hfill$\Box$
+
+\medskip
+
+\noindent
+\textbf{Claim 2:}~ If $f$ \emph{is} satisfiable, 
+the symmetry level of $f'$ is at least $\rho+1$.
+
+\smallskip
+
+\noindent
+\textbf{Proof of Claim 2:}~ Suppose $f$ is satisfiable.
+We argue that for $i \neq j$, variables $y_i$ and $y_j$
+cannot be in the same symmetry group.
+To see this, consider the following assignment $\alpha$ to
+the variables of $f'$.
+\begin{description}
+\item{(i)} For the variables in $X$, choose an assignment that
+satisfies $f$.
+\item{(ii)} Let $y_i = 0$, $z_i = 1$, $y_j = 1$ and $z_j = 0$.
+\item{(iii)} For $1 \leq p \leq \rho+1$, $p \neq i$ and $p \neq j$,
+let $y_p = 1$ and $z_p$ = 0.
+\end{description}
+Since this assignment $\alpha$ sets the clause $(y_i \vee \overline{z_i})$ to 0,
+the value of $f'$ under the assignment $\alpha$ is 0.
+Now, consider the assignment $\alpha'$ that is obtained by exchanging
+the values of $y_i$ and $y_j$ in $\alpha$ without changing the
+values assigned to the other variables. 
+It can be seen that under assignment $\alpha'$, the value of $f'$ is 1.
+In both $\alpha$ and $\alpha'$, the number of 1-valued variables in 
+the set $\{y_i, y_j\}$ is 1; however, the two assignments lead to 
+different values for $f'$.
+Therefore, if $f$ is not satisfiable, for $i \neq j$, $y_i$ and $y_j$ cannot
+be in the same symmetry group.
+Since there are $\rho+1$ variables in $Y$, the number of symmetry groups 
+for $f'$ must be at least $\rho+1$. \hfill$\Box$
+
+\medskip
+ 
+Now, suppose we give $f'$ as the input to Algorithm \cala.
+If $f$ is \emph{not} satisfiable, then from Claim 1, 
+the symmetry level of $f'$ is 1. 
+Since \cala{} is a $\rho$-approximation algorithm,
+it should produce at most $\rho$ symmetry groups.
+On the other hand, if $f$ is satisfiable, by Claim 2, the symmetry
+level of $f'$ is at least $\rho+1$ and \cala{} should produce at least
+$\rho+1$ groups.
+Thus, by examining the output of \cala, we can determine whether or not $f$
+is satisfiable.
+Since \cala{} runs in polynomial time, we have an efficient 
+algorithm for SAT, contradicting the assumption that \textbf{P} $\neq$ \cnp.
 \QED
 
-In contrast, we will show that the symmetry level of an NCF (or that of a
+\medskip
+
+In contrast to the above result,
+we will show that the symmetry level of an NCF (or that of a
 generalized NCF) can be computed efficiently.

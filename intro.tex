@@ -190,9 +190,8 @@ depends only on variables $x_1$ and $x_3$.
 A pair of variables of a Boolean function $f(x_1, x_2, \ldots, x_n)$ is
 said to be \textbf{symmetric} if their values can be interchanged without
 affecting the value of the function.
-As simple examples, the functions 
-$f_1(x_1, x_2, x_3)$ = $x_1 \vee x_2 \vee x_3$ and
-$f_2(x_1, x_2, x_3)$ = $x_1 \oplus x_2 \oplus x_3$ are both symmetric.
+As a simple example, each pair of variables in the function 
+$f_2(x_1, x_2, x_3)$ = $x_1 \oplus x_2 \oplus x_3$ is symmetric.
 This form of interchange symmetry partitions the set of variables into a set of
 \textbf{symmetry groups}, where the members of each group are pairwise symmetric.
 Function $f$ is said to be
@@ -212,7 +211,10 @@ $f$ is $r$-symmetric.)
 In the literature (see, e.g., \cite{Crama-Hammer-2011,HT-2016,Toth-etal-1977}),
 a 1-symmetric function $f$ is referred to simply
 as a \textbf{symmetric} function.
-Thus, if $f$ is a symmetric function, then for any
+Thus, in any symmetric function, each pair of variables is symmetric.
+As a simple example, the function $f_2(x_1, x_2, x_3)$ = 
+$x_1 \oplus x_2 \oplus x_3$ (defined above) is symmetric.
+If $f$ is a symmetric function, then for any
 input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
 $1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
 $f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
@@ -252,27 +254,17 @@ The subclass of NCFs was
 introduced later by Kauffman et al. \cite{Kauffman-etal-2003} 
 to facilitate a rigorous analysis of the Boolean network model
 for gene regulatory networks.
+It is known that the class of NCFs coincides with that
+of unate cascade functions \cite{}
 Many researchers have studied mathematical properties of NCFs and
 pointed out the importance of NCFs in modeling biological
 phenomena (e.g., \cite{Layne-2011,
 Layne-etal-2012,Li-etal-2011,Li-etal-2012,Li-etal-2013}).
-
-There is extensive literature on the sensitivity of various classes
-of Boolean functions
-(e.g., \cite{Buhrman-etal-2002,Nisan-etal-1994,Zhang-2011}).
-For a discussion on how the sensitivity of a Boolean function provides
-an indication of its stability, the reader is referred to \cite{Kauffman-etal-2004,
-Layne-2011,Layne-etal-2012}.
-Li and Adeyeye \cite{Li-etal-2012} present lower and upper bounds on the
-sensitivity of any NCF.
-Li et al. \cite{Li-etal-2011,Li-etal-2013} conjectured that the average
-sensitivity of any NCF is strictly less than  $4/3$.
-This conjecture was proved by Klotz et al. \cite{Klotz-etal-2013} by establishing
-a tight upper bound on the average sensitivity of any NCF.
-Their methods rely on Fourier analysis of Boolean functions
-\cite{Odonnell-2014}.
-In \cite{Stearns-etal-2018}, 
-we presented a characterization of NCFs with maximum average sensitivity.
-This characterization allowed us to present an alternative proof 
-of the upper bound in \cite{Klotz-etal-2013} and derive a closed
-form expression for the number of such NCFs.
+Additionally, properties of NCFs such as sensitivity and 
+stability have also been studied
+by many researchers 
+\cite{Kauffman-etal-2004, Layne-2011,Layne-etal-2012,
+Li-etal-2011,Li-etal-2013,Klotz-etal-2013,
+Stearns-etal-2018}. 
+To our knowledge, the relationship between NCFs and symmetric
+Boolean functions has not been studied in the literature.

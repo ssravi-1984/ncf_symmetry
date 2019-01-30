@@ -29,8 +29,7 @@ to $x_2$ and $x_3$. \qed
 Another class of Boolean functions, called \textbf{nested canalyzing functions} (NCFs),
 was introduced later in \cite{Kauffman-etal-2003} to model the behavior of
 certain biological systems.
-We follow the presentation in \cite{Layne-2011} in defining 
-such a Boolean function. 
+We follow the presentation in \cite{Layne-2011} in defining NCFs.
 (For a Boolean value $b$,~ the complement is denoted by $\overline{b}$.)
 
 \begin{definition}\label{def:nested_canalyzing}
@@ -55,11 +54,9 @@ f(x_1, x_2, \ldots, x_n) ~=~
    \end{cases}
 \]
 \end{definition}
-
-\medskip
 %% \clearpage
-For convenience, we will use a computational notation to represent NCFs
-introduced in \cite{Stearns-etal-2018}.
+For convenience, we will use a notation introduced in \cite{Stearns-etal-2018}
+to represent NCFs.
 For $1 \leq i \leq n$, line $i$ of this representation has the following form:
 
 \medskip
@@ -75,7 +72,7 @@ Following the terminology in \cite{Stearns-etal-2018},
 \textbf{tested} in line $i$, 
 with $a_i$ and $b_i$ denoting respectively the canalyzing and 
 canalyzed values in line $i$ as before,~ $1 \leq i \leq n$.
-each such line is called a \textbf{rule}.
+Each such line is called a \textbf{rule}.
 When none of the conditions ``$x_{\pi(i)} ~=~ a_i$" 
 is satisfied, we have line $n+1$ with the ``Default" rule
 for which the canalyzed value is~ $\overline{b_n}$: 
@@ -104,7 +101,8 @@ mentioned above.
 \medskip
 \noindent
 \textbf{Example 2:}~ Consider the function 
-$f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
+$f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$
+used in Example~1.
 This function is nested canalyzing using the identity permutation $\pi$ on $\{1,2,3\}$
 with canalyzing values $1,1,0$ and canalyzed values $0, 1, 1$.
 We first show how this function can be expressed using the syntax of
@@ -141,7 +139,6 @@ A simplified representation of the same function is as follows.
 \qed
 
 \noindent
-\underline{\textsf{Generalized NCFs:}}~
 We will also consider a more general form of NCFs defined below.
 
 \begin{definition}\label{def:generalized ncf}
@@ -193,6 +190,9 @@ depends only on variables $x_1$ and $x_3$.
 A pair of variables of a Boolean function $f(x_1, x_2, \ldots, x_n)$ is
 said to be \textbf{symmetric} if their values can be interchanged without
 affecting the value of the function.
+As simple examples, the functions 
+$f_1(x_1, x_2, x_3)$ = $x_1 \vee x_2 \vee x_3$ and
+$f_2(x_1, x_2, x_3)$ = $x_1 \oplus x_2 \oplus x_3$ are both symmetric.
 This form of interchange symmetry partitions the set of variables into a set of
 \textbf{symmetry groups}, where the members of each group are pairwise symmetric.
 Function $f$ is said to be
@@ -201,10 +201,13 @@ In this case, the value of $f$
 depends only on how many of the variables in each symmetry group have the value 1.
 We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
 it is $r$-symmetric, but not $(r-1)$-symmetric.
+For example, the function $f_3(x_1, x_2) = x_1 \vee \overline{x_2}$
+is not symmetric since $f(1, 0) \neq f(0, 1)$; however, 
+it is trivially 2-symmetric.
 For a Boolean function $f$, the integer $r$ such that $f$ is properly $r$-symmetric
 will be referred to as the \textbf{symmetry level} of $f$.
-Thus the symmetry level of $f$ is the smallest integer $r$ such that
-$f$ is $r$-symmetric.
+(Thus, the symmetry level of $f$ is the smallest integer $r$ such that
+$f$ is $r$-symmetric.)
 
 In the literature (see, e.g., \cite{Crama-Hammer-2011,HT-2016,Toth-etal-1977}),
 a 1-symmetric function $f$ is referred to simply
@@ -213,19 +216,10 @@ Thus, if $f$ is a symmetric function, then for any
 input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
 $1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
 $f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-
-\iffalse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following result points out that given a Boolean function $f$
-in the form of a Boolean expression, it is \cnp-hard to approximate
-the symmetry level to within any factor $\rho \geq 1$.
-
-\begin{theorem}\label{thm:approx_sym_level_hard}
-For any $\rho \geq 1$, it is \cnp-hard to approx
-\end{theorem}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fi
-
+Symmetric and $r$-symmetric functions for $r \geq 2$ have also been
+studied in the literature in the context of discrete
+dynamical systems (see, e.g., 
+\cite{Barrett-etal-2007,Rosenkrantz-etal-2015,MR-2007}).
 
 %\noindent
 

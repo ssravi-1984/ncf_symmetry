@@ -3,17 +3,26 @@
 
 \subsection{Overview}
 \label{sse:res_overview}
-
+Our first result (Proposition~\ref{pro:ncf_symmetric})
+identifies all the functions that are symmetric and
+canalyzing as well as those that are symmetric and NCFs.
+Our next result (Theorem~\ref{thm:ncf_symmetric_variables})
+provides a characterization of pairs of variables of an NCF
+that are part of the same symmetry group. 
+This characterization allows us to give a simple closed form
+expression (Theorem~\ref{thm:ncf_r_symmetric}) 
+for the symmetry level of an NCF specified using
+its normalized representation.
 
 \subsection{Symmetric Canalyzing and Nested Canalyzing Functions}
 \label{sse:sym_and_cf_ncf}
 
-\begin{theorem}\label{thm:ncf_symmetric}
+\begin{proposition}\label{pro:ncf_symmetric}
 The only symmetric canalyzing functions are OR, AND, NOR, NAND, 
 the constant function 0, and the constant function 1.
 
 The only symmetric NCFs are OR, AND, NOR, and NAND.
-\end{theorem}
+\end{proposition}
 \noindent
 \textbf{Proof:}~
 Suppose symmetric function $f$ is a canalyzing function. Then there
@@ -190,6 +199,8 @@ representation with at most $r$ layers.  \end{corollary}
 \subsection{Strong Asymmetry and NCFs}
 \label{sse:strong_asym_ncf}
 
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Generalized forms of symmetry have been considered \cite{KS-2000}
 in which a Boolean function is symmetric with respect to some permutation,
 which can be more general than the permutations corresponding to symmetry groups.
@@ -200,12 +211,16 @@ if for any permutation $\pi$ of $\{1, 2, \ldots, n\}$
 there exists an input $(a_1, a_2, \ldots,  a_n)$ 
 to $f$ such that $f(a_1, a_2, \ldots, a_n)$ $\neq$  
 $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
+
+The notion of strong asymmetry of Boolean functions was defined 
+in Section~\ref{sec:prelim}.
 In general, there are functions with $n$ variables that are properly
 $n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
-
 We now show that any $n$ variable NCF that is properly $n$-symmetric
 is also strongly asymmetric.
-As a consequence, there are NCFs with $n$ variables
+As a consequence, we point out there are NCFs with $n$ variables
 which are properly $n$-symmetric.
 
 \begin{theorem}\label{thm:ncf_strong_asymmetry}

@@ -4,15 +4,17 @@
 \subsection{Canalyzing and Nested Canalyzing Functions}
 \label{sse:ncf_def}
 
-The following definition of \textbf{canalyzing} Boolean functions was introduced
-in \cite{Kauffman-1969}.
+The class of \textbf{canalyzing} Boolean functions, introduced 
+in \cite{Kauffman-1969}, is defined as follows.
 
 \begin{definition}\label{def:canalyzing}
-Let $X = $ $\{x_1, x_2, \ldots, x_n\}$ be a set of $n$  Boolean variables.
-A Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{canalyzing}
-if there is a variable $x_i \in X$ and values $a$, $b$ $\in \{0,1\}$ such that 
-$f(x_1, \ldots, x_{i-1}, a, x_{i+1}, \ldots, x_n)$ $~=~ b$, regardless of the values
-assigned to the variables in $X - \{x_i\}$.
+Given a set $X = $ $\{x_1, x_2, \ldots, x_n\}$ of $n$  Boolean variables,
+a Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{canalyzing}
+if there is a variable $x_i \in X$ and values $a$, $b$ $\in \{0,1\}$ such that
+\[
+f(x_1, \ldots, x_{i-1}, a, x_{i+1}, \ldots, x_n) ~=~ b, 
+\]
+regardless of the values assigned to the variables in $X - \{x_i\}$.
 \end{definition}
 
 \medskip
@@ -27,8 +29,8 @@ to $x_2$ and $x_3$. \qed
 \medskip
 
 Another class of Boolean functions, called \textbf{nested canalyzing functions} (NCFs),
-was introduced later in \cite{Kauffman-etal-2003} to model the behavior of
-certain biological systems.
+was introduced later in \cite{Kauffman-etal-2003} to carry out a detailed
+analysis of the behavior of certain biological systems.
 We follow the presentation in \cite{Layne-2011} in defining NCFs.
 (For a Boolean value $b$,~ the complement is denoted by $\overline{b}$.)
 
@@ -57,7 +59,7 @@ f(x_1, x_2, \ldots, x_n) ~=~
 %% \clearpage
 For convenience, we will use a notation introduced in \cite{Stearns-etal-2018}
 to represent NCFs.
-For $1 \leq i \leq n$, line $i$ of this representation has the following form:
+For $1 \leq i \leq n$, line $i$ of this representation has the form
 
 \medskip
 
@@ -67,11 +69,10 @@ For $1 \leq i \leq n$, line $i$ of this representation has the following form:
 \medskip
 
 \noindent 
-Following the terminology in \cite{Stearns-etal-2018},
- $x_{\pi(i)}$ is the \textbf{canalyzing variable} that is
+with $x_{\pi(i)}$ being the \textbf{canalyzing variable} that is
 \textbf{tested} in line $i$, 
-with $a_i$ and $b_i$ denoting respectively the canalyzing and 
-canalyzed values in line $i$ as before,~ $1 \leq i \leq n$.
+and $a_i$ and $b_i$ being respectively the canalyzing and 
+canalyzed values in line $i$,~ $1 \leq i \leq n$.
 Each such line is called a \textbf{rule}.
 When none of the conditions ``$x_{\pi(i)} ~=~ a_i$" 
 is satisfied, we have line $n+1$ with the ``Default" rule
@@ -200,13 +201,13 @@ In this case, the value of $f$
 depends only on how many of the variables in each symmetry group have the value 1.
 We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
 it is $r$-symmetric, but not $(r-1)$-symmetric.
-For example, the function $f_3(x_1, x_2) = x_1 \vee \overline{x_2}$
-is not symmetric since $f(1, 0) \neq f(0, 1)$; however, 
+For example, the function $f_3(x_1, x_2) = x_1 \vee\, \overline{x_2}$
+is not 1-symmetric since $f_3(1, 0) \neq f_3(0, 1)$; however, 
 it is trivially 2-symmetric.
 For a Boolean function $f$, the integer $r$ such that $f$ is properly $r$-symmetric
 will be referred to as the \textbf{symmetry level} of $f$.
-(Thus, the symmetry level of $f$ is the smallest integer $r$ such that
-$f$ is $r$-symmetric.)
+Thus, the symmetry level of $f$ is the smallest integer $r$ such that
+$f$ is $r$-symmetric.
 
 In the literature (see, e.g., \cite{Crama-Hammer-2011,HT-2016,Toth-etal-1977}),
 a 1-symmetric function $f$ is referred to simply
@@ -235,30 +236,23 @@ Boolean functions.
 \subsection{Related Work}
 \label{sse:related}
 
-The term \textbf{canalization} was first used by
-Conrad Waddington (a British geneticist)
-in 1942 \cite{Waddington-1942}
-to express the ability of a species
-to produce members with very similar observable features over a period
-of time even when there are significant changes in the environment
-during that period.
-Since that time, the term ``canalization'' has been used to describe
+The term \textbf{canalization}, first used by
+Waddington \cite{Waddington-1942}, is generally used to describe
 the stability of a biological system with changes
 in external conditions.
-In 1969, Kauffman \cite{Kauffman-1969} introduced a Boolean network model
+In 1969, Kauffman \cite{Kauffman-1969} introduced canalyzing Boolean functions
 to explain the stability of gene regulatory networks.
-Kauffman observed that the use of canalyzing Boolean
-functions in the model captured many observed properties of
-gene regulatory networks.
 The subclass of NCFs was
 introduced later by Kauffman et al. \cite{Kauffman-etal-2003} 
 to facilitate a rigorous analysis of the Boolean network model
 for gene regulatory networks.
 It is known that the class of NCFs coincides with that
-of unate cascade functions \cite{}
-Many researchers have studied mathematical properties of NCFs and
-pointed out the importance of NCFs in modeling biological
-phenomena (e.g., \cite{Layne-2011,
+of unate cascade Boolean functions \cite{Jarrah-etal-2007}.
+In the literature on computational learning theory,
+generalized NCFs are referred to as $1$-\textbf{decision lists} \cite{KV-1994}.
+Many researchers have pointed out the importance of NCFs 
+in modeling biological phenomena 
+(e.g., \cite{Layne-2011,
 Layne-etal-2012,Li-etal-2011,Li-etal-2012,Li-etal-2013}).
 Additionally, properties of NCFs such as sensitivity and 
 stability have also been studied

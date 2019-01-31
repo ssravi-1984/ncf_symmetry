@@ -29,7 +29,7 @@ in the results stated in this section.
 \subsection{Layers and Normalized Representation}
 \label{sse:ncf_layer}
 
-We begin with a two-part observation from \cite{Stearns-etal-2018}.
+We begin with an observation from \cite{Stearns-etal-2018}.
 
 \begin{observation} \label{obs:ncf_transformations}
 Let $f$ be an NCF with $n$ variables specified using $n$ lines
@@ -76,10 +76,10 @@ $x_1$, $x_2$, $\ldots$, $x_6$.
 
 \noindent
 \begin{tabular}{ll}
-\hspace*{1.1in} & $x_1:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
-\hspace*{1.1in} & $x_2:~$  $0 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{1.1in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{1.1in} & $x_2:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
 \hspace*{1.1in} & $x_3:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
-\hspace*{1.1in} & $x_4:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{1.1in} & $x_4:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
 \hspace*{1.1in} & $x_5:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
 \hspace*{1.1in} & $x_6:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
 \hspace*{1.1in} & Default:~ $1$ \\
@@ -87,11 +87,10 @@ $x_1$, $x_2$, $\ldots$, $x_6$.
 
 \medskip
 \noindent
-This function has 4 layers, with 
-Layer~1 consisting of the lines with $x_1$ and $x_2$, 
-Layer~2 consisting of the lines with $x_3$ and $x_4$, 
-Layer~3 consisting of the line with $x_5$ and 
-Layer~4 consisting of the line with $x_6$. \qed
+This function has 3 layers, with 
+Layer~1 consisting of the lines with $x_1$, $x_2$ and $x_3$, 
+Layer~2 consisting of the lines with $x_4$ and $x_5$, and
+Layer~3 consisting of the line with $x_6$.  \qed
 
 \medskip
 From Part~(a) of Observation~\ref{obs:ncf_transformations},
@@ -114,7 +113,7 @@ representation for NCFs.
 Let $f$ be an NCF with $n \geq 2$ variables specified using
 the simplified representation with 
 lexicographic ordering given by  
-$\langle x_{\pi(1)}, x_{\pi(2)}, x_{\pi(n)}\rangle$.
+$\langle x_{\pi(1)}, x_{\pi(2)}, \ldots, x_{\pi(n)}\rangle$.
 We say that the representation is {\bf normalized} if
 both of the following conditions hold.
 \begin{enumerate}
@@ -181,7 +180,7 @@ integer $r$ such that the following condition holds:
 the  inputs to $f$ can be partitioned into $r$ subsets 
 (symmetry groups) so that the value of $f$ depends only on 
 how many of the inputs in each group have the value 1.
-The following result shows that given a Boolean function $f$
+We now show that given a Boolean function $f$
 in the form of a Boolean expression, it is \cnp-hard to 
 approximate\footnote{An algorithm approximates the symmetry
 level of a Boolean function $f$ within the factor $\rho$ if it finds a
@@ -195,14 +194,15 @@ the symmetry level of $f$ to within any factor $\rho \geq 1$.
 Unless \textbf{P} = \cnp,
 for any $\rho \geq 1$, there is no polynomial time 
 algorithm for approximating the 
-symmetry level of a Boolean function $f$ to within the factor $\rho$.
+symmetry level of a Boolean function $f$ 
+specified as a Boolean expression to within the factor $\rho$.
 This result holds even when $f$ is a CNF expression.
 \end{theorem}
 
 \noindent
-\textbf{Proof:}~ Suppose there is an efficient algorithm \cala{} 
+\textbf{Proof:}~ For some $\rho \geq 1$, suppose there is an efficient algorithm \cala{} 
 that provides a $\rho$ approximation for the symmetry level
-of a Boolean function for some $\rho \geq 1$.
+of any Boolean function specified as a Boolean expression.
 We will show that \cala{} can be used to efficiently solve
 the CNF Satisfiability problem (SAT) which is known 
 to be \cnp-hard \cite{GJ-1979}.
@@ -234,9 +234,10 @@ the symmetry level of $f'$ is 1.
 \noindent
 \textbf{Proof of Claim 1:}~ If $f$ is not satisfiable, $f'$ is also
 not satisfiable; that is, for all inputs, the value of $f'$ is 0.
-Thus, all the variables in $X \cup Y \cup Z$ can be put in one
-symmetry group; regardless of the number of variables 
-which are 1 in the group, the value of $f'$ is always 0. 
+Thus, all the variables in $X \cup Y \cup Z$ can be included in one
+symmetry group.
+The value of $f'$ is 0 regardless of the number of variables 
+which are 1 in the group. 
 \hfill$\Box$
 
 \medskip
@@ -249,10 +250,11 @@ the symmetry level of $f'$ is at least $\rho+1$.
 
 \noindent
 \textbf{Proof of Claim 2:}~ Suppose $f$ is satisfiable.
-We argue that for $i \neq j$, variables $y_i$ and $y_j$
-cannot be in the same symmetry group.
-To see this, consider the following assignment $\alpha$ to
-the variables of $f'$.
+We argue that if $i \neq j$, variables $y_i$ and $y_j$
+cannot be in the same symmetry group for the function $f'$.
+To see this, consider any two variables $y_i$ and $y_j$ with $i \neq j$,
+and construct an assignment $\alpha$ to
+the variables of $f'$ in the following manner.
 \begin{description}
 \item{(i)} For the variables in $X$, choose an assignment that
 satisfies $f$.
@@ -262,7 +264,7 @@ let $y_p = 1$ and $z_p$ = 0.
 \end{description}
 Since this assignment $\alpha$ sets the clause $(y_i \vee \overline{z_i})$ to 0,
 the value of $f'$ under the assignment $\alpha$ is 0.
-Now, consider the assignment $\alpha'$ that is obtained by exchanging
+Now, consider the assignment $\alpha'$ that is obtained by interchanging
 the values of $y_i$ and $y_j$ in $\alpha$ without changing the
 values assigned to the other variables. 
 It can be seen that under assignment $\alpha'$, the value of $f'$ is 1.
@@ -276,13 +278,13 @@ for $f'$ must be at least $\rho+1$. \hfill$\Box$
 
 \medskip
  
-Now, suppose we give $f'$ as the input to Algorithm \cala.
+Now, suppose we execute Algorithm \cala{} on the function $f'$.
 If $f$ is \emph{not} satisfiable, then from Claim 1, 
 the symmetry level of $f'$ is 1. 
 Since \cala{} is a $\rho$-approximation algorithm,
 it should produce at most $\rho$ symmetry groups.
 On the other hand, if $f$ is satisfiable, by Claim 2, the symmetry
-level of $f'$ is at least $\rho+1$ and \cala{} should produce at least
+level of $f'$ is at least $\rho+1$; so, \cala{} will produce at least
 $\rho+1$ groups.
 Thus, by examining the output of \cala, we can determine whether or not $f$
 is satisfiable.
@@ -293,5 +295,6 @@ algorithm for SAT, contradicting the assumption that \textbf{P} $\neq$ \cnp.
 \medskip
 
 In contrast to the above result,
-we will show that the symmetry level of an NCF (or that of a
+we will show in the next section that the symmetry level 
+of an NCF (or that of a
 generalized NCF) can be computed efficiently.

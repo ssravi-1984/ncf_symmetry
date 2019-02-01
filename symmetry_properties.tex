@@ -1,93 +1,76 @@
 \section{Symmetry of Nested Canalyzing Functions}
-\label{sse:ncf_and_symmetry}
+\label{sec:ncf_and_symmetry}
 
 \subsection{Overview}
 \label{sse:res_overview}
-Our first result (Proposition~\ref{pro:ncf_symmetric})
-identifies all the functions that are symmetric and
-canalyzing as well as those that are symmetric and NCFs.
-Our next result (Theorem~\ref{thm:ncf_symmetric_variables})
+Our first result (Theorem~\ref{thm:ncf_symmetric_variables})
 provides a characterization of pairs of variables of an NCF
 that are part of the same symmetry group. 
 This characterization allows us to give a simple closed form
 expression (Theorem~\ref{thm:ncf_r_symmetric}) 
 for the symmetry level of an NCF specified using
 its normalized representation.
-
-\subsection{Symmetric Canalyzing and Nested Canalyzing Functions}
-\label{sse:sym_and_cf_ncf}
-
-\begin{proposition}\label{pro:ncf_symmetric}
-The only symmetric canalyzing functions are OR, AND, NOR, NAND, 
-the constant function 0, and the constant function 1.
-
-The only symmetric NCFs are OR, AND, NOR, and NAND.
-\end{proposition}
-\noindent
-\textbf{Proof:}~
-Suppose symmetric function $f$ is a canalyzing function. Then there
-is a variable $x$, and values $a$ and $b$ such that whenever $x =
-a$, function $f$ has value $b$.  Since $f$ is symmetric, $f$  has
-value $b$ whenever any of its variables have value $a$.  Thus, if
-at least one of its variables has value $a$, then $f$ has value
-$b$.  If $f$ has value $\bar{b}$ when none of its variables has
-value $a$, the four possible combinations of values for $a$ and $b$
-correspond to the four functions OR, AND, NOR, and NAND.  If $f$
-has value $b$ when none of its variables has value $a$, then $f$
-is the constant function $b$.
-
-Suppose that $f$ is a NCF.  Since constant functions are not NCFs,
-$f$ has value $\bar{b}$ when none of its variables has value $a$.
-The four possible combinations of values for $a$ and $b$ correspond
-to the four functions OR, AND, NOR, and NAND, each of which is a
-NCF.  \QED
+Our next result (Theorem~\ref{thm:ncf_strong_asymmetry})
+shows that for any NCF $f$ with $n$ variables,
+the two statements ``$f$ is strongly asymmetric"
+``the symmetry level of $f$ is $n$" are equivalent. 
+Our final result (Proposition~\ref{pro:ncf_symmetric})
+identifies all the functions that are symmetric and
+canalyzing as well as those that are symmetric and NCFs.
 
 \subsection{Symmetric Pairs of Variables in an NCF: A Characterization
 and Its Applications}
 \label{sse:ncf_strong_sym}
 
 \begin{theorem}\label{thm:ncf_symmetric_variables}
-A pair of variables of a NCF are symmetric iff
-in the normalized representation of the NCF
+Two variables of an NCF $f$ are symmetric iff
+in the normalized representation of $f$,
 they occur in the same layer and have the same canalyzing value.
 \end{theorem}
 \noindent
 \textbf{Proof:}~
-Suppose that a pair of variables occur in the same layer of a
-canalyzing representation, and the lines containing these variables
+Suppose that two variables of an NCF $f$ occur in the same layer of a
+normalized representation, and the lines containing these variables
 have the same canalyzing value.  Then in any input assignment, the
 values of these two variables can be interchanged, and the evaluation
 of the lines in that layer will have the same effect.  Thus, the
 variables are symmetric.
 
-Now, let $f$ be the normalized NCF representation for the function.
-For purposes of notational simplicity, wlog we assume that the
+For the converse, consider the normalized NCF representation of $f$. 
+For purposes of notational simplicity, we assume without loss of generality that the
 canalyzing variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.
-Let  $x_j$ and $x_k$ be a pair of variables that occur in different
+Let  $x_j$ and $x_k$ be two variables that occur in different
 layers of $f$, or occur in the same layer, but with different
-canalyzing values.  Wlog, assume that $j < k$, so that the line for
+canalyzing values.  Without loss of generality, 
+assume that $j < k$, so that the line for
 $x_j$ occurs above the line for $x_k$.
-
 Suppose that line $i$ of $f$, $1 \leq i \leq n$, is 
 
+\smallskip
+
+\hspace*{1in}
+$x_i : a_i ~\longrightarrow~ b_i$. 
+
+\smallskip
+
 \noindent
-$(x_i : a_i \rightarrow b_i)$. \\
 Consider the following input assignment $\alpha = (c_1, c_2, \ldots,  c_n)$ 
 to the variables of $f$.
-
-\noindent
-For $1 \leq i < j$, set $c_i = \overline{a_i}$. \\
-For $i = j$, set $c_j =a_j$. \\
-For $i = k$, set $c_k =\overline{a_j}$. \\
-For $j < i < k$, and for  $k < i \leq n$, 
+\begin{description}
+\item{(i)} For $1 \leq i < j$, set $c_i = \overline{a_i}$. 
+\item{(ii)} For $i = j$, set $c_j =a_j$. 
+\item{(iii)} For $i = k$, set $c_k =\overline{a_j}$. 
+\item{(iv)} For $j < i < k$, and for  $k < i \leq n$, 
 if $b_i = b_j$, then set $c_i =  \overline{a_i}$,
 else set $c_i =  a_i$.
-
+\end{description}
 Note that $f(\alpha) = b_j$, since the variables in all lines above
 line $j$ have the complement of their canalyzing value, and variable
 $x_j$ has its canalyzing value.
 
-Now let $\alpha'$ be the assignment that is obtained from $\alpha$
+\medskip
+
+Now, let $\alpha'$ be the assignment that is obtained from $\alpha$
 by interchanging the values of variables $x_j$ and $x_k$, so that
 after the interchange variable $x_j$ has value $\overline{a_j}$ and
 variable $x_k$ has value $a_j$.  We will show that $f(\alpha') =
@@ -99,8 +82,12 @@ is either the same or the complement of canalyzed output $b_j$,
 Thus, there are four possible cases for the form of line $k$.  We
 now consider each of the four cases.
 
+\medskip
+
 \noindent
-{\bf Case 1:} $(x_k : a_j \rightarrow b_j)$. \\ 
+{\bf Case 1:} Line $k$ has the form $x_k : a_j ~\longrightarrow~ b_j$.  
+
+\smallskip
 
 Since line $k$ has
 the same canalyzing value and canalyzed output as line $j$, line
@@ -114,11 +101,14 @@ match the canalyzing value of line $q$.  Since canalyzed output
 $b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
 \overline{b_j}$.
 
-\noindent
-{\bf Case 2:} $(x_k : a_j \rightarrow \overline{b_j})$. \\ 
+\medskip
 
-Let line
-$q$ be the first line such that $j < q \leq k$ and the canalyzed
+\noindent
+{\bf Case 2:} Line $k$ has the form  $x_k : a_j ~\longrightarrow~ \overline{b_j}$.  
+
+\smallskip
+
+Let line $q$ be the first line such that $j < q \leq k$ and the canalyzed
 output of line $q$ is $\overline{b_j}$.  Note that $q$ might possibly
 equal $k$.  For all $i$ such that $1 \leq i < q$, the value of
 variable $x_i$ in assignment $\alpha'$ does not match the canalyzing
@@ -126,8 +116,12 @@ value of line $i$, but the value of variable $x_q$ does match the
 canalyzing value of line $q$.  Since canalyzed output $b_q$ equals
 $\overline{b_j}$, we have that $f(\alpha') = \overline{b_j}$.
 
+\medskip
+
 \noindent
-{\bf Case 3:} $(x_k : \overline{a_j} \rightarrow b_j)$. \\ 
+{\bf Case 3:} Line $k$ has the form $x_k : \overline{a_j} ~\longrightarrow~ b_j$.  
+
+\smallskip
 
 Suppose there is a line below line $j$ for which the canalyzed output is
 $\overline{b_j}$.  Let $q$ be the first such line.  Note that for
@@ -137,6 +131,8 @@ $i$, but the value of variable $x_q$ does match the canalyzing value
 of line $q$.  Since canalyzed output $b_q$ equals $\overline{b_j}$,
 we have that $f(\alpha') = \overline{b_j}$.
 
+\smallskip
+
 Now suppose there is no line below line $j$ for which the canalyzed
 output is $\overline{b_j}$.  Then lines $j$ and $k$ both occur in
 the last layer of $f$.  Thus, for every line $i$, $1 \leq i \leq
@@ -145,8 +141,13 @@ match the canalyzing value of line $i$.  Consequently, $f(\alpha')
 = \overline{b_j}$, the complement of the canalyzed output in the
 last layer of $f$.
 
+\medskip
+
 \noindent
-{\bf Case 4:} $(x_k : \overline{a_j} \rightarrow \overline{b_j})$.  \\ 
+{\bf Case 4:} Line $k$ has the form  $x_k : \overline{a_j} ~\longrightarrow~ \overline{b_j}$. 
+
+\smallskip
+
 Suppose there is a line, other than line $k$, below line $j$ for
 which the canalyzed output is $\overline{b_j}$.  Let $q$ be the
 first such line.  Note that for all $i$ such that $1 \leq i < q$,
@@ -174,11 +175,12 @@ $r_1$ layers with only one distinct canalyzing value,
 and $r_2$ layers with two distinct canalyzing values.
 Then the function is properly $(r_1 + 2 r_2)$-symmetric.
 \end{theorem}
+
 \noindent
 \textbf{Proof:}~
 From Theorem~\ref{thm:ncf_symmetric_variables}, 
-any pair of variables occurring in the same layer, with the same canalyzing value,
-are symmetric.
+any pair of variables occurring in the same layer, 
+with the same canalyzing value, are symmetric.
 Thus the function is at most $(r_1 + 2 r_2)$-symmetric.
 Moreover, any pair of variables from different layers, or with different canalyzing values
 are not symmetric, so there are at least $(r_1 + 2 r_2)$ symmetry groups.
@@ -189,30 +191,15 @@ For every $n \geq 2$, there is an $n$-variable NCF that is not $n-1$ symmetric.
 \end{corollary}
 
 \begin{corollary}\label{cor:ncf_r_symmetric_layers}
-A NCF with a normalized nested canalyzing representation consisting
+(i) An NCF with a normalized nested canalyzing representation consisting
 of $q$ layers is $2q$-symmetric, and is not $(q-1)$-symmetric.
-
-An $r$-symmetric NCF has a normalized nested canalyzing representation
+(ii) An $r$-symmetric NCF has a normalized nested canalyzing representation
 with at most $r-1$ layers, and has an unnormalized nested canalyzing
-representation with at most $r$ layers.  \end{corollary}
+representation with at most $r$ layers.  
+\end{corollary}
 
 \subsection{Strong Asymmetry and NCFs}
 \label{sse:strong_asym_ncf}
-
-\iffalse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Generalized forms of symmetry have been considered \cite{KS-2000}
-in which a Boolean function is symmetric with respect to some permutation,
-which can be more general than the permutations corresponding to symmetry groups.
-We say that a Boolean function $f(x_1, x_2, \ldots, x_n)$ 
-is \textbf{strongly asymmetric}
-if for any permutation $\pi$ of $\{1, 2, \ldots, n\}$
-\emph{except} the identity permutation,
-there exists an input $(a_1, a_2, \ldots,  a_n)$ 
-to $f$ such that $f(a_1, a_2, \ldots, a_n)$ $\neq$  
-$f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fi
 
 The notion of strong asymmetry of Boolean functions was defined 
 in Section~\ref{sec:prelim}.
@@ -220,24 +207,25 @@ In general, there are functions with $n$ variables that are properly
 $n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
 We now show that any $n$ variable NCF that is properly $n$-symmetric
 is also strongly asymmetric.
-As a consequence, we point out there are NCFs with $n$ variables
-which are properly $n$-symmetric.
+As a consequence, we observe that there are NCFs with $n$ variables
+that are properly $n$-symmetric.
 
 \begin{theorem}\label{thm:ncf_strong_asymmetry}
-A NCF with $n$ variables is strongly asymmetric iff
+An NCF with $n$ variables is strongly asymmetric iff
 it is properly $n$-symmetric.
 \end{theorem}
 
 \noindent
 \textbf{Proof:}~ 
-If a NCF is $(n-1)$-symmetric, then consider a permutation than
+If an NCF is $(n-1)$-symmetric, then consider a permutation than
 interchanges two variables from a symmetry group with at least two
 members.  The value of the function is invariant under any such
 permutation, so the function is not strongly asymmetric.
 
-Now consider a $n$ variable NCF that is properly $n$-symmetric.
+For the converse, consider an $n$ variable NCF that is properly $n$-symmetric.
 Let $f$ be the normalized NCF representation for the function.  For
-purposes of notational simplicity, wlog we assume that the canalyzing
+purposes of notational simplicity, without loss of generality,
+we assume that the canalyzing
 variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.  Let $\pi$
 be any permutation of $\{1, 2, \ldots, n\}$ \emph{except} the
 identity permutation.  We will construct an assignment $(c_1, c_2,
@@ -246,20 +234,26 @@ c_n)$ $\neq$ $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.
 
 Let $k$ be the smallest index such that $k \neq \pi(k)$.  Since
 $\pi$ is a permutation, $k < n$.  Overall, for $1 \leq i < k$,
-$\pi(i) = i$;
- $\pi(k) > k$; and for $k < i \leq n$, $\pi(i) \geq k$.
+$\pi(i) = i$,~ $\pi(k) > k$,~ and for $k < i \leq n$,~ $\pi(i) \geq k$.
 
-Suppose that line $i$ of $f$, $1 \leq i \leq n$, is \noindent $(x_i
-: a_i \rightarrow b_i)$. \\ Assignment $(c_1, c_2, \ldots,  c_n)$
-is constructed as follows.
+Suppose that line $i$ of $f$, $1 \leq i \leq n$, is 
+
+\smallskip
+
+\hspace*{1in} $x_i : a_i ~\longrightarrow~ b_i$. 
+
+\smallskip
 
 \noindent
-For $1 \leq i < k$, set $c_i = \overline{a_i}$. \\ For $i = k$, set
-$c_k =a_k$. \\ For $i > k$, let $i' = \pi^{-1}(i)$, so that $\pi(i')
+Assignment $(c_1, c_2, \ldots,  c_n)$ is constructed as follows.
+\begin{description}
+\item{(i)} For $1 \leq i < k$, set $c_i = \overline{a_i}$.  
+\item{(ii)} For $i = k$, set $c_k =a_k$. 
+\item{(iii)} For $i > k$, let $i' = \pi^{-1}(i)$, so that $\pi(i')
 = i$.  Thus, after the permutation of values, variable $x_{i'}$
 will have value $c_i$.  If $b_{i'} = b_k$, then set $c_i =
 \overline{a_{i'}}$, else set $c_i =  a_{i'}$.
-
+\end{description}
 Since $c_k$ matches the canalyzing value of line $k$ of $f$, and
 $c_i$ does not match the canalyzing value of any other earlier line
 $i$, $1 \leq i < k$, we have that $f(c_1, c_2, \ldots,  c_n) = b_k$.
@@ -275,8 +269,12 @@ there are four possible cases for the form of line $k'$ of $f$.  We
 will show that in each of the four cases, $f(c_{\pi(1)}, c_{\pi(2)},
 \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
+\medskip
+
 \noindent
-{\bf Case 1:} $(x_{k'} : a_k \rightarrow b_k)$. \\ 
+{\bf Case 1:} Line $k'$ has the form  $x_{k'} : a_k ~\longrightarrow~ b_k$.  
+
+\smallskip
 
 Since line $k'$
 has the same canalyzing value and canalyzed output as line $k$, and
@@ -290,8 +288,12 @@ of line $q$.  Since canalyzed output $b_q$ equals $\overline{b_k}$,
 we have that $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) =
 \overline{b_k}$.
 
+\medskip
+
 \noindent
-{\bf Case 2:} $(x_{k'} : a_k \rightarrow \overline{b_k})$. \\
+{\bf Case 2:} Line $k'$ has the form $x_{k'} : a_k ~\longrightarrow~ \overline{b_k}$.
+
+\smallskip
 
 Let line $q$ be the first line such that $k < q \leq k'$ and
 the canalyzed output of line $q$ is $\overline{b_k}$.
@@ -299,8 +301,12 @@ Note that for all $i$ such that $1 \leq i < q$,
 $c_{\pi(i)}$ does not match the canalyzing value of line $i$,
 so $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
+\medskip
+
 \noindent
-{\bf Case 3:} $(x_{k'} : \overline{a_k} \rightarrow b_k)$. \\
+{\bf Case 3:} Line $k'$ has the form $x_{k'} : \overline{a_k} ~\longrightarrow~ b_k$. 
+
+\smallskip
 
 Suppose there is a line below line $k$ for which the canalyzed
 output is $\overline{b_k}$.  Let $q$ be the first such line.  Note
@@ -317,8 +323,13 @@ this last layer contains exactly two lines.  Thus $k = n-1$ and $k'
 canalyzing value of line $i$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
 \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
+\medskip
+
 \noindent
-{\bf Case 4:} $(x_{k'} : \overline{a_k} \rightarrow \overline{b_k})$. \\
+{\bf Case 4:} Line $k'$ has the form $x_{k'} : \overline{a_k} ~\longrightarrow~ 
+              \overline{b_k}$. 
+
+\smallskip
 
 Suppose there is a line, other than line $k'$, below line $k$ for
 which the canalyzed output is $\overline{b_k}$.  Let $q$ be the
@@ -335,30 +346,39 @@ containing line $k'$.  Thus, for all $i$, $c_{\pi(i)}$ does not
 match the canalyzing value of line $i$, so $f(c_{\pi(1)}, c_{\pi(2)},
 \ldots, c_{\pi(n)}) = \overline{b_k}$.  \QED
 
+\medskip
 
 Examples of properly $n$-symmetric $n$-variable NCFs satisfying the
 conditions of Theorem \ref{thm:ncf_r_symmetric} are the following.
 For each $n > 1$, let $f_n$ be the function defined by the following
-formula.
+formula:
 
-$$x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 (\cdots  ) )$$
+\smallskip
 
+\hspace*{1in} $x_1 \vee (\overline{x}_2 \wedge ( x_3 \vee (\overline{x}_4 \wedge (\cdots ))$
+
+\smallskip
+
+\noindent
 For instance,
-$$f_6 = x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 ( x_5 \vee \bar{x}_6  ) ),$$
-and
-$$f_7 = x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 ( x_5 \vee \bar{x}_6   x_7) ).$$
-
+\[
+f_6 = x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge (x_5 \vee \overline{x}_6))
+~~~~\mathrm{and}~~~~
+f_7 = x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge (x_5 
+          \vee (\overline{x}_6 \wedge  x_7)).
+\]
 Function $f_n(x_1, x_2, \ldots, x_n)$ is the NCF corresponding to
 the following NCF representation:
 
-\medskip
+\smallskip
+
 \noindent
 \hspace*{0.5in}
-$x_1:~ (1 \rightarrow 1)$ \\
+$x_1:~ 1 ~\longrightarrow~ 1$ \\
 \hspace*{0.5in}
-$x_2:~ (1 \rightarrow 0)$ \\
+$x_2:~ 1 ~\longrightarrow~ 0$ \\
 \hspace*{0.5in}
-$x_3:~ (1 \rightarrow 1)$ \\
+$x_3:~ 1 ~\longrightarrow~ 1$ \\
 \hspace*{0.75in}
 $\vdots$ 
 
@@ -367,211 +387,67 @@ If $n$ is odd, the last line is
 
 \noindent
 \hspace*{0.5in}
-$x_n:~ (1 \rightarrow 1)$ 
+$x_n:~ 1 ~\longrightarrow~ 1$ 
 
 \noindent
 and if $n$ is even, the last line is 
 
 \noindent
 \hspace*{0.5in}
-$x_n:~ (1 \rightarrow 0)$. \\
+$x_n:~ 1 ~\longrightarrow~ 0$. 
 
+\smallskip
+
+\noindent
 Note that if $x_i = 0$ for all $i$, $1 \leq i \leq n$, then the
 value of $f_n$ is 0 if $n$ is odd and 1 if $n$ is even.  Also, note
 that the above representation is unnormalized. To normalize the
 representation, the last line would be changed to have canalyzing
 value 0, and the same canalyzed output as the preceding line.
 
+\subsection{Symmetric Canalyzing and Nested Canalyzing Functions}
+\label{sse:sym_and_cf_ncf}
 
-
-
-
-
-\iffalse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\begin{theorem}\label{thm:ncf_asymmetry}
-\begin{theorem}\label{thm:ncf_asymmetry}.
-Consider the set of variables $x_i$ for $1 \leq i \leq n$ and 
-let $f(x_1, x_2, \ldots, x_n)$ be the NCF defined by the following sequence
-of lines:
-
-\medskip
+\begin{proposition}\label{pro:ncf_symmetric}
+(i) The only symmetric canalyzing functions are OR, AND, NOR, NAND, 
+the constant function 0 and the constant function 1.
+(ii) The only symmetric NCFs are OR, AND, NOR and NAND.
+\end{proposition}
+%%\medskip
 \noindent
-\hspace*{0.5in}
-$x_1:~ (1 \rightarrow 1)$ \\
-\hspace*{0.5in}
-$x_2:~ (1 \rightarrow 0)$ \\
-\hspace*{0.5in}
-$x_3:~ (1 \rightarrow 1)$ \\
-\hspace*{0.75in}
-$\vdots$ 
-
-\noindent
-If $n$ is odd, the last line is 
-
-\noindent
-\hspace*{0.5in}
-$x_n:~ (1 \rightarrow 1)$ 
-
-\noindent
-and if $n$ is even, the last line is 
-
-\noindent
-\hspace*{0.5in}
-$x_n:~ (1 \rightarrow 0)$. \\
-
-\noindent
-Let $\pi$ be any permutation of $\{1, 2, \ldots, n\}$
-\emph{except} the identity permutation.
-Then there exists an input $(a_1, a_2, \ldots,  a_n)$ 
-to $f$ such that $f(a_1, a_2, \ldots, ,a_n)$ $\neq$  
-$f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-\end{theorem}
-
-\noindent
-\textbf{Proof:}~ 
-Note that if $x_i = 0$ for all $i$, $1 \leq i \leq n$, then the
-value of the function $f$ is 0 if $n$ is odd and 1 if $n$ is even.
-
-First assume there is an odd $i$ such that $\pi(i)$ is even. 
-Consider the input where $a_i$ is 1 and all others are 0. 
-It can be verified that $f(a_1, a_2, \ldots, a_n)$ = 1 while
-$f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$ = 0.
+\textbf{Proof:}~
 
 \smallskip
-Now assume the permutation $\pi$ is such that for each odd $i$, $\pi(i)$ is odd 
-and for each even $i$, $\pi(i)$ is even.
-Let $k$ be the smallest index such that $k \neq \pi(k)$.
-Assume that $k$  is odd. 
-Construct the input $(a_1, a_2, \ldots,  a_n)$ to $f$ as follows: 
-\begin{enumerate}
-\item Set $a_k$ to 1 and $a_i$ to 0 for all other odd $i$. 
-\item For even $i$, set $a_i$ to 0 if $i < k$ and to 1 otherwise. 
-\end{enumerate}
-We have the following claim.
+
+\noindent
+\textbf{Part (i):}~
+Suppose symmetric function $f$ is also a canalyzing function. 
+Then there is a variable $x$, and values $a$ and $b$ 
+such that whenever $x = a$, function $f$ has value $b$.  
+Since $f$ is symmetric, $f$  has
+value $b$ whenever any of its variables has value $a$.  
+Thus, if at least one of its variables has value $a$, then $f$ has value $b$.  
+If $f$ has value $\overline{b}$ when none of its variables has
+value $a$, the four possible combinations of values for $a$ and $b$
+correspond to the four functions OR, AND, NOR, and NAND.  If $f$
+has value $b$ when none of its variables has value $a$, then $f$
+is the constant function $b$.
 
 \smallskip
-\noindent
-\textbf{Claim:}~ For the input $(a_1, a_2, \ldots, a_n)$, 
-$f(a_1, a_2, \ldots, a_n)$ = 1 and
-$f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$ = 0.
-
-\smallskip
-\noindent
-\textbf{Proof of claim:}~ Note that the permutation
-on the even indices maps 1's to 1's and leaves 0's in place.  
-Before the permutation,  
-$x_j = 0$ for $1 \leq j < k$ and $x_k = 1$,
-so the canalyzing variable is $x_k$ and the function value is 1.
-After the permutation, 
-$x_j = a_j = 0$ for $1 \leq j < k$,
-$x_k = 0$, and $x_{k+1} = 1$;
-so the canalyzing variable is $x_{k+1}$ and the function value is 0.
-This establishes the claim. 
-
-A similar proof can be given when $k$ is even and this completes
-the proof of Theorem~\ref{thm:ncf_asymmetry}.
-\QED
 
 \noindent
-The following result is a consequence of the above theorem.
-
-\begin{corollary}\label{cor:ncf_not_rsymm}
-For every $n \geq 2$, there is an $n$-variable NCF that is not $n-1$ symmetric.
-\end{corollary}
-
-\noindent
-\textbf{Proof:}~ 
-Let $f$ be the Boolean function defined in Theorem~\ref{thm:ncf_asymmetry}.
-We will show by contradiction that $f$ is not $r$-symmetric for any $r < n$.
-
-Suppose $f$ is $r$-symmetric for some $r < n$.
-Then, by definition, there is a partition of the set $X$ =
-$\{x_1, x_2, \ldots, x_n\}$ of variables into at most $r$ subsets such that
-the value of $f$ depends only on the number of variables with value 1
-in each subset.
-Since $r < n$, this partition has a subset, say $X_j$, 
-such that $|X_j| \geq 2$.
-Let $X_j = \{x_{j_1}, x_{j_2}, \ldots, x_{j_k}\}$, where $k \geq 2$.
-Assume without loss of generality that $j_1 < j_2 < \ldots < j_k$.
-Define a permutation $\pi$ of $\{1, 2, \ldots, n\}$ as follows. 
-\begin{enumerate}
-\item For all $i$ such that $x_i \not\in X_j$, $\pi(i) = i$.
-\item $\pi(j_{\ell})$ = $j_{\ell+1}$ for $1 \leq \ell_t \leq k-1$
-      and $\pi(j_{k})$ = $j_1$. 
-\end{enumerate}
-Note that $\pi$ is not the identity permutation.
-Thus, by Theorem~\ref{thm:ncf_asymmetry},
-there is an input $(a_1, a_2, \ldots, a_n)$ to $f$ such that
-such that
-\begin{equation}\label{eqn:f_asymmetry}
-f(a_1, a_2, \ldots, a_n) ~\neq~  f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})
-\end{equation}
-However, from the definition of permutation $\pi$, it follows
-that the number of 1's in any subset of the partition 
-is the same in both the inputs
-$(a_1, a_2, \ldots, a_n)$ and
-$(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-Therefore, since $f$ is $r$-symmetric, we must have
-\begin{equation}\label{eqn:f_contra}
-f(a_1, a_2, \ldots, a_n) ~=~ f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)}).
-\end{equation}
-Equation~(\ref{eqn:f_contra}) contradicts 
-Equation~(\ref{eqn:f_asymmetry}), and the result follows. \QED
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fi
+\textbf{Part (ii):}~
+Suppose that symmetric function $f$ is also an NCF.  
+Since constant functions are not NCFs,
+$f$ has value $\overline{b}$ when none of its variables has value $a$.
+The four possible combinations of values for $a$ and $b$ correspond
+to the four functions OR, AND, NOR and NAND, each of which is an
+NCF.  \QED
 
 
-\iffalse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-$$x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 (\cdots  ) )$$
 
-For instance,
-$$f_6 = x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 ( x_5 \vee \bar{x}_6  ) ),$$
-and
-$$f_7 = x_1 \vee \bar{x}_2 ( x_3 \vee \bar{x}_4 ( x_5 \vee \bar{x}_6   x_7) ).$$
 
-Function $f_n$ is a NCF, 
-and can be representing as a sequence where the variables appear in lexicographic order,
-each $a_i$ is 1, and the $b_i$'s alternate between 1 and 0.
-For instance, $f_6$ can be represented as follows:
 
-\noindent
-$(x_1: 1 \rightarrow 1 )$ \\
-$(x_2: 1 \rightarrow 0 )$ \\
-$(x_3: 1 \rightarrow 1 )$ \\
-$(x_4: 1 \rightarrow 0 )$ \\
-$(x_5: 1 \rightarrow 1 )$ \\
-$(x_6: 1 \rightarrow 0 )$ \\
-
-We now argue that $f_n$ is not $n-1$ symmetric.
-Consider the classes of $f_n$, represented as an $r$-symmetric function for some $r$.
-If we compare the assignment where a given odd-numbered variable $x_{2i+1}$ is the only variable equal to 1,
-and the assignment where a given even-numbered variable $x_{2j}$ is the only variable equal to 1,
-we can see that these assignments produce different values for $f_n$,
-so variables $x_{2i+1}$ and $x_{2j}$ must belong to different classes.
-If we compare the assignment where an odd-numbered variable $x_{2i+1}$  
-and the even-numbered variable $x_{2i+2}$ 
-are the only variables equal to 1,
-and the assignment where an odd-numbered variable of the form $x_{2k+1}$, $k >i$,
-and $x_{2i+2}$  are the only variables equal to 1,
-we can see that these assignments produce different values for $f_n$,
-so $x_{2i+1}$ and $x_{2k+1}$ must belong to different classes.
-Thus, each odd-numbered variable is the only member of its class.
-If we compare the assignment where an even-numbered variable $x_{2i}$  
-and the odd-numbered variable $x_{2i+1}$ 
-are the only variables equal to 1,
-and the assignment where an even-numbered variable of the form $x_{2k}$, $k >i$,
-and $x_{2i+1}$  are the only variables equal to 1,
-we can see that these assignments produce different values for $f_n$,
-so $x_{2i}$ and $x_{2k}$ must belong to different classes.
-Thus, each even-numbered variable is the only member of its class.
-\QED
-
-%%The following result shows another form of asymmetry for the function
-%%defined in the above theorem.  (This form of asymmetry may be stronger
-%%than the one established in the above theorem.)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fi
 
 
 

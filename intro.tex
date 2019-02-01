@@ -23,8 +23,8 @@ regardless of the values assigned to the variables in $X - \{x_i\}$.
 \textbf{Example 1:}~ Consider the function 
 $f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
 This function is canalyzing since if we set to $x_1 = 1$,
-$f(1, x_2, x_3) ~=~ 0$, no matter which combination of values is assigned 
-to $x_2$ and $x_3$. \qed
+$f(1, x_2, x_3) ~=~ 0$, for all combinations of values for 
+$x_2$ and $x_3$. \qed
 
 \medskip
 
@@ -195,15 +195,15 @@ As a simple example, each pair of variables in the function
 $f_2(x_1, x_2, x_3)$ = $x_1 \oplus x_2 \oplus x_3$ is symmetric.
 This form of interchange symmetry partitions the set of variables into a set of
 \textbf{symmetry groups}, where the members of each group are pairwise symmetric.
-Function $f$ is said to be
+A Boolean function $f$ is 
 $r$-\textbf{symmetric} if it has at most $r$ symmetry groups.
 In this case, the value of $f$
 depends only on how many of the variables in each symmetry group have the value 1.
 We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
 it is $r$-symmetric, but not $(r-1)$-symmetric.
-For example, the function $f_3(x_1, x_2) = x_1 \vee\, \overline{x_2}$
-is not 1-symmetric since $f_3(1, 0) \neq f_3(0, 1)$; however, 
-it is trivially 2-symmetric.
+For example, the function $f_3(x_1, x_2, x_3) = (x_1 \wedge x_2) \vee\, \overline{x_3}$
+is not 1-symmetric since $f_3(1, 0, 1) \neq f_3(1, 1, 0)$; however, 
+it is 2-symmetric with the symmetric groups being $\{x_1, x_2\}$ and $\{x_3\}$.
 For a Boolean function $f$, the integer $r$ such that $f$ is properly $r$-symmetric
 will be referred to as the \textbf{symmetry level} of $f$.
 Thus, the symmetry level of $f$ is the smallest integer $r$ such that
@@ -219,14 +219,13 @@ If $f$ is a symmetric function, then for any
 input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
 $1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
 $f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-Symmetric and $r$-symmetric functions for $r \geq 2$ have also been
-studied in the literature in the context of discrete
-dynamical systems (see, e.g., 
+The class of $r$-symmetric functions have also been
+studied in the literature on discrete dynamical systems (see, e.g., 
 \cite{Barrett-etal-2007,Rosenkrantz-etal-2015,MR-2007}).
 
 Other forms of symmetry which can be more general than the permutations 
 corresponding to symmetry groups have been considered \cite{KS-2000}.
-We say that a Boolean function $f(x_1, x_2, \ldots, x_n)$
+A Boolean function $f(x_1, x_2, \ldots, x_n)$
 is \textbf{strongly asymmetric}
 if for any permutation $\pi$ of $\{1, 2, \ldots, n\}$
 \emph{except} the identity permutation,
@@ -235,23 +234,33 @@ to $f$ such that $f(a_1, a_2, \ldots, a_n)$ $\neq$
 $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
 In general, there are functions with $n$ variables that are properly
 $n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
-However, in the case of NCFs with $n$ variables, we show that the notion of 
-strong asymmetry coincides with that of being properly $n$-symmetric.
-
+However, in the case of NCFs with $n$ variables, we will show 
+(see Section~\ref{sec:ncf_and_symmetry}) that the notion of 
+strong asymmetry coincides with that 
+of being properly $n$-symmetric.
 
 %\noindent
 
 \subsection{Summary of Results}
 \label{sse:contrib}
 
-Our focus is on the relationship between NCFs and symmetric
-Boolean functions.
-
+In this note, our focus is on the relationship between 
+NCFs and symmetric Boolean functions.
+We observe that, in general,
+one cannot efficiently approximate the symmetry level of
+a Boolean function to within any factor, unless \textbf{P} = \cnp.
+In contrast, we show that the symmetry level of an NCF $f$
+can be easily computed given a standard representation of $f$.
+We also show that for any NCF $f$ with $n$ variables, the notion of
+strong asymmetry considered in the literature is equivalent to
+the property that the symmetry level of $f$ is $n$.
+Finally, we identify all the Boolean functions that NCFs 
+as well as symmetric.
 
 \subsection{Related Work}
 \label{sse:related}
 
-The term \textbf{canalization}, first used by
+The term \textbf{canalization}, coined by
 Waddington \cite{Waddington-1942}, is generally used to describe
 the stability of a biological system with changes
 in external conditions.
@@ -265,15 +274,13 @@ It is known that the class of NCFs coincides with that
 of unate cascade Boolean functions \cite{Jarrah-etal-2007}.
 In the literature on computational learning theory,
 generalized NCFs are referred to as $1$-\textbf{decision lists} \cite{KV-1994}.
-Many researchers have pointed out the importance of NCFs 
+Many researchers have pointed out the usefulness of NCFs 
 in modeling biological phenomena 
 (e.g., \cite{Layne-2011,
 Layne-etal-2012,Li-etal-2011,Li-etal-2012,Li-etal-2013}).
-Additionally, properties of NCFs such as sensitivity and 
-stability have also been studied
-by many researchers 
-\cite{Kauffman-etal-2004, Layne-2011,Layne-etal-2012,
-Li-etal-2011,Li-etal-2013,Klotz-etal-2013,
-Stearns-etal-2018}. 
+Properties of NCFs such as sensitivity and 
+stability have also been studied in the 
+literature \cite{Kauffman-etal-2004, Layne-2011,Layne-etal-2012,
+Li-etal-2011,Li-etal-2013,Klotz-etal-2013, Stearns-etal-2018}. 
 To our knowledge, the relationship between NCFs and symmetric
-Boolean functions has not been studied in the literature.
+Boolean functions has not been addressed in the literature.

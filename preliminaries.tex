@@ -3,12 +3,19 @@
 
 \subsection{Overview}
 
-Here, we present some definitions and preliminary results which enable
-us to define a normalized representation for NCFs.
+We present some definitions and recall
+a known result regarding NCFs which allow us
+to define a normalized representation for NCFs.
 This representation plays an important role in several
 problems considered in later sections.
+We also show that, in general, the symmetry level
+of a Boolean function cannot be approximated to within any
+factor $\rho \geq 1$, unless \textbf{P} = \cnp.
 
 \medskip
+
+\subsection{Layers and Normalized Representation}
+\label{sse:ncf_layer}
 
 Recall that any NCF $f$ with $n$ variables,
 denoted by $x_1$, $x_2$, $\ldots$, $x_n$,~
@@ -20,16 +27,13 @@ of the variables in the specification.
 
 \medskip
 
-Throughout this section, we assume that an NCF $f$ with $n$
+Throughout this paper, we assume that an NCF $f$ with $n$
 variables is specified using the simplified representation with $n$ lines. 
 Unless otherwise mentioned, the ``Default" line (which is assigned the number $n+1$)
 in the simplified representation of an NCF is \emph{not} considered
 in the results stated in this section.
 
-\subsection{Layers and Normalized Representation}
-\label{sse:ncf_layer}
-
-We begin with an observation from \cite{Stearns-etal-2018}.
+The following observation is from \cite{Stearns-etal-2018}.
 
 \begin{observation} \label{obs:ncf_transformations}
 Let $f$ be an NCF with $n$ variables specified using $n$ lines
@@ -58,7 +62,7 @@ Li et al. \cite{Li-etal-2013} have defined the concept of a
 {\bf layer} of an NCF in terms of
 an algebraic representation of the NCF as an extended monomial.
 For our purposes, we use the following definition based on the
-simplified representation of NCFs given in Section~\ref{sec:intro}.
+simplified representation of NCFs.
 
 \begin{definition}
 \label{def:layer}
@@ -201,8 +205,9 @@ This result holds even when $f$ is a CNF expression.
 
 \noindent
 \textbf{Proof:}~ For some $\rho \geq 1$, suppose there is an efficient algorithm \cala{} 
-that provides a $\rho$ approximation for the symmetry level
-of any Boolean function specified as a Boolean expression.
+that approximates the symmetry level of a Boolean function
+specified as Boolean expression to within the factor $\rho$.
+Without loss of generality, we can assume that $\rho$ is an integer.
 We will show that \cala{} can be used to efficiently solve
 the CNF Satisfiability problem (SAT) which is known 
 to be \cnp-hard \cite{GJ-1979}.
@@ -212,7 +217,8 @@ Let $X$ = $\{x_1, x_2, \ldots, x_n\}$ denote the set of
 Boolean variables used in $f$.
 We create another CNF formula $f'$ as follows.
 Let $Y = \{y_1, y_2, \ldots, y_{\rho+1}\}$ and
-$Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two new sets of variables.
+$Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two 
+new sets of variables, with each set containing $\rho+1$ variables.
 The expression for $f'$ is given by
 \[
 f'(x_1, \ldots, x_n, y_1, \ldots, y_{\rho+1},
@@ -236,9 +242,8 @@ the symmetry level of $f'$ is 1.
 not satisfiable; that is, for all inputs, the value of $f'$ is 0.
 Thus, all the variables in $X \cup Y \cup Z$ can be included in one
 symmetry group.
-The value of $f'$ is 0 regardless of the number of variables 
-which are 1 in the group. 
-\hfill$\Box$
+The value of $f'$ is 0 regardless of how many variables in the
+group have the value 1.  \hfill$\Box$
 
 \medskip
 
@@ -271,7 +276,7 @@ It can be seen that under assignment $\alpha'$, the value of $f'$ is 1.
 In both $\alpha$ and $\alpha'$, the number of 1-valued variables in 
 the set $\{y_i, y_j\}$ is 1; however, the two assignments lead to 
 different values for $f'$.
-Therefore, if $f$ is not satisfiable, for $i \neq j$, $y_i$ and $y_j$ cannot
+Therefore, if $f$ is satisfiable, for $i \neq j$, $y_i$ and $y_j$ cannot
 be in the same symmetry group.
 Since there are $\rho+1$ variables in $Y$, the number of symmetry groups 
 for $f'$ must be at least $\rho+1$. \hfill$\Box$

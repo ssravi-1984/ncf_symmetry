@@ -48,9 +48,9 @@ without changing the other lines.
 
 \item{(b)} 
 Suppose lines $n-1$ and $n$ in the specification of $f$ 
-have complementary canalyzed outputs.
+have complementary canalyzed values.
 Then, the function remains unchanged 
-if the canalyzing value and canalyzed output in line $n$
+if the canalyzing value and canalyzed value in line $n$
 are both complemented. 
 (Here, the value on the ``Default" line is also complemented.)
 \QED
@@ -67,7 +67,7 @@ simplified representation of NCFs.
 \begin{definition}
 \label{def:layer}
 A {\bf layer} of a NCF representation is a maximal length sequence 
-of lines with the same canalyzed output.
+of lines with the same canalyzed value.
 \end{definition}
 %%Note that the ``Default" line in the representation of an NCF is
 %%\emph{not} considered in the definition of a layer.
@@ -121,9 +121,9 @@ $\langle x_{\pi(1)}, x_{\pi(2)}, \ldots, x_{\pi(n)}\rangle$.
 We say that the representation is {\bf normalized} if
 both of the following conditions hold.
 \begin{enumerate}
-  \item Lines $n-1$ and $n$ have the same canalyzed output ~and
+  \item Lines $n-1$ and $n$ have the same canalyzed value ~and
   \item each pair of consecutive lines
-        with the same canalyzed output occur in the lexicographic order 
+        with the same canalyzed value occur in the lexicographic order 
         of their canalyzing variables; that is, if two consecutive lines are \\
 %\medskip
 \noindent
@@ -164,9 +164,10 @@ with $x_1$. %\qed
 \medskip
 From Observation \ref{obs:ncf_transformations},
 we note that in polynomial time, for any NCF representation with more than one line,
-we can first modify the last line if necessary so that it has the same canalyzed output as the preceding line,
+we can first modify the last line if necessary 
+so that it has the same canalyzed value as the preceding line,
 and then we can lexicographically sort
-each maximal sequence of consecutive lines with the same canalyzed output,
+each maximal sequence of consecutive lines with the same canalyzed value,
 thereby obtaining an equivalent normalized NCF representation.
 We state this formally below.
 

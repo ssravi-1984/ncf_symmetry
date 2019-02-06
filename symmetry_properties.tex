@@ -77,8 +77,8 @@ variable $x_k$ has value $a_j$.  We will show that $f(\alpha') =
 \overline{b_j}$, so variables $x_j$ and $x_k$ are not symmetric.
 
 In line $k$ of $f$, canalyzing value $a_k$ is either the same or
-the complement of canalyzing value $a_j$, and canalyzed output $b_k$
-is either the same or the complement of canalyzed output $b_j$,
+the complement of canalyzing value $a_j$, and canalyzed value $b_k$
+is either the same or the complement of canalyzed value $b_j$,
 Thus, there are four possible cases for the form of line $k$.  We
 now consider each of the four cases.
 
@@ -90,14 +90,14 @@ now consider each of the four cases.
 \smallskip
 
 Since line $k$ has
-the same canalyzing value and canalyzed output as line $j$, line
+the same canalyzing value and canalyzed value as line $j$, line
 $k$ must occur in a lower layer than that of line $j$.  Thus, there
 is at least one line between line $j$ and line $k$ for which the
-canalyzed output is $\overline{b_j}$.  Let line $q$ be the first
+canalyzed value is $\overline{b_j}$.  Let line $q$ be the first
 such line.  Note that for all $i$ such that $1 \leq i < q$, the
 value of variable $x_i$ in assignment $\alpha'$ does not match the
 canalyzing value of line $i$, but the value of variable $x_q$ does
-match the canalyzing value of line $q$.  Since canalyzed output
+match the canalyzing value of line $q$.  Since canalyzed value
 $b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
 \overline{b_j}$.
 
@@ -109,11 +109,11 @@ $b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
 \smallskip
 
 Let line $q$ be the first line such that $j < q \leq k$ and the canalyzed
-output of line $q$ is $\overline{b_j}$.  Note that $q$ might possibly
+value of line $q$ is $\overline{b_j}$.  Note that $q$ might possibly
 equal $k$.  For all $i$ such that $1 \leq i < q$, the value of
 variable $x_i$ in assignment $\alpha'$ does not match the canalyzing
 value of line $i$, but the value of variable $x_q$ does match the
-canalyzing value of line $q$.  Since canalyzed output $b_q$ equals
+canalyzing value of line $q$.  Since canalyzed value $b_q$ equals
 $\overline{b_j}$, we have that $f(\alpha') = \overline{b_j}$.
 
 \medskip
@@ -123,22 +123,22 @@ $\overline{b_j}$, we have that $f(\alpha') = \overline{b_j}$.
 
 \smallskip
 
-Suppose there is a line below line $j$ for which the canalyzed output is
+Suppose there is a line below line $j$ for which the canalyzed value is
 $\overline{b_j}$.  Let $q$ be the first such line.  Note that for
 all $i$ such that $1 \leq i < q$, the value of variable $x_i$ in
 assignment $\alpha'$ does not match the canalyzing value of line
 $i$, but the value of variable $x_q$ does match the canalyzing value
-of line $q$.  Since canalyzed output $b_q$ equals $\overline{b_j}$,
+of line $q$.  Since canalyzed value $b_q$ equals $\overline{b_j}$,
 we have that $f(\alpha') = \overline{b_j}$.
 
 \smallskip
 
 Now suppose there is no line below line $j$ for which the canalyzed
-output is $\overline{b_j}$.  Then lines $j$ and $k$ both occur in
+value is $\overline{b_j}$.  Then lines $j$ and $k$ both occur in
 the last layer of $f$.  Thus, for every line $i$, $1 \leq i \leq
 n$, the value of variable $x_i$ in assignment $\alpha'$ does not
 match the canalyzing value of line $i$.  Consequently, $f(\alpha')
-= \overline{b_j}$, the complement of the canalyzed output in the
+= \overline{b_j}$, the complement of the canalyzed value in the
 last layer of $f$.
 
 \medskip
@@ -149,24 +149,24 @@ last layer of $f$.
 \smallskip
 
 Suppose there is a line, other than line $k$, below line $j$ for
-which the canalyzed output is $\overline{b_j}$.  Let $q$ be the
+which the canalyzed value is $\overline{b_j}$.  Let $q$ be the
 first such line.  Note that for all $i$ such that $1 \leq i < q$,
 the value of variable $x_i$ in assignment $\alpha'$ does not match
 the canalyzing value of line $i$, but the value of variable $x_q$
-does match the canalyzing value of line $q$.  Since canalyzed output
+does match the canalyzing value of line $q$.  Since canalyzed value
 $b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
 \overline{b_j}$.
 
 Now suppose that line $k$ is the only line below line $j$ for which
-the canalyzed output is $\overline{b_j}$.  Since line $j$ has
-canalyzed output $b_j$, line $k$ is the only line in its layer.
+the canalyzed value is $\overline{b_j}$.  Since line $j$ has
+canalyzed value $b_j$, line $k$ is the only line in its layer.
 Since $f$ is normalized, the last layer of $f$ contains at least
 two lines.  Thus, there is a last layer following the layer containing
-line $k$.  The canalyzed output of all the lines in this last layer
+line $k$.  The canalyzed value of all the lines in this last layer
 is $b_j$.  Thus, for every line $i$, $1 \leq i \leq n$, the value
 of variable $x_i$ in assignment $\alpha'$ does not match the
 canalyzing value of line $i$.  Consequently, $f(\alpha') =
-\overline{b_j}$, the complement of the canalyzed output in the last
+\overline{b_j}$, the complement of the canalyzed value in the last
 layer of $f$.  \QED
 
 \begin{theorem}\label{thm:ncf_r_symmetric}
@@ -264,7 +264,7 @@ canalyzing value of line $i$.
 
 Let $k' = \pi^{-1}(k)$, so that $\pi(k') = k$.  Canalyzing value
 $a_{k'}$ is either the same or the complement of $a_k$, and canalyzed
-output $b_{k'}$ is either the same or the complement of $b_k$, Thus,
+value $b_{k'}$ is either the same or the complement of $b_k$, Thus,
 there are four possible cases for the form of line $k'$ of $f$.  We
 will show that in each of the four cases, $f(c_{\pi(1)}, c_{\pi(2)},
 \ldots, c_{\pi(n)}) = \overline{b_k}$.
@@ -277,14 +277,14 @@ will show that in each of the four cases, $f(c_{\pi(1)}, c_{\pi(2)},
 \smallskip
 
 Since line $k'$
-has the same canalyzing value and canalyzed output as line $k$, and
+has the same canalyzing value and canalyzed value as line $k$, and
 $f$ is properly $n$-symmetric, line $k'$ must occur in a lower layer
 than that of line $k$.  Thus, there is at least one line between
-line $k$ and line $k'$ for which the canalyzed output is $\overline{b_k}$.
+line $k$ and line $k'$ for which the canalyzed value is $\overline{b_k}$.
 Let line $q$ be the first such line.  Note that for all $i$ such
 that $1 \leq i < q$, $c_{\pi(i)}$ does not match the canalyzing
 value of line $i$, but $c_{\pi(q)}$ does match the canalyzing value
-of line $q$.  Since canalyzed output $b_q$ equals $\overline{b_k}$,
+of line $q$.  Since canalyzed value $b_q$ equals $\overline{b_k}$,
 we have that $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) =
 \overline{b_k}$.
 
@@ -296,7 +296,7 @@ we have that $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) =
 \smallskip
 
 Let line $q$ be the first line such that $k < q \leq k'$ and
-the canalyzed output of line $q$ is $\overline{b_k}$.
+the canalyzed value of line $q$ is $\overline{b_k}$.
 Note that for all $i$ such that $1 \leq i < q$, 
 $c_{\pi(i)}$ does not match the canalyzing value of line $i$,
 so $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
@@ -309,14 +309,14 @@ so $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
 \smallskip
 
 Suppose there is a line below line $k$ for which the canalyzed
-output is $\overline{b_k}$.  Let $q$ be the first such line.  Note
+value is $\overline{b_k}$.  Let $q$ be the first such line.  Note
 that for all $i$ such that $1 \leq i < q$, $c_{\pi(i)}$ does not
 match the canalyzing value of line $i$, but $c_{\pi(q)}$ does match
 the canalyzing value of line $q$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
 \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
 Now suppose there is no line below line $k$ for which the canalyzed
-output is $\overline{b_k}$.  Then line $k$ occurs in the last layer
+value is $\overline{b_k}$.  Then line $k$ occurs in the last layer
 of $f$.  Since $f$ is both normalized and properly $n$-symmetric,
 this last layer contains exactly two lines.  Thus $k = n-1$ and $k'
 = n$.  Note that for all $i$, $c_{\pi(i)}$ does not match the
@@ -332,15 +332,15 @@ canalyzing value of line $i$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
 \smallskip
 
 Suppose there is a line, other than line $k'$, below line $k$ for
-which the canalyzed output is $\overline{b_k}$.  Let $q$ be the
+which the canalyzed value is $\overline{b_k}$.  Let $q$ be the
 first such line.  Note that for all $i$ such that $1 \leq i < q$,
 $c_{\pi(i)}$ does not match the canalyzing value of line $i$, but
 $c_{\pi(q)}$ does match the canalyzing value of line $q$.  Thus,
 $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
 Now suppose that line $k'$ is the only line below line $k$ for which
-the canalyzed output is $\overline{b_k}$.  Since line $k$ has
-canalyzed output $b_k$, line $k'$ is the only line in its layer.
+the canalyzed value is $\overline{b_k}$.  Since line $k$ has
+canalyzed value $b_k$, line $k'$ is the only line in its layer.
 Since $f$ is normalized, there is a last layer following the layer
 containing line $k'$.  Thus, for all $i$, $c_{\pi(i)}$ does not
 match the canalyzing value of line $i$, so $f(c_{\pi(1)}, c_{\pi(2)},
@@ -403,7 +403,7 @@ Note that if $x_i = 0$ for all $i$, $1 \leq i \leq n$, then the
 value of $f_n$ is 0 if $n$ is odd and 1 if $n$ is even.  Also, note
 that the above representation is unnormalized. To normalize the
 representation, the last line would be changed to have canalyzing
-value 0, and the same canalyzed output as the preceding line.
+value 0, and the same canalyzed value as the preceding line.
 
 \subsection{Symmetric Canalyzing and Nested Canalyzing Functions}
 \label{sse:sym_and_cf_ncf}

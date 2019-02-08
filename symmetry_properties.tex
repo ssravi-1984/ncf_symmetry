@@ -405,6 +405,37 @@ that the above representation is unnormalized. To normalize the
 representation, the last line would be changed to have canalyzing
 value 0, and the same canalyzed value as the preceding line.
 
+\subsection{Number of Strongly Asymmetric NCFs}
+\label{sse:number_strongly_asymmetric}
+
+\begin{theorem}\label{thm:count_strongly_asymmetric}
+For any $n \geq 2$, the number of Boolean functions with $n$ variables 
+that are both strongly asymmetric and NCFs is $n! \, 2^n$.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~
+Consider a default normalized representation of a strongly asymmetric NCF $f$.
+The representation contains $n-1$ layers.
+The first $n-2$ layers each contain one line, and the last layer contains two lines.
+
+Consider the canalyzed values in $f$. The canalyzed value in the
+first layer can be either 0 or 1.  The canalyzed value in every
+other layer is the complement of the canalyzed value in the preceding
+layer.  Thus, there are 2 possibilities for the sequence of canalyzed
+values in $f$.
+
+The canalyzing variable in each of the first $n-2$ lines (one per
+layer) can be any variable that has not yet occurred in a preceding
+line.  The last layer contains the remaining two variables.  Thus,
+there are $n! / 2$ possibilities for the pattern of variable
+occurrences in $f$.
+
+For each of the $n$ variables, the canalyzing value for the line
+containing that variable can be either 0 or 1.  Thus, there are
+$2^n$ possibilities for canalyzing values.  \QED
+
+
 \subsection{Symmetric Canalyzing and Nested Canalyzing Functions}
 \label{sse:sym_and_cf_ncf}
 

@@ -9,7 +9,7 @@ to define a normalized representation for NCFs.
 This representation plays an important role in several
 problems considered in later sections.
 We also show that, in general, the symmetry level
-of a Boolean function cannot be approximated to within any
+of a Boolean function cannot be efficiently approximated to within any
 factor $\rho \geq 1$, unless \textbf{P} = \cnp.
 
 \medskip
@@ -24,9 +24,9 @@ $x_{\pi(1)}$, $x_{\pi(2)}$, $\ldots$,  $x_{\pi(n)}$,
 where $\pi$ is a permutation of $\{1, 2, \ldots, n\}$.
 %% We will refer to this as the \textbf{lexicographic} ordering
 %% of the variables in the specification.
-Throughout this paper, we will assume that the variable
-ordering uses the identity permutation so that $x_i$ is the 
-variable tested in line $i$, $1 \leq i \leq n$. 
+Throughout this paper, we will assume without loss of generality
+that the variable ordering uses the identity permutation 
+so that $x_i$ is the variable tested in line $i$, $1 \leq i \leq n$. 
 We assume that an NCF $f$ with $n$
 variables is specified using the simplified representation with $n$ lines. 
 Unless otherwise mentioned, the ``Default" line (which is assigned the number $n+1$)
@@ -56,7 +56,7 @@ are both complemented.
 \end{description}
 \end{observation}
 
-\noindent
+%%\noindent
 Li et al. \cite{Li-etal-2013} have defined the concept of a 
 {\bf layer} of an NCF in terms of
 an algebraic representation of the NCF as an extended monomial.
@@ -122,9 +122,8 @@ lines $n-1$ and $n$ have the same canalyzed value.
 
 \noindent
 \textbf{Example 5:}~ 
-Consider the NCF $f$ shown in Example~4 with
-the variable ordering $x_1$, $x_2$, $x_3$, $x_4$, $x_5$, $x_6$.
-This representation is \emph{not} normalized since lines 5 and 6
+Consider the NCF $f$ shown in Example~4. 
+This representation is \emph{not} default-normalized since lines 5 and 6
 have different canalyzed values.
 If we change line 6 to ``$x_6$:~ 0 $\longrightarrow$ 1" and the
 value on the ``Default" line to 0, then we obtain 
@@ -143,8 +142,11 @@ Given an NCF representation for a Boolean function $f$, a default-normalized
 representation for $f$ can be obtained in polynomial time. \QED
 \end{observation}
 
-\subsection{Complexity of Estimating the Symmetry Level of a 
-Boolean Function}
+In view of Observation~\ref{obs:normalization_poly},
+we will assume that any NCF is specified in default-normalized form.
+
+\subsection{Complexity of Approximating the Symmetry Level of a 
+General Boolean Function}
 \label{sse:symmetry_level_hardness}
 
 Recall that the symmetry level of a Boolean function $f$ is the smallest
@@ -180,94 +182,93 @@ We will show that \cala{} can be used to efficiently solve
 the CNF Satisfiability problem (SAT) which is known 
 to be \cnp-hard \cite{GJ-1979}.
 
-Let $f$ be a CNF formula representing an instance of SAT.
+Let $g$ be a CNF formula representing an instance of SAT.
 Let $X$ = $\{x_1, x_2, \ldots, x_n\}$ denote the set of
-Boolean variables used in $f$.
-We create another CNF formula $f'$ as follows.
+Boolean variables used in $g$.
+We create another CNF formula $f$ as follows.
 Let $Y = \{y_1, y_2, \ldots, y_{\rho+1}\}$ and
 $Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two 
 new sets of variables, with each set containing $\rho+1$ variables.
-The expression for $f'$ is given by
+The expression for $f$ is given by
 \[
-f'(x_1, \ldots, x_n, y_1, \ldots, y_{\rho+1},
+f(x_1, \ldots, x_n, y_1, \ldots, y_{\rho+1},
 z_1, \ldots, z_{\rho+1}) ~=~ 
-    f(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) \wedge \ldots \wedge
+    g(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) \wedge \ldots \wedge
                               (y_{\rho+1} \vee \overline{z_{\rho+1}}).
 \]
-We note that $f'$ is also a CNF formula.
+We note that $f$ is also a CNF formula.
 We have the following claims.
 
 \medskip
 
 \noindent
-\textbf{Claim 1:}~ If $f$ is \emph{not} satisfiable, 
-the symmetry level of $f'$ is 1.
+\textbf{Claim 1:}~ If $g$ is \emph{not} satisfiable, 
+the symmetry level of $f$ is 1.
 
 \smallskip
 
 \noindent
-\textbf{Proof of Claim 1:}~ If $f$ is not satisfiable, $f'$ is also
-not satisfiable; that is, for all inputs, the value of $f'$ is 0.
+\textbf{Proof of Claim 1:}~ If $g$ is not satisfiable, $f$ is also
+not satisfiable; that is, for all inputs, the value of $f$ is 0.
 Thus, all the variables in $X \cup Y \cup Z$ can be included in one
 symmetry group.
-The value of $f'$ is 0 regardless of how many variables in the
+The value of $f$ is 0 regardless of how many variables in the
 group have the value 1.  \hfill$\Box$
 
 \medskip
 
 \noindent
-\textbf{Claim 2:}~ If $f$ \emph{is} satisfiable, 
-the symmetry level of $f'$ is at least $\rho+1$.
+\textbf{Claim 2:}~ If $g$ \emph{is} satisfiable, 
+the symmetry level of $f$ is at least $\rho+1$.
 
 \smallskip
 
 \noindent
-\textbf{Proof of Claim 2:}~ Suppose $f$ is satisfiable.
+\textbf{Proof of Claim 2:}~ Suppose $g$ is satisfiable.
 We argue that if $i \neq j$, variables $y_i$ and $y_j$
-cannot be in the same symmetry group for the function $f'$.
+cannot be in the same symmetry group for the function $f$.
 To see this, consider any two variables $y_i$ and $y_j$ with $i \neq j$,
 and construct an assignment $\alpha$ to
-the variables of $f'$ in the following manner.
+the variables of $f$ in the following manner.
 \begin{description}
 \item{(i)} For the variables in $X$, choose an assignment that
-satisfies $f$.
+satisfies $g$.
 \item{(ii)} Let $y_i = 0$, $z_i = 1$, $y_j = 1$ and $z_j = 0$.
 \item{(iii)} For $1 \leq p \leq \rho+1$, $p \neq i$ and $p \neq j$,
 let $y_p = 1$ and $z_p$ = 0.
 \end{description}
 Since this assignment $\alpha$ sets the clause $(y_i \vee \overline{z_i})$ to 0,
-the value of $f'$ under the assignment $\alpha$ is 0.
+the value of $f$ under the assignment $\alpha$ is 0.
 Now, consider the assignment $\alpha'$ that is obtained by interchanging
 the values of $y_i$ and $y_j$ in $\alpha$ without changing the
 values assigned to the other variables. 
-It can be seen that under assignment $\alpha'$, the value of $f'$ is 1.
+It can be seen that under assignment $\alpha'$, the value of $f$ is 1.
 In both $\alpha$ and $\alpha'$, the number of 1-valued variables in 
 the set $\{y_i, y_j\}$ is 1; however, the two assignments lead to 
-different values for $f'$.
-Therefore, if $f$ is satisfiable, for $i \neq j$, $y_i$ and $y_j$ cannot
-be in the same symmetry group.
+different values for $f$.
+Therefore, if $g$ is satisfiable, for $i \neq j$, $y_i$ and $y_j$ cannot
+be in the same symmetry group for $f$.
 Since there are $\rho+1$ variables in $Y$, the number of symmetry groups 
-for $f'$ must be at least $\rho+1$. \hfill$\Box$
+for $f$ must be at least $\rho+1$. \hfill$\Box$
 
 \medskip
  
-Now, suppose we execute Algorithm \cala{} on the function $f'$.
-If $f$ is \emph{not} satisfiable, then from Claim 1, 
-the symmetry level of $f'$ is 1. 
+Now, suppose we execute Algorithm \cala{} on the function $f$.
+If $g$ is \emph{not} satisfiable, then from Claim~1, 
+the symmetry level of $f$ is 1. 
 Since \cala{} is a $\rho$-approximation algorithm,
 it should produce at most $\rho$ symmetry groups.
-On the other hand, if $f$ is satisfiable, by Claim 2, the symmetry
-level of $f'$ is at least $\rho+1$; so, \cala{} will produce at least
+On the other hand, if $g$ is satisfiable, by Claim~2, the symmetry
+level of $f$ is at least $\rho+1$; so, \cala{} will produce at least
 $\rho+1$ groups.
-Thus, by examining the output of \cala, we can determine whether or not $f$
-is satisfiable.
+In other words, $g$ is not satisfiable iff the number
+of symmetry groups produced by \cala{} is at most $\rho$.
 Since \cala{} runs in polynomial time, we have an efficient 
-algorithm for SAT, contradicting the assumption that \textbf{P} $\neq$ \cnp.
-\QED
+algorithm for SAT, contradicting the assumption that 
+\textbf{P} $\neq$ \cnp.  \QED
 
 \medskip
 
 In contrast to the above result,
 we will show in the next section that the symmetry level 
-of an NCF (or that of a
-generalized NCF) can be computed efficiently.
+of an NCF can be computed efficiently.

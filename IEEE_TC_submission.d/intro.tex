@@ -14,14 +14,14 @@ if there is a variable $x_i \in X$ and values $a$, $b$ $\in \{0,1\}$ such that
 \[
 f(x_1, \ldots, x_{i-1}, a, x_{i+1}, \ldots, x_n) ~=~ b, 
 \]
-regardless of the values assigned to the variables in $X - \{x_i\}$.
+for all combinations of values assigned to the variables in $X - \{x_i\}$.
 \end{definition}
 
 \medskip
 
 \noindent
 \textbf{Example 1:}~ Consider the function 
-$f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
+$f(x_1, x_2, x_3)$ $~=~$ $\overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
 This function is canalyzing since if we set to $x_1 = 1$,
 $f(1, x_2, x_3) ~=~ 0$, for all combinations of values for 
 $x_2$ and $x_3$. %\qed
@@ -46,13 +46,14 @@ if $f$ can be expressed in the following form:
 f(x_1, x_2, \ldots, x_n) ~=~ 
    \begin{cases}
        \:b_1 & \mathrm{if~~} x_{\pi(1)} ~=~ a_1 \\
-       \:b_2 & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~}
-            x_{\pi(2)} ~=~ a_2 \\
-       \:\vdots & \vdots \\
-       \:b_n & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots~
-             x_{\pi(n-1)} ~\neq~ a_{n-1} \mathrm{~~and~~} x_{\pi(n)} ~=~ a_n \\
-       \:\overline{b_n} & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots~
-            x_{\pi(n)} ~\neq~ a_n \\
+       \:b_2 & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~}\\
+             & x_{\pi(2)} ~=~ a_2 \\
+       \:\vdots & \vdots \\ %\smallskip
+       \:b_n & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots \\
+             & x_{\pi(n-1)} ~\neq~ a_{n-1} \mathrm{~~and~~}\\
+             & x_{\pi(n)} ~=~ a_n \\ %\smallskip
+       \:\overline{b_n} & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots\\
+                        & x_{\pi(n)} ~\neq~ a_n \\
    \end{cases}
 \]
 \end{definition}
@@ -64,7 +65,7 @@ For $1 \leq i \leq n$, line $i$ of this representation has the form
 \medskip
 
 \noindent
-\hspace*{1.1in} $x_{\pi(i)}:~ a_i ~~\longrightarrow~~ b_i$
+\hspace*{0.5in} $x_{\pi(i)}:~ a_i ~~\longrightarrow~~ b_i$
 
 \medskip
 
@@ -81,7 +82,7 @@ for which the canalyzed value is~ $\overline{b_n}$:
 \medskip
 
 \noindent
-\hspace*{1.1in} Default:~ $\overline{b_n}$
+\hspace*{0.5in} Default:~ $\overline{b_n}$
 
 \medskip
 \noindent
@@ -116,9 +117,11 @@ f(x_1, x_2, x_3) ~=~
        \:1 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
             x_{2} ~=~ 1 \\
        \:1 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
-            x_{2} ~\neq~ 1 \mathrm{~~and~~} x_{3} = 0 \\
-       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
-            x_{2} ~\neq~ 1 \mathrm{~~and~~} x_{3} ~\neq~ 0 \\
+            x_{2} ~\neq~ 1 \mathrm{~~and~~}\\ 
+           &x_{3} = 0 \\
+       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~} 
+             x_{2} ~\neq~ 1 \mathrm{~~and~~}\\ 
+           & x_{3} ~\neq~ 0 \\ \\ 
    \end{cases}
 \]
 
@@ -130,10 +133,10 @@ A simplified representation of the same function is as follows.
 
 \noindent
 \begin{tabular}{ll}
-\hspace*{1.1in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [1ex]
-\hspace*{1.1in} & $x_2:~$  $1 ~\longrightarrow~ 1$ \\ [1ex]
-\hspace*{1.1in} & $x_3:~$  $0 ~\longrightarrow~ 1$ \\ [1ex]
-\hspace*{1.1in} & Default:~ $0$ \\
+\hspace*{0.5in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.5in} & $x_2:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.5in} & $x_3:~$  $0 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.5in} & Default:~ $0$ \\
 \end{tabular}
 
 \noindent

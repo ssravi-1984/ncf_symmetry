@@ -1,4 +1,4 @@
-\section{Symmetry of Nested Canalyzing Functions}
+\section{Symmetry of Nested Canalyzing\newline Functions}
 \label{sec:ncf_and_symmetry}
 
 \subsection{Overview}
@@ -61,14 +61,14 @@ $x_i : a_i ~\longrightarrow~ b_i$.
 \noindent
 Consider the following input assignment $\alpha = (c_1, c_2, \ldots,  c_n)$ 
 to the variables of $f$.
-\begin{description}
-\item{(i)} For $1 \leq i < j$, set $c_i = \overline{a_i}$. 
-\item{(ii)} For $i = j$, set $c_j =a_j$. 
-\item{(iii)} For $i = k$, set $c_k =\overline{a_j}$. 
-\item{(iv)} For $j < i < k$, and for  $k < i \leq n$, 
+\begin{enumerate}
+\item For $1 \leq i < j$, set $c_i = \overline{a_i}$. 
+\item For $i = j$, set $c_j =a_j$. 
+\item For $i = k$, set $c_k =\overline{a_j}$. 
+\item For $j < i < k$, and for  $k < i \leq n$, 
 if $b_i = b_j$, then set $c_i =  \overline{a_i}$,
 else set $c_i =  a_i$.
-\end{description}
+\end{enumerate}
 Note that $f(\alpha) = b_j$, since the variables in all lines above
 line $j$ have the complement of their canalyzing value, and variable
 $x_j$ has its canalyzing value.
@@ -251,14 +251,14 @@ Suppose that line $i$ of $f$, $1 \leq i \leq n$, is
 
 \noindent
 Assignment $(c_1, c_2, \ldots,  c_n)$ is constructed as follows.
-\begin{description}
-\item{(i)} For $1 \leq i < k$, set $c_i = \overline{a_i}$.  
-\item{(ii)} For $i = k$, set $c_k =a_k$. 
-\item{(iii)} For $i > k$, let $i' = \pi^{-1}(i)$, so that $\pi(i')
+\begin{enumerate}
+\item For $1 \leq i < k$, set $c_i = \overline{a_i}$.  
+\item For $i = k$, set $c_k =a_k$. 
+\item For $i > k$, let $i' = \pi^{-1}(i)$, so that $\pi(i')
 = i$.  Thus, after the permutation of values, variable $x_{i'}$
 will have value $c_i$.  If $b_{i'} = b_k$, then set $c_i =
 \overline{a_{i'}}$, else set $c_i =  a_{i'}$.
-\end{description}
+\end{enumerate}
 Since $c_k$ matches the canalyzing value of line $k$ of $f$, and
 $c_i$ does not match the canalyzing value of any other earlier line
 $i$, $1 \leq i < k$, we have that $f(c_1, c_2, \ldots,  c_n) = b_k$.
@@ -321,8 +321,9 @@ the canalyzing value of line $q$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
 \ldots, c_{\pi(n)}) = \overline{b_k}$.
 
 Now suppose there is no line below line $k$ for which the canalyzed
-value is $\overline{b_k}$.  Then line $k$ occurs in the last layer
-of $f$.  Since $f$ is both default-normalized and properly $n$-symmetric,
+value is $\overline{b_k}$.  
+Then line $k$ occurs in the last layer of $f$.  
+Since $f$ is both default-normalized and properly $n$-symmetric,
 this last layer contains exactly two lines.  Thus $k = n-1$ and $k'
 = n$.  Note that for all $i$, $c_{\pi(i)}$ does not match the
 canalyzing value of line $i$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
@@ -353,6 +354,7 @@ match the canalyzing value of line $i$, so $f(c_{\pi(1)}, c_{\pi(2)},
 
 \medskip
 
+\noindent
 Examples of properly $n$-symmetric $n$-variable NCFs satisfying the
 conditions of Theorem \ref{thm:ncf_r_symmetric} are the following.
 For each $n > 1$, let $f_n$ be the function defined by the following
@@ -360,18 +362,18 @@ formula:
 
 \smallskip
 
-\hspace*{1in} $x_1 \vee (\overline{x}_2 \wedge ( x_3 \vee (\overline{x}_4 \wedge (\cdots ))$
+\hspace*{0.5in} $x_1 \vee (\overline{x}_2 \wedge ( x_3 \vee (\overline{x}_4 \wedge (\cdots ))$
 
 \smallskip
 
 \noindent
 For instance,
-\[
-f_6 = x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge (x_5 \vee \overline{x}_6))
-~~~~\mathrm{and}~~~~
-f_7 = x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge (x_5 
+\begin{align*}
+f_6 &~=~  x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge 
+      (x_5 \vee \overline{x}_6)) \\
+f_7 &~=~  x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge (x_5 
           \vee (\overline{x}_6 \wedge  x_7)).
-\]
+\end{align*}
 Function $f_n(x_1, x_2, \ldots, x_n)$ is the NCF corresponding to
 the following NCF representation:
 

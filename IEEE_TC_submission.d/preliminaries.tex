@@ -1,4 +1,4 @@
-\section{Other Definitions and Preliminary Results}
+\section{Other Definitions and Preliminary\newline Results}
 \label{sec:prelim}
 
 \subsection{Overview}
@@ -37,15 +37,16 @@ We will use the following result from \cite{Stearns-etal-2018}.
 \begin{observation} \label{obs:ncf_transformations}
 Let $f$ be an NCF with $n$ variables specified using $n$ lines
 in the simplified representation. 
-\begin{description}
-\item{(a)} 
+%\begin{description}
+\begin{enumerate}
+\item 
 For any $q \geq 2$ and for any $i$, $1 \leq i \leq n-q+1$,
 if the $q$ consecutive lines $i$, $i+1$, $\ldots$, $i+q-1$~
 have the same canalyzed value, then the function remains
 unchanged if these $q$ lines are permuted in any order
 without changing the other lines.
 
-\item{(b)} 
+\item 
 Suppose lines $n-1$ and $n$ in the specification of $f$ 
 have complementary canalyzed values.
 Then, the function remains unchanged 
@@ -53,7 +54,8 @@ if the canalyzing value and canalyzed value in line $n$
 are both complemented. 
 (Here, the value on the ``Default" line is also complemented.)
 \QED
-\end{description}
+\end{enumerate}
+%\end{description}
 \end{observation}
 
 %%\noindent
@@ -96,10 +98,10 @@ Layer~2 consisting of the lines with $x_4$ and $x_5$, and
 Layer~3 consisting of the line with $x_6$.  %\qed
 
 \medskip
-From Part~(a) of Observation~\ref{obs:ncf_transformations},
+From Part~1 of Observation~\ref{obs:ncf_transformations},
 it follows that the lines within the same layer of an NCF
 representation can be permuted without changing the function.
-Part~(b) of Observation~\ref{obs:ncf_transformations} points
+Part~2 of Observation~\ref{obs:ncf_transformations} points
 out that for any NCF $f$ with $n \geq 2$ variables, there is a simplified 
 representation in which lines $n-1$ and $n$ are in the same layer.
 
@@ -189,10 +191,9 @@ We create another CNF formula $f$ as follows.
 Let $Y = \{y_1, y_2, \ldots, y_{\rho+1}\}$ and
 $Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two 
 new sets of variables, with each set containing $\rho+1$ variables.
-The expression for $f$ is given by
+The expression for $f(x_1, \ldots, x_n, y_1, \ldots, y_{\rho+1})$
+is 
 \[
-f(x_1, \ldots, x_n, y_1, \ldots, y_{\rho+1},
-z_1, \ldots, z_{\rho+1}) ~=~ 
     g(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) \wedge \ldots \wedge
                               (y_{\rho+1} \vee \overline{z_{\rho+1}}).
 \]
@@ -230,13 +231,13 @@ cannot be in the same symmetry group for the function $f$.
 To see this, consider any two variables $y_i$ and $y_j$ with $i \neq j$,
 and construct an assignment $\alpha$ to
 the variables of $f$ in the following manner.
-\begin{description}
-\item{(i)} For the variables in $X$, choose an assignment that
+\begin{enumerate}
+\item For the variables in $X$, choose an assignment that
 satisfies $g$.
-\item{(ii)} Let $y_i = 0$, $z_i = 1$, $y_j = 1$ and $z_j = 0$.
-\item{(iii)} For $1 \leq p \leq \rho+1$, $p \neq i$ and $p \neq j$,
+\item Let $y_i = 0$, $z_i = 1$, $y_j = 1$ and $z_j = 0$.
+\item For $1 \leq p \leq \rho+1$, $p \neq i$ and $p \neq j$,
 let $y_p = 1$ and $z_p$ = 0.
-\end{description}
+\end{enumerate}
 Since this assignment $\alpha$ sets the clause $(y_i \vee \overline{z_i})$ to 0,
 the value of $f$ under the assignment $\alpha$ is 0.
 Now, consider the assignment $\alpha'$ that is obtained by interchanging

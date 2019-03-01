@@ -1,0 +1,462 @@
+%\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{amsmath}
+%\usepackage[latin1]{inputenc}
+%\usepackage{varioref}
+%\usepackage{cite}
+% \usepackage{times}
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%% Some theorem-like environments needed.
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+%\begin{titlepage}
+\title{Symmetry Properties of Nested Canalyzing Functions}
+%\end{titlepage}
+
+
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc 
+% journal papers have the author affiliations above the "Manuscript
+% received ..."  text while in non-compsoc journals this is reversed. Sigh.
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Daniel J. Rosenkrantz,~\IEEEmembership{}
+        Madhav V. Marathe,~\IEEEmembership{Fellow,~IEEE,}
+        S. S. Ravi,~\IEEEmembership{}
+        and~Richard E. Stearns,~\IEEEmembership{}% <-this % stops a space
+\IEEEcompsocitemizethanks{
+\IEEEcompsocthanksitem D. J. Rosenkrantz is with the Department
+of Computer Science, University at Albany -- SUNY, Albany, NY, 12222.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: drosenkrantz@gmail.com
+\IEEEcompsocthanksitem M. V. Marathe is with the Biocomplexity Institute \& Initiative
+and the Department of Computer Science at the  University of Virginia, Charlottesville,
+VA, 22904.\protect\\ E-mail: marathe@virginia.edu
+\IEEEcompsocthanksitem S. S. Ravi is with the Biocomplexity Institute \& Initiative
+at the  University of Virginia, Charlottesville,
+VA, 22904 and the Department of Computer Science, University at Albany -- SUNY,
+Albany, NY, 12222.\protect\\ E-mail: ssravi0@gmail.com
+\IEEEcompsocthanksitem R. E. Stearns is with the Department
+of Computer Science, University at Albany -- SUNY, Albany, NY, 12222.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: thestearns2@gmail.com
+}
+}% <-this % stops an unwanted space
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
+\author{Daniel J. Rosenkrantz,~ Madhav V. Marathe,~ S.~S. Ravi~ and~
+        Richard E. Stearns% 
+   \thanks{D. J. Rosenkrantz and R. E. Stearns are with the Computer
+           Science Department, University at Albany -- SUNY, Albany,
+           NY 12222. Email: \{drosenkrantz,thestearns2\}@gmail.com}
+   \thanks{M. V. Marathe is with the Biocomplexity Insitite and Initiative
+           and the Department of Computer Science, University of Virginia,
+           Charlottesville, VA, 22904. Email: marathe@virgnia.edu.}
+   \thanks{S. S. Ravi is with the Biocomplexity Insitite and Initiative
+           at the University of Virginia,
+           Charlottesville, VA, 22904 and the Computer
+           Science Department, University at Albany -- SUNY, Albany, NY 12222.
+           Email: ssravi0@gmail.com}
+}
+\maketitle
+
+\noindent
+\thanks{Manuscript received xx, xxxx; revised xxx, xx.}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{IEEE Transactions on Comptuers,~Vol.~xx, No.~x, February~2019}%
+{Rosenkrantz \MakeLowercase{\textit{et al.}}: Symmetry Properties of Nested 
+Canalyzing Functions} 
+
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark (Computer Society jorunal
+% papers don't need this extra clearance.)
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+%% \IEEEtitleabstractindextext{%
+
+
+\newcommand{\QED}{\hfill\rule{2mm}{2mm}}
+\newcommand{\qed}{\hfill$\Box$}
+
+\newcommand{\cpoly}{\textbf{P}}
+\newcommand{\cnp}{\textbf{NP}}
+\newcommand{\cnump}{\textbf{\#P}}
+\newcommand{\wtg}{\mbox{$\mathcal{G}$}}
+
+\newcommand{\arr}{\mbox{$\:\longrightarrow\:$}}
+
+\smallskip
+
+\begin{abstract}
+%%The abstract goes here.
+A class of Boolean functions, 
+called \textbf{nested canalyzing functions} (NCFs),
+has been used to model certain biological phenomena.
+Researchers have studied some properties of these functions
+such as sensitivity and stability.
+In this note, we examine the relationships between NCFs, symmetric
+Boolean functions and a more general form of symmetric Boolean functions,
+called $r$-symmetric functions (where $r$ is the symmetry level).
+Using a standard representation for NCFs, we develop a
+characterization of when two variables of an NCF are symmetric.
+Using this characterization, we show
+that the symmetry level of an NCF $f$
+can be easily computed given a standard representation of $f$.
+(In contrast, we prove that even approximating the symmetry level of
+a general Boolean function to within any factor $\geq 1$ is \cnp-hard.)
+We also show that for any NCF $f$ with $n$ variables, the notion of
+strong asymmetry considered in the literature is equivalent to
+the property that $f$ is $n$-symmetric. 
+We use this result to derive a closed form expression for the
+number of $n$-variable Boolean functions
+that are NCFs and strongly asymmetric.
+In addition, we identify all the Boolean functions that are NCFs
+and symmetric. 
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Boolean functions, Nested canalyzing functions, Symmetry.
+\end{IEEEkeywords}
+%%}
+
+% make the title area
+%% \maketitle  <--- Using peerreview mode.
+
+
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
+% or transmag modes are not selected <OR> if conference mode is selected 
+% - because all conference papers position the abstract like regular
+% papers do.
+
+%% \IEEEdisplaynontitleabstractindextext
+
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc or transmag under a non-conference mode.
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+
+%% \IEEEpeerreviewmaketitle
+
+%%% Newcommands needed for the paper.
+
+
+
+
+%%\IEEEraisesectionheading{\section{Introduction}\label{sec:intro}}
+
+% Computer Society journal (but not conference!) papers do something unusual
+% with the very first section heading (almost always called "Introduction").
+% They place it ABOVE the main text! IEEEtran.cls does not automatically do
+% this for you, but you can achieve this effect with the provided
+% \IEEEraisesectionheading{} command. Note the need to keep any \label that
+% is to refer to the section immediately after \section in the above as
+% \IEEEraisesectionheading puts \section within a raised box.
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps (small caps for compsoc).
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by the IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+
+%% \IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
+%% for IEEE Computer Society journal papers produced under \LaTeX\ using
+%% IEEEtran.cls version 1.8b and later.
+
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+
+\input{intro}   %% Introduction (definitions, summary of results and related work)
+
+\input{preliminaries}   %% Preliminaries and normalized representation for NCFs
+
+\input{symmetry_properties}   %% Main results. 
+
+%% \section{Conclusion}
+%% The conclusion goes here.
+
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use section* for acknowledgment
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Acknowledgments}
+\else
+  % regular IEEE prefers the singular form
+  \section*{Acknowledgment}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
+
+\section*{Acknowledgments}
+This work has been partially supported by
+DTRA CNIMS (Contract HDTRA1-11-D-0016-0001),
+NSF DIBBS Grant ACI-1443054 and
+NSF BIG DATA Grant IIS-1633028.
+The U.S. Government is authorized to reproduce and
+distribute reprints for Governmental purposes notwithstanding
+any copyright annotation thereon.
+
+%%\bigskip\bigskip
+\smallskip
+
+\noindent
+\textbf{Disclaimer:}~ The views and conclusions contained
+herein are those of the authors and should
+not be interpreted as necessarily representing the
+official policies or endorsements, either expressed
+or implied, of the U.S. Government.
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+
+%% \ifCLASSOPTIONcaptionsoff
+%%   \newpage
+%% \fi
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{IEEEbiography}{Michael Shell}
+Biography text here.
+\end{IEEEbiography}
+
+% if you will not have a photo at all:
+\begin{IEEEbiographynophoto}{John Doe}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+\begin{IEEEbiographynophoto}{Jane Doe}
+Biography text here.
+\end{IEEEbiographynophoto}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+% that's all folks
+\end{document}

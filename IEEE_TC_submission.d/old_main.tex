@@ -1,0 +1,160 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Symmetry Properties of Nested Canalyzing Functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+\usepackage{varioref}
+\usepackage{cite}
+ 
+\usepackage{fancybox}
+%% \usepackage{shadow}  
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{lscape}
+\usepackage{url}
+
+\setlength{\textheight}{9.0 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{-0.5 in}
+
+\setlength{\parskip}{1pt}
+
+%\pagestyle{empty}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+
+\begin{document}
+
+\newcommand{\QED}{\hfill\rule{2mm}{2mm}}
+\newcommand{\qed}{\hfill$\Box$}
+
+\newcommand{\cpoly}{\textbf{P}}
+\newcommand{\cnp}{\textbf{NP}}
+\newcommand{\cnump}{\textbf{\#P}}
+\newcommand{\wtg}{\mbox{$\mathcal{G}$}}
+
+\newcommand{\arr}{\mbox{$\:\longrightarrow\:$}}
+
+\baselineskip=1.1\normalbaselineskip
+
+\begin{center}
+\Large{\textbf{A Note on the Symmetry Properties of Nested Canalyzing Functions}} 
+\end{center}
+
+\medskip
+
+%%\thispagestyle{empty}
+
+\begin{center}
+\textsc{Daniel J. Rosenkrantz}$^1$ \hspace{0.15in}
+\textsc{Madhav V. Marathe}$^2$ \hspace{0.15in}
+\textsc{S. S. Ravi}$^3$ \hspace*{0.15in}
+\textsc{Richard E. Stearns}$^1$ 
+\end{center}
+
+\setcounter{footnote}{1}
+\footnotetext[1]{
+Department of Computer Science,
+University at Albany -- State University of New York,
+Albany, NY 12222. \newline
+\textsf{Email:}~ \texttt{\{drosenkrantz, thestearns2\}@gmail.com}.
+\smallskip
+}
+
+\setcounter{footnote}{2}
+\footnotetext[2]{
+Networks, Simulation Science and Advanced Computing Laboratory,
+Biocomplexity Institute and Initiative and
+Department of Computer Science, University of Virginia,
+Charlottesville, VA 22911.
+\textsf{Email:} \texttt{marathe@virginia.edu}.  \smallskip
+}
+
+\setcounter{footnote}{3}
+\footnotetext[3]{
+Networks, Simulation Science and Advanced Computing Laboratory,
+Biocomplexity Institute and Initiative 
+University of Virginia, Charlottesville, VA 22911 and
+Department of Computer Science,
+University at Albany -- State University of New York,
+Albany, NY 12222. 
+\textsf{Email:} \texttt{ssravi@virginia.edu}. %\smallskip
+}
+
+\medskip
+
+\input{abstract}   %% Abstract
+
+\bigskip\bigskip\bigskip
+
+\noindent
+\textbf{Acknowledgments:}~
+This work has been partially supported by
+DTRA CNIMS (Contract HDTRA1-11-D-0016-0001),
+NSF DIBBS Grant ACI-1443054 and
+NSF BIG DATA Grant IIS-1633028.
+The U.S. Government is authorized to reproduce and
+distribute reprints for Governmental purposes notwithstanding
+any copyright annotation thereon.
+
+\bigskip\bigskip
+
+\noindent
+\textbf{Disclaimer:}~ The views and conclusions contained 
+herein are those of the authors and should
+not be interpreted as necessarily representing the
+official policies or endorsements, either expressed
+or implied, of the U.S. Government.
+
+%%\setcounter{page}{0}
+
+\clearpage
+
+\baselineskip=1.1\normalbaselineskip
+
+\input{intro}   %% Introduction (definitions, summary of results and related work)
+
+\input{preliminaries}   %% Preliminaries and normalized representation for NCFs
+
+\input{symmetry_properties}   %% Main results. 
+
+%% \input{conclusions}   %% Conclusions.
+
+%%\clearpage
+
+\bigskip
+
+%%%
+%%% Bibliography.
+%%%
+
+
+\let\oldbibliography\thebibliography
+\renewcommand{\thebibliography}[1]{\oldbibliography{#1}
+\setlength{\itemsep}{0pt}} %Reducing spacing in the bibliography.
+
+\bibliographystyle{abbrv}
+\bibliography{refs}
+
+\end{document}

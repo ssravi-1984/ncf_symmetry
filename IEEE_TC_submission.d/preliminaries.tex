@@ -81,13 +81,13 @@ $x_1$, $x_2$, $\ldots$, $x_6$.
 
 \noindent
 \begin{tabular}{ll}
-\hspace*{1.1in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
-\hspace*{1.1in} & $x_2:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
-\hspace*{1.1in} & $x_3:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
-\hspace*{1.1in} & $x_4:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
-\hspace*{1.1in} & $x_5:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
-\hspace*{1.1in} & $x_6:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
-\hspace*{1.1in} & Default:~ $1$ \\
+\hspace*{0.25in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & $x_2:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & $x_3:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & $x_4:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.25in} & $x_5:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.25in} & $x_6:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & Default:~ $1$ \\
 \end{tabular}
 
 \medskip
@@ -191,8 +191,9 @@ We create another CNF formula $f$ as follows.
 Let $Y = \{y_1, y_2, \ldots, y_{\rho+1}\}$ and
 $Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two 
 new sets of variables, with each set containing $\rho+1$ variables.
-The expression for $f(x_1, \ldots, x_n, y_1, \ldots, y_{\rho+1})$
-is 
+The expression for $f$, which is a function of $n+2\rho+2$
+variables, namely $x_1, \ldots, x_n$, $y_1, \ldots, y_{\rho+1}$,
+$z_1, \ldots, z_{\rho+1}$, is the following.
 \[
     g(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) \wedge \ldots \wedge
                               (y_{\rho+1} \vee \overline{z_{\rho+1}}).

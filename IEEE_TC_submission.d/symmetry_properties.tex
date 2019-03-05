@@ -428,7 +428,7 @@ value 0, and the same canalyzed value as the preceding line.
 
 \begin{theorem}\label{thm:count_strongly_asymmetric}
 For any $n \geq 2$, the number of Boolean functions with $n$ variables 
-that are both strongly asymmetric and NCFs is $n! \, 2^n$.
+that are both strongly asymmetric and NCFs is $n! \, 2^{n-1}$.
 \end{theorem}
 
 \noindent
@@ -446,16 +446,23 @@ values in $f$.
 The canalyzing variable in each of the first $n-2$ lines (one per
 layer) can be any variable that has not yet occurred in a preceding
 line.  The last layer contains the remaining two variables.  Thus,
-there are $n! / 2$ possibilities for the pattern of variable
+there are $n! /[n-(n-2)]!$ = $n!/2$ possibilities for the pattern of variable
 occurrences in $f$.
 
-For each of the $n$ variables, the canalyzing value for the line
-containing that variable can be either 0 or 1.  Thus, there are
-$2^n$ possibilities for canalyzing values.  
+For each of the first $n-2$ variables, the canalyzing value for the line
+containing that variable can be either 0 or 1.  
+%% The last two lines, the canalyzed values on those two lines must be
+%% the same because of the default-normalized representation. 
+For the last two lines, the canalyzing values for the variables 
+in those lines must be complements of each other; otherwise, by 
+Theorem~\ref{thm:ncf_symmetric_variables}, those two variables 
+will be symmetric.
+Thus, the number of possible canalyzing values over all the $n$
+lines is $2^{n-2} \times 2$ = $2^{n-1}$.
 
 Hence, the number of Boolean functions with $n$ variables that
 are both strongly asymmetric and NCFs is equal to \\ 
-$2 \times (n!/2) \times 2^n$ ~=~ $n!\,2^n$.  \QED
+$2 \times (n!/2) \times 2^{n-1}$ ~=~ $n!\,2^{n-1}$.  \QED
 
 
 \subsection{Symmetric Canalyzing and Nested Canalyzing Functions}

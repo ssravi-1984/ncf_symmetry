@@ -42,7 +42,7 @@ of the lines in that layer will have the same effect.  Thus, the
 variables are symmetric.
 
 For the converse, consider the default-normalized NCF representation of $f$. 
-For purposes of notational simplicity, we assume without loss of generality that the
+As mentioned earlier, we assume without loss of generality that the
 canalyzing variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.
 Let  $x_j$ and $x_k$ be two variables that occur in different
 layers of $f$, or occur in the same layer, but with different
@@ -59,14 +59,14 @@ $x_i : a_i ~\longrightarrow~ b_i$.
 \smallskip
 
 \noindent
-Consider the following input assignment $\alpha = (c_1, c_2, \ldots,  c_n)$ 
-to the variables of $f$.
+Consider the following assignment $\alpha$ = $(c_1, c_2, \ldots,  c_n)$ 
+to the variables $x_1$, $x_2$, $\ldots$, $x_n$ of $f$.
 \begin{enumerate}
 \item For $1 \leq i < j$, set $c_i = \overline{a_i}$. 
 \item For $i = j$, set $c_j =a_j$. 
 \item For $i = k$, set $c_k =\overline{a_j}$. 
 \item For $j < i < k$, and for  $k < i \leq n$, 
-if $b_i = b_j$, then set $c_i =  \overline{a_i}$,
+if $b_i = b_j$,\\ then set $c_i =  \overline{a_i}$,
 else set $c_i =  a_i$.
 \end{enumerate}
 Note that $f(\alpha) = b_j$, since the variables in all lines above
@@ -77,7 +77,7 @@ $x_j$ has its canalyzing value.
 
 Now, let $\alpha'$ be the assignment that is obtained from $\alpha$
 by interchanging the values of variables $x_j$ and $x_k$, so that
-after the interchange variable $x_j$ has value $\overline{a_j}$ and
+after the interchange, variable $x_j$ has value $\overline{a_j}$ and
 variable $x_k$ has value $a_j$.  We will show that $f(\alpha') =
 \overline{b_j}$, so variables $x_j$ and $x_k$ are not symmetric.
 
@@ -222,7 +222,7 @@ it is properly $n$-symmetric.
 
 \noindent
 \textbf{Proof:}~ 
-If an NCF is $(n-1)$-symmetric, then consider a permutation than
+If an NCF is $(n-1)$-symmetric, then consider a permutation that
 interchanges two variables from a symmetry group with at least two
 members.  The value of the function is invariant under any such
 permutation, so the function is not strongly asymmetric.
@@ -240,6 +240,8 @@ c_n)$ $\neq$ $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.
 Let $k$ be the smallest index such that $k \neq \pi(k)$.  Since
 $\pi$ is a permutation, $k < n$.  Overall, for $1 \leq i < k$,
 $\pi(i) = i$,~ $\pi(k) > k$,~ and for $k < i \leq n$,~ $\pi(i) \geq k$.
+
+\smallskip
 
 Suppose that line $i$ of $f$, $1 \leq i \leq n$, is 
 
@@ -349,8 +351,8 @@ the canalyzed value is $\overline{b_k}$.  Since line $k$ has
 canalyzed value $b_k$, line $k'$ is the only line in its layer.
 Since $f$ is default-normalized, there is a last layer following the layer
 containing line $k'$.  Thus, for all $i$, $c_{\pi(i)}$ does not
-match the canalyzing value of line $i$, so $f(c_{\pi(1)}, c_{\pi(2)},
-\ldots, c_{\pi(n)}) = \overline{b_k}$.  \QED
+match the canalyzing value of line $i$; therefore, 
+$f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$ ~=~ $\overline{b_k}$.  \QED
 
 \medskip
 
@@ -432,7 +434,7 @@ that are both strongly asymmetric and NCFs is $n! \, 2^n$.
 \noindent
 \textbf{Proof:}~
 Consider a default-normalized representation of a strongly asymmetric NCF $f$.
-The representation contains $n-1$ layers.
+The representation has $n-1$ layers.
 The first $n-2$ layers each contain one line, and the last layer contains two lines.
 
 Consider the canalyzed values in $f$. The canalyzed value in the
@@ -449,7 +451,11 @@ occurrences in $f$.
 
 For each of the $n$ variables, the canalyzing value for the line
 containing that variable can be either 0 or 1.  Thus, there are
-$2^n$ possibilities for canalyzing values.  \QED
+$2^n$ possibilities for canalyzing values.  
+
+Hence, the number of Boolean functions with $n$ variables that
+are both strongly asymmetric and NCFs is equal to \\ 
+$2 \times (n!/2) \times 2^n$ ~=~ $n!\,2^n$.  \QED
 
 
 \subsection{Symmetric Canalyzing and Nested Canalyzing Functions}

@@ -67,7 +67,7 @@ simplified representation of NCFs.
 
 \begin{definition}
 \label{def:layer}
-A {\bf layer} of a NCF representation is a maximal length sequence 
+A {\bf layer} of an NCF representation is a maximal length sequence 
 of lines with the same canalyzed value.
 \end{definition}
 %%Note that the ``Default" line in the representation of an NCF is
@@ -145,7 +145,7 @@ representation for $f$ can be obtained in polynomial time. \QED
 \end{observation}
 
 In view of Observation~\ref{obs:normalization_poly},
-we will assume that any NCF is specified in default-normalized form.
+we will assume from now on that any NCF is specified in default-normalized form.
 
 \subsection{Complexity of Approximating the Symmetry Level of a 
 General Boolean Function}
@@ -193,12 +193,14 @@ $Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two
 new sets of variables, with each set containing $\rho+1$ variables.
 The expression for $f$, which is a function of $n+2\rho+2$
 variables, namely $x_1, \ldots, x_n$, $y_1, \ldots, y_{\rho+1}$,
-$z_1, \ldots, z_{\rho+1}$, is the following.
+$z_1, \ldots, z_{\rho+1}$, is the following:
 \[
-    g(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) \wedge \ldots \wedge
+    g(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) 
+                       \wedge (y_2 \vee \overline{z_2}) 
+                       \wedge \ldots \wedge
                               (y_{\rho+1} \vee \overline{z_{\rho+1}}).
 \]
-We note that $f$ is also a CNF formula.
+Since $g$ is a CNF formula, so is $f$.
 We have the following claims.
 
 \medskip
@@ -251,11 +253,14 @@ different values for $f$.
 Therefore, if $g$ is satisfiable, for $i \neq j$, $y_i$ and $y_j$ cannot
 be in the same symmetry group for $f$.
 Since there are $\rho+1$ variables in $Y$, the number of symmetry groups 
-for $f$ must be at least $\rho+1$. \hfill$\Box$
+for $f$ must be at least $\rho+1$, and this 
+completes our proof of Claim~2. \hfill$\Box$
 
 \medskip
  
-Now, suppose we execute Algorithm \cala{} on the function $f$.
+We now continue with the proof of Theorem~\ref{thm:approx_sym_level_hard}.
+Suppose we execute the approximation algorithm \cala{} 
+on the function $f$ defined above.
 If $g$ is \emph{not} satisfiable, then from Claim~1, 
 the symmetry level of $f$ is 1. 
 Since \cala{} is a $\rho$-approximation algorithm,

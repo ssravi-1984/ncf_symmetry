@@ -233,7 +233,7 @@ Each row of $T$ specifies an $r$-tuple $(c_1, c_2, \ldots, c_r)$,
 where $c_i$ is the number of variables of group $g_i$ which
 have the value 1, along with the \{0,1\} value of $f$ for that $r$-tuple.
 As will be seen, our algorithm for determining whether $f$ is
-an NCF runs in $O(r^2\mu)$ time.
+an NCF runs in $O(r\mu)$ time.
 The algorithm relies on the following observation.
 
 \begin{observation}\label{obs:rsym_canalyzing}
@@ -302,16 +302,30 @@ efficiently converted into the default-normalized representation as
 discussed in Section~\ref{sse:ncf_layer}.
 
 To estimate the running time, we note that in iteration $j$, we can
-determine in $O(g_j \mu_j)$ = $O(r \mu)$ time using 
+determine in $O(g_j \mu_j)$ = $O(r \mu_j)$ time using 
 Observation~\ref{obs:rsym_canalyzing}
-whether there is a variable that is canalyzing.
-(This can be done by considering one arbitrary variable 
+whether there is a canalyzing variable.
+(This can be done by considering an arbitrary variable 
 from each group.)
 Once a variable is identified, the other steps in that iteration
-can be completed in $O(\mu_j)$ = $O(\mu)$ time.
-Thus, the time for each iteration is $O(r \mu)$.
-Since there are at most $r$ iterations, the running time of the
-algorithm is $O(r^2 \mu)$.
+can be completed in $O(\mu_j)$ time.
+Thus, the time for iteration $j$ is $O(r \mu_j)$.
+We note that in each iteration, the number of rows in the table
+is reduced by at least a factor of 2; that is, $\mu_{j+1} \leq \mu_j/2$.
+To see this, suppose the canalyzing variable $x_i$ found in iteration $j$
+is in group $\alpha_p$, which has $m_p$ variables. 
+Thus, in $T_j$, there are $m_p+1 \geq 2$ possibilities for the number of 1's 
+in $\alpha_p$. 
+As indicated in Substep~5 of Step~II above, in $T_{j+1}$, 
+we only retain those rows of $T_j$ where all the variables 
+in $\alpha_p$ have the same value.
+In other words, there is only one possibility for the number of
+1's in group $\alpha_p$.
+Thus, $\mu_{j+1}$, the number of rows in $T_{j+1}$,
+is at most $\mu_j/(m_p+1)$ $\leq$ $\mu_j/2$.
+It follows by simple induction that $\mu_j \leq \mu/2^{j-1}$.
+Thus, the running time over all the $r$ iterations is bounded by
+$O(r [\sum_{j=1}^{r}(\mu/2^{j-1})])$ = $O(r\mu)$.
 The following theorem summarizes this result. 
 
 \begin{theorem}\label{thm:rsym_canalyzing}

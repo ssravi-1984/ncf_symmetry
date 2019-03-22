@@ -4,8 +4,16 @@
 \subsection{Canalyzing and Nested Canalyzing Functions}
 \label{sse:ncf_def}
 
-\IEEEPARstart{T}{he} class of \textbf{canalyzing} Boolean functions, introduced 
-in \cite{Kauffman-1969}, is defined as follows.
+\IEEEPARstart{R}{search} on the symmetry properties of Boolean
+functions has received a lot of attention from the
+automated logic synthesis community. 
+(Additional discussion on this is provided in Section~\ref{sse:related}.)
+In this paper, we focus on the symmetry properties of
+a class of Boolean functions (called \textbf{nested canalyzing functions})
+which are used to model biological phenomena.
+To define this class, we start with a simpler
+class of functions, called \textbf{canalyzing} Boolean functions.
+This class, introduced in \cite{Kauffman-1969}, is defined as follows.
 
 \begin{definition}\label{def:canalyzing}
 Given a set $X = $ $\{x_1, x_2, \ldots, x_n\}$ of $n$  Boolean variables,
@@ -280,6 +288,15 @@ are NCFs and symmetric.
 \subsection{Related Work}
 \label{sse:related}
 
+Over the years, a considerable amount of research on detecting symmetry properties 
+of Boolean functions has been reported in the literature
+(e.g., \cite{BS-1968,Biswas-1970,TM-1996,KS-2000,Darga-etal-2008,Maurer-2015}).
+Several references have observed the usefulness of detecting symmetries
+in automated logic synthesis (e.g., \cite{AP-2008,Hu-etal-2008,Darga-etal-2008}).
+Reference \cite{Maurer-2015} provides a thorough discussion of known
+symmetry detection algorithms and presents a new universal algorithm 
+for detecting any form of permutation-based symmetry in Boolean functions. 
+
 The term \textbf{canalization}, coined by
 Waddington \cite{Waddington-1942}, is generally used to describe
 the stability of a biological system with changes
@@ -303,13 +320,5 @@ stability have also been studied in the
 literature \cite{Kauffman-etal-2004, Layne-2011,Layne-etal-2012,
 Li-etal-2011,Li-etal-2013,Klotz-etal-2013, Stearns-etal-2018}. 
 
-Over the years, a considerable amount of research on detecting symmetry properties 
-of Boolean functions has been reported in the literature
-(e.g., \cite{BS-1968,Biswas-1970,TM-1996,KS-2000,Darga-etal-2008,Maurer-2015}).
-Several references have observed the usefulness of detecting symmetries
-in automated logic synthesis (e.g., \cite{AP-2008,Hu-etal-2008,Darga-etal-2008}).
-Reference \cite{Maurer-2015} provides a thorough discussion of known
-symmetry detection algorithms and presents a new universal algorithm 
-for detecting any form of permutation-based symmetry in Boolean functions. 
 To our knowledge, relationships between NCFs and symmetric
 Boolean functions have not been addressed in the literature.

@@ -218,20 +218,21 @@ can also be solved efficiently.
 When the answer is ``yes", our algorithm also constructs a
 default-normalized representation of $f$.
 
-Let $f(x_1, x_2, \ldots, x_n)$ be an $r$-symmetric Boolean function of $n$
-variables.
+Let $f(x_1, x_2, \ldots, x_n)$ be an $r$-symmetric 
+Boolean function of $n$ variables.
 We assume that the symmetry groups $g_i$, $1 \leq i \leq r$,
 of $f$ are given.
-Let $m_i$ denote the number of variables
-in the group containing variable $x_i$, $1 \leq i \leq m$.
-Thus, in the group containing $x_i$, the number
+Let $m_i = |g_i|$, $1 \leq i \leq m$.
+Thus, in group $g_i$, the number
 of variables which can take on the value 1 varies from 0
-to $m_i$, $1 \leq i \leq n$.
+to $m_i$, $1 \leq i \leq r$.
 We also assume that $f$ is
-given as a table $T$ with $\mu = \prod_{i=1}^r (m_i+1)$ rows.
-Each row of $T$ specifies an $r$-tuple $(c_1, c_2, \ldots, c_r)$,
+given as a table $T$ of the following form:
+each row of $T$ specifies an $r$-tuple $(c_1, c_2, \ldots, c_r)$,
 where $c_i$ is the number of variables of group $g_i$ which
 have the value 1, along with the \{0,1\} value of $f$ for that $r$-tuple.
+Thus, $\mu$, the number of rows in $T$, 
+is given by  $\mu = \prod_{i=1}^r (m_i+1)$.
 As will be seen, our algorithm for determining whether $f$ is
 an NCF runs in $O(r\mu)$ time.
 The algorithm relies on the following observation.
@@ -240,7 +241,7 @@ The algorithm relies on the following observation.
 Suppose $f(x_1, x_2, \ldots, x_n)$ is an $r$-symmetric Boolean function.
 Consider any variable $x_i$ and suppose
 the number of variables in the group
-containing $x_i$ is $m_i$, $1 \leq i \leq r$.
+containing $x_i$ is $\alpha_i$, $1 \leq i \leq n$.
 \begin{enumerate}
 \item The function $f$ is canalyzing in variable $x_i$
 with canalyzing value 1 iff all the table entries where the number
@@ -255,15 +256,15 @@ value of $f$. (This value of $f$ is the canalyzed value when $x_i = 0$.)
 \end{observation}
 We now explain how Observation~\ref{obs:rsym_canalyzing} can be
 used to develop an iterative algorithm for determining whether 
-$f$ is an NCF, and if so, constructing a default-normalized 
+$f$ is an NCF; if so, the algorithm also constructs a default-normalized 
 representation (defined in Section~\ref{sec:prelim}) for $f$.
-At beginning of iteration $j$, the algorithm uses a set $X_j$ of remaining variables,
-table $T_j$ with $\mu_j$ rows and the number of remaining groups is $g_j$.
+At beginning of iteration $j$, the algorithm has the set $X_j$ of remaining variables,
+table $T_j$ with $\mu_j$ rows and $\ell_j$ remaining groups.
 Initially (i.e., $j = 1$), $X_1$ = $X$ = $\{x_1, \ldots, x_n\}$,
 $T_1 = T$ (the given table $T$ for $f$), 
-$\mu_1 = \mu$ (the number of rows of $T$), $g_j = r$ (the number of
+$\mu_1 = \mu$ (the number of rows of $T$), $\ell_j = r$ (the number of
 symmetry groups of $f$) and the NCF representation for $f$ is empty.
-The algorithm carries out iteration $j$ if $g_j \geq 1$; 
+The algorithm carries out iteration $j$ if $\ell_j \geq 1$; 
 in that iteration, the algorithm performs Steps I, II and III
 as described below.
 
@@ -278,11 +279,11 @@ II. If yes, perform the following steps.
 \begin{enumerate}
 \item Let $\alpha$ and $\beta$ be the respective canalyzing and 
 canalyzed values for $x_i$ found in Step~I. 
-\item For each variable $x_p$ in the group containing $x_i$, add the rule~
+\item For each variable $x_p$ in the group containing $x_i$, append the rule~
 ``$x_p~:~\alpha ~\longrightarrow~ \beta$"~ to the NCF representation of $f$.
 \item Obtain $X_{j+1}$ by deleting from $X_j$ all the variables which are 
 in the same group as $x_i$.
-\item Set $g_{j+1} = g_j - 1$.
+\item Set $\ell_{j+1} = \ell_j - 1$.
 \item Obtain $T_{j+1}$ by retaining only those rows of $T_j$ where all the
 variables in the group containing $x_i$ are set to $\overline{\alpha}$. 
 \item Start the next iteration.
@@ -302,9 +303,9 @@ efficiently converted into the default-normalized representation as
 discussed in Section~\ref{sse:ncf_layer}.
 
 To estimate the running time, we note that in iteration $j$, we can
-determine in $O(g_j \mu_j)$ = $O(r \mu_j)$ time using 
-Observation~\ref{obs:rsym_canalyzing}
-whether there is a canalyzing variable.
+determine whether there is a canalyzing variable in $X_j$
+in $O(\ell_j \mu_j)$ = $O(r \mu_j)$ time using 
+Observation~\ref{obs:rsym_canalyzing}.
 (This can be done by considering an arbitrary variable 
 from each group.)
 Once a variable is identified, the other steps in that iteration
@@ -312,19 +313,19 @@ can be completed in $O(\mu_j)$ time.
 Thus, the time for iteration $j$ is $O(r \mu_j)$.
 We note that in each iteration, the number of rows in the table
 is reduced by at least a factor of 2; that is, $\mu_{j+1} \leq \mu_j/2$.
-To see this, suppose the canalyzing variable $x_i$ found in iteration $j$
-is in group $\alpha_p$, which has $m_p$ variables. 
+To see why, suppose the canalyzing variable $x_i$ found in iteration $j$
+is in group $g_p$ with $m_p$ variables. 
 Thus, in $T_j$, there are $m_p+1 \geq 2$ possibilities for the number of 1's 
-in $\alpha_p$. 
-As indicated in Substep~5 of Step~II above, in $T_{j+1}$, 
-we only retain those rows of $T_j$ where all the variables 
-in $\alpha_p$ have the same value.
+in group $g_p$. 
+As indicated in Substep~5 of Step~II above, $T_{j+1}$ 
+contains only those rows of $T_j$ where all the variables 
+in $g_p$ have the same value.
 In other words, there is only one possibility for the number of
-1's in group $\alpha_p$.
+1's in group $g_p$.
 Thus, $\mu_{j+1}$, the number of rows in $T_{j+1}$,
 is at most $\mu_j/(m_p+1)$ $\leq$ $\mu_j/2$.
 It follows by simple induction that $\mu_j \leq \mu/2^{j-1}$.
-Thus, the running time over all the $r$ iterations is bounded by
+Thus, the running time over all the $r$ iterations is given by
 $O(r [\sum_{j=1}^{r}(\mu/2^{j-1})])$ = $O(r\mu)$.
 The following theorem summarizes this result. 
 

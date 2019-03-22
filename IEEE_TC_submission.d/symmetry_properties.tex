@@ -10,8 +10,11 @@ This characterization allows us to give a simple closed form
 expression (Theorem~\ref{thm:ncf_r_symmetric}) 
 for the symmetry level of an NCF specified using
 its default-normalized representation.
-%% We also list some corollaries that follow from the
-%% characterization.
+We also present an efficient algorithm (Theorem~\ref{thm:rsym_canalyzing})
+for the converse problem, that is,
+testing whether a given $r$-symmetric function $f$ is an NCF;
+if so, our algorithm constructs a default-normalized 
+representation for $f$.
 Next, we show that for any NCF $f$ with $n$ variables,
 the two statements ``$f$ is strongly asymmetric" ~and~
 ``the symmetry level of $f$ is $n$"~ are equivalent 
@@ -209,14 +212,14 @@ representation with at most $r$ layers.
 Theorem~\ref{thm:ncf_r_symmetric} shows that given an NCF $f$,
 the problem of finding the smallest integer $r$ such that
 $f$ is $r$-symmetric can be solved efficiently.
-We now show that the converse problem, that is, determining whether a given
+We now show that the converse problem, that is, testing whether a given
 $r$-symmetric Boolean function is an NCF,
 can also be solved efficiently.
 When the answer is ``yes", our algorithm also constructs a
 default-normalized representation of $f$.
 
 Let $f(x_1, x_2, \ldots, x_n)$ be an $r$-symmetric Boolean function of $n$
-Boolean variables.
+variables.
 We assume that the symmetry groups $g_i$, $1 \leq i \leq r$,
 of $f$ are given.
 Let $m_i$ denote the number of variables
@@ -249,22 +252,24 @@ canalyzing value 0 iff all the table entries where the number of
 value of $f$. (This value of $f$ is the canalyzed value when $x_i = 0$.)
 \end{enumerate}
 \end{observation}
-We now specify an iterative algorithm for determining whether 
-$f$ is an NCF, and if so, constructing a simplified 
-NCF representation (defined in Section~\ref{sec:intro}) for $f$.
-In iteration $j$, the algorithm uses a set $X_j$ of remaining variables,
-table $T_j$ with $\mu_j$ rows, and the number of groups $g_j$.
-Initially (i.e., $j = 1$), $X_1$ = $\{x_1, \ldots, x_n\}$,
-$T_1$ is the given table $T$ for $f$, 
-$\mu_1 = \mu$ (the number of rows of $T$) and $g_j = r$ (the number of
+We now explain how Observation~\ref{obs:rsym_canalyzing} can be
+used to develop an iterative algorithm for determining whether 
+$f$ is an NCF, and if so, constructing a default-normalized 
+representation (defined in Section~\ref{sec:prelim}) for $f$.
+At beginning of iteration $j$, the algorithm uses a set $X_j$ of remaining variables,
+table $T_j$ with $\mu_j$ rows and the number of remaining groups is $g_j$.
+Initially (i.e., $j = 1$), $X_1$ = $X$ = $\{x_1, \ldots, x_n\}$,
+$T_1 = T$ (the given table $T$ for $f$), 
+$\mu_1 = \mu$ (the number of rows of $T$), $g_j = r$ (the number of
 symmetry groups of $f$) and the NCF representation for $f$ is empty.
-The algorithm executes as long as one or more symmetry groups remain.
-In each iteration, the algorithm carries out the following steps.
+The algorithm carries out iteration $j$ if $g_j \geq 1$; 
+in that iteration, the algorithm performs Steps I, II and III
+as described below.
 
 \smallskip
 \noindent
 I. Use Observation~\ref{obs:rsym_canalyzing} to determine whether there is
-a variable $x_i \in X_j$ is canalyzing. 
+a canalyzing variable $x_i \in X_j$. 
 
 \smallskip
 \noindent
@@ -287,7 +292,7 @@ variables in the group containing $x_i$ are set to $\overline{\alpha}$.
 III. (Here, Step~I didn't find a canalyzing variable.)~ 
 Output ``$f$ is not an NCF" and \textbf{stop}.
 
-\smallskip
+\medskip
 \noindent
 The correctness of the algorithm is a direct consequence of
 Observation~\ref{obs:rsym_canalyzing}. If the algorithm is successful,
@@ -296,21 +301,22 @@ efficiently converted into the default-normalized representation as
 discussed in Section~\ref{sse:ncf_layer}.
 
 To estimate the running time, we note that in iteration $j$, we can
-determine in $O(g_j\,\mu_j)$ = $O(r\,\mu)$ time using 
+determine in $O(g_j \mu_j)$ = $O(r \mu)$ time using 
 Observation~\ref{obs:rsym_canalyzing}
 whether there is a variable that is canalyzing.
 (This can be done by considering one arbitrary variable 
-from each group.) 
+from each group.)
 Once a variable is identified, the other steps in that iteration
 can be completed in $O(\mu_j)$ = $O(\mu)$ time.
-Thus, the time for each iteration is $O(r\,\mu)$.
+Thus, the time for each iteration is $O(r \mu)$.
 Since there are at most $r$ iterations, the running time of the
-algorithm is $O(r^2\,\mu)$.
+algorithm is $O(r^2 \mu)$.
 The following theorem summarizes this result. 
 
 \begin{theorem}\label{thm:rsym_canalyzing}
-Given an $r$-symmetric function $f$, the problem of testing whether
-$f$ is an NCF can be solved efficiently. \QED
+The problem of testing whether a given 
+$r$-symmetric function $f$ is an NCF can 
+be solved efficiently. \QED
 \end{theorem}
 
 \subsection{Strong Asymmetry and NCFs}

@@ -215,8 +215,9 @@ $f$ is $r$-symmetric can be solved efficiently.
 We now show that the converse problem, that is, testing whether a given
 $r$-symmetric Boolean function is an NCF,
 can also be solved efficiently.
-When the answer is ``yes", our algorithm also constructs a
-default-normalized representation of $f$.
+When the answer is ``yes", a
+default-normalized representation (defined in Section~\ref{sec:prelim}
+of $f$ can also be constructed efficiently.
 
 Let $f(x_1, x_2, \ldots, x_n)$ be an $r$-symmetric 
 Boolean function of $n$ variables.
@@ -243,13 +244,13 @@ Consider any variable $x_i$ and suppose
 the number of variables in the group
 containing $x_i$ is $\alpha_i$, $1 \leq i \leq n$.
 \begin{enumerate}
-\item The function $f$ is canalyzing in variable $x_i$
+\item Function $f$ is canalyzing in variable $x_i$
 with canalyzing value 1 iff all the table entries where the number
 of 1's in the group containing $x_i$ is nonzero have the same value
 of $f$. (This value of $f$ is the canalyzed value when $x_i = 1$.)
-\item The function $f$ is canalyzing in variable $x_i$ with
+\item Function $f$ is canalyzing in variable $x_i$ with
 canalyzing value 0 iff all the table entries where the number of
-1's in the group containing $x_i$ is less than $m_i$ have the same
+1's in the group containing $x_i$ is less than $\alpha_i$ have the same
 value of $f$. (This value of $f$ is the canalyzed value when $x_i = 0$.)
 \QED
 \end{enumerate}
@@ -257,7 +258,7 @@ value of $f$. (This value of $f$ is the canalyzed value when $x_i = 0$.)
 We now explain how Observation~\ref{obs:rsym_canalyzing} can be
 used to develop an iterative algorithm for determining whether 
 $f$ is an NCF; if so, the algorithm also constructs a default-normalized 
-representation (defined in Section~\ref{sec:prelim}) for $f$.
+representation for $f$.
 At beginning of iteration $j$, the algorithm has the set $X_j$ of remaining variables,
 table $T_j$ with $\mu_j$ rows and $\ell_j$ remaining groups.
 Initially (i.e., $j = 1$), $X_1$ = $X$ = $\{x_1, \ldots, x_n\}$,
@@ -280,7 +281,7 @@ II. If yes, perform the following steps.
 \item Let $\alpha$ and $\beta$ be the respective canalyzing and 
 canalyzed values for $x_i$ found in Step~I. 
 \item For each variable $x_p$ in the group containing $x_i$, append the rule~
-``$x_p~:~\alpha ~\longrightarrow~ \beta$"~ to the NCF representation of $f$.
+``$x_p\,:\,\alpha ~\longrightarrow~ \beta$"~ to the NCF representation of $f$.
 \item Obtain $X_{j+1}$ by deleting from $X_j$ all the variables which are 
 in the same group as $x_i$.
 \item Set $\ell_{j+1} = \ell_j - 1$.
@@ -308,7 +309,7 @@ in $O(\ell_j \mu_j)$ = $O(r \mu_j)$ time using
 Observation~\ref{obs:rsym_canalyzing}.
 (This can be done by considering an arbitrary variable 
 from each group.)
-Once a variable is identified, the other steps in that iteration
+Once a canalyzing variable is identified, the other steps in that iteration
 can be completed in $O(\mu_j)$ time.
 Thus, the time for iteration $j$ is $O(r \mu_j)$.
 We note that in each iteration, the number of rows in the table
@@ -326,7 +327,8 @@ Thus, $\mu_{j+1}$, the number of rows in $T_{j+1}$,
 is at most $\mu_j/(m_p+1)$ $\leq$ $\mu_j/2$.
 It follows by simple induction that $\mu_j \leq \mu/2^{j-1}$.
 Thus, the running time over all the $r$ iterations is given by
-$O(r [\sum_{j=1}^{r}(\mu/2^{j-1})])$ = $O(r\mu)$.
+$O(r [\sum_{j=1}^{r}(\mu/2^{j-1})])$ = $O(r\mu)$, since the
+geometric sum is bounded by $2\mu$.
 The following theorem summarizes this result. 
 
 \begin{theorem}\label{thm:rsym_canalyzing}

@@ -216,13 +216,14 @@ We now show that the converse problem, that is, testing whether a given
 $r$-symmetric Boolean function is an NCF,
 can also be solved efficiently.
 When the answer is ``yes", a
-default-normalized representation (defined in Section~\ref{sec:prelim}
+default-normalized representation (defined in Section~\ref{sec:prelim})
 of $f$ can also be constructed efficiently.
 
 Let $f(x_1, x_2, \ldots, x_n)$ be an $r$-symmetric 
 Boolean function of $n$ variables.
-We assume that the symmetry groups $g_i$, $1 \leq i \leq r$,
-of $f$ are given.
+We assume that the symmetry groups 
+of $f$, denoted by $g_1$, $g_2$, $\ldots$, $g_r$,
+are given.
 Let $m_i = |g_i|$, $1 \leq i \leq m$.
 Thus, in group $g_i$, the number
 of variables which can take on the value 1 varies from 0
@@ -242,7 +243,7 @@ The algorithm relies on the following observation.
 Suppose $f(x_1, x_2, \ldots, x_n)$ is an $r$-symmetric Boolean function.
 Consider any variable $x_i$ and suppose
 the number of variables in the group
-containing $x_i$ is $\alpha_i$, $1 \leq i \leq n$.
+containing $x_i$ is $\nu_i$, $1 \leq i \leq n$.
 \begin{enumerate}
 \item Function $f$ is canalyzing in variable $x_i$
 with canalyzing value 1 iff all the table entries where the number
@@ -250,7 +251,7 @@ of 1's in the group containing $x_i$ is nonzero have the same value
 of $f$. (This value of $f$ is the canalyzed value when $x_i = 1$.)
 \item Function $f$ is canalyzing in variable $x_i$ with
 canalyzing value 0 iff all the table entries where the number of
-1's in the group containing $x_i$ is less than $\alpha_i$ have the same
+1's in the group containing $x_i$ is less than $\nu_i$ have the same
 value of $f$. (This value of $f$ is the canalyzed value when $x_i = 0$.)
 \QED
 \end{enumerate}
@@ -259,12 +260,15 @@ We now explain how Observation~\ref{obs:rsym_canalyzing} can be
 used to develop an iterative algorithm for determining whether 
 $f$ is an NCF; if so, the algorithm also constructs a default-normalized 
 representation for $f$.
-At beginning of iteration $j$, the algorithm has the set $X_j$ of remaining variables,
-table $T_j$ with $\mu_j$ rows and $\ell_j$ remaining groups.
+We use the following notation.
+At beginning of iteration $j$, $X_j$ denotes the set of remaining variables,
+$T_j$ denotes the table which provides values for the function,
+$\mu_j$ denotes the number of rows of $T_j$ and $\ell_j$ 
+denotes the number of remaining groups.
 Initially (i.e., $j = 1$), $X_1$ = $X$ = $\{x_1, \ldots, x_n\}$,
 $T_1 = T$ (the given table $T$ for $f$), 
-$\mu_1 = \mu$ (the number of rows of $T$), $\ell_j = r$ (the number of
-symmetry groups of $f$) and the NCF representation for $f$ is empty.
+$\mu_1 = \mu$ (the number of rows of $T$) and $\ell_j = r$ (the number of
+symmetry groups of $f$); further, the NCF representation for $f$ is empty.
 The algorithm carries out iteration $j$ if $\ell_j \geq 1$; 
 in that iteration, the algorithm performs Steps I, II and III
 as described below.

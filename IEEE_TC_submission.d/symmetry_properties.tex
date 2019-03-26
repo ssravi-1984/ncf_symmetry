@@ -288,10 +288,11 @@ canalyzed values for $x_i$ found in Step~I.
 ``$x_p\,:\,\alpha ~\longrightarrow~ \beta$"~ to the NCF representation of $f$.
 \item Obtain $X_{j+1}$ by deleting from $X_j$ all the variables which are 
 in the same group as $x_i$.
-\item Set $\ell_{j+1} = \ell_j - 1$.
 \item Obtain $T_{j+1}$ by retaining only those rows of $T_j$ where all the
 variables in the group containing $x_i$ are set to $\overline{\alpha}$. 
-\item Start the next iteration.
+\item Set $\ell_{j+1} = \ell_j - 1$.
+\item If $\ell_{j+1} \geq 1$, start the next iteration; 
+      otherwise, \textbf{stop}.
 \end{enumerate}
 
 \smallskip

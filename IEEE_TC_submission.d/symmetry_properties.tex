@@ -312,18 +312,18 @@ To estimate the running time, we note that in iteration $j$, we can
 determine whether there is a canalyzing variable in $X_j$
 in $O(\ell_j \mu_j)$ = $O(r \mu_j)$ time using 
 Observation~\ref{obs:rsym_canalyzing}.
-(This can be done by considering an arbitrary variable 
+(This is done by considering an arbitrary variable 
 from each group.)
 Once a canalyzing variable is identified, the other steps in that iteration
 can be completed in $O(\mu_j)$ time.
 Thus, the time for iteration $j$ is $O(r \mu_j)$.
 We note that in each iteration, the number of rows in the table
-is reduced by at least a factor of 2; that is, $\mu_{j+1} \leq \mu_j/2$.
+is reduced by a factor of at least 2; that is, $\mu_{j+1} \leq \mu_j/2$.
 To see why, suppose the canalyzing variable $x_i$ found in iteration $j$
 is in group $g_p$ with $m_p$ variables. 
 Thus, in $T_j$, there are $m_p+1 \geq 2$ possibilities for the number of 1's 
 in group $g_p$. 
-As indicated in Substep~5 of Step~II above, $T_{j+1}$ 
+As indicated in Substep~4 of Step~II above, $T_{j+1}$ 
 contains only those rows of $T_j$ where all the variables 
 in $g_p$ have the same value.
 In other words, there is only one possibility for the number of

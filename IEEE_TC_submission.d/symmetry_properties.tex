@@ -261,14 +261,18 @@ used to develop an iterative algorithm for determining whether
 $f$ is an NCF; if so, the algorithm also constructs a default-normalized 
 representation for $f$.
 We use the following notation.
-At beginning of iteration $j$, $X_j$ denotes the set of remaining variables,
-$T_j$ denotes the table which provides values for the function,
-$\mu_j$ denotes the number of rows of $T_j$ and $\ell_j$ 
-denotes the number of remaining groups.
-Initially (i.e., $j = 1$), $X_1$ = $X$ = $\{x_1, \ldots, x_n\}$,
-$T_1 = T$ (the given table $T$ for $f$), 
-$\mu_1 = \mu$ (the number of rows of $T$) and $\ell_j = r$ (the number of
-symmetry groups of $f$); further, the NCF representation for $f$ is empty.
+At beginning of iteration $j$,~
+$\ell_j$ denotes the number of remaining groups,
+$X_j$ denotes a set of variables with
+exactly one variable from each remaining group,
+$T_j$ denotes the table which provides values for the function and
+$\mu_j$ denotes the number of rows of $T_j$.
+Initially (i.e., $j = 1$),~ $\ell_1 = r$ (the number of symmetry groups of $f$),
+$X_1$ is constructed by choosing one 
+variable (arbitrarily) from each of the $r$ groups,
+$T_1 = T$ (the given table $T$ for $f$) and 
+$\mu_1 = \mu$ (the number of rows of $T$);
+further, the NCF representation for $f$ is empty.
 The algorithm carries out iteration $j$ if $\ell_j \geq 1$; 
 in that iteration, the algorithm performs Steps I, II and III
 as described below.
@@ -285,9 +289,8 @@ II. If yes, perform the following steps.
 \item Let $\alpha$ and $\beta$ be the respective canalyzing and 
 canalyzed values for $x_i$ found in Step~I. 
 \item For each variable $x_p$ in the group containing $x_i$, append the rule~
-``$x_p\,:\,\alpha ~\longrightarrow~ \beta$"~ to the NCF representation of $f$.
-\item Obtain $X_{j+1}$ by deleting from $X_j$ all the variables which are 
-in the same group as $x_i$.
+``$x_p : \alpha ~\longrightarrow~ \beta$"~ to the NCF representation of $f$.
+\item Set $X_{j+1}$ = $X_j - \{x_i\}$.  
 \item Obtain $T_{j+1}$ by retaining only those rows of $T_j$ where all the
 variables in the group containing $x_i$ are set to $\overline{\alpha}$. 
 \item Set $\ell_{j+1} = \ell_j - 1$.
@@ -312,8 +315,7 @@ To estimate the running time, we note that in iteration $j$, we can
 determine whether there is a canalyzing variable in $X_j$
 in $O(\ell_j \mu_j)$ = $O(r \mu_j)$ time using 
 Observation~\ref{obs:rsym_canalyzing}.
-(This is done by considering an arbitrary variable 
-from each group.)
+(This is done by considering each variable in $X_j$.)
 Once a canalyzing variable is identified, the other steps in that iteration
 can be completed in $O(\mu_j)$ time.
 Thus, the time for iteration $j$ is $O(r \mu_j)$.

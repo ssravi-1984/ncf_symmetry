@@ -6,7 +6,7 @@
 
 \IEEEPARstart{R}{search} on the symmetry properties of Boolean
 functions has received a lot of attention from the
-logic synthesis community. 
+logic design and automated synthesis communities. 
 (Additional discussion on this is provided in Section~\ref{sse:related}.)
 In this paper, we focus on the symmetry properties of
 a class of Boolean functions (called \textbf{nested canalyzing functions})
@@ -61,7 +61,7 @@ f(x_1, x_2, \ldots, x_n) ~=~
              & x_{\pi(n-1)} ~\neq~ a_{n-1} \mathrm{~~and~~}\\
              & x_{\pi(n)} ~=~ a_n \\ %\smallskip
        \:\overline{b_n} & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots\\
-                        & x_{\pi(n)} ~\neq~ a_n \\
+                        & x_{\pi(n)} ~\neq~ a_n. \\
    \end{cases}
 \]
 \end{definition}
@@ -97,7 +97,7 @@ for which the canalyzed value is~ $\overline{b_n}$:
 As in \cite{Stearns-etal-2018}, we will refer to the above specification
 of an NCF as the \textbf{simplified representation} and assume
 (without loss of generality) that each NCF is specified in this manner.
-The simplified representation provides the following simple
+The simplified representation provides the following 
 computational view of an NCF. 
 The lines that define an NCF are 
 considered sequentially in a top-down manner.
@@ -221,7 +221,7 @@ For example, the function $f_3(x_1, x_2, x_3) = (x_1 \wedge x_2) \vee\, \overlin
 is not 1-symmetric since $f_3(1, 0, 1) \neq f_3(1, 1, 0)$; however, 
 it is 2-symmetric with the symmetric groups being $\{x_1, x_2\}$ and $\{x_3\}$.
 For a Boolean function $f$, the integer $r$ such that $f$ is properly $r$-symmetric
-will be referred to as the \textbf{symmetry level} of $f$.
+is referred to as the \textbf{symmetry level} of $f$.
 Thus, the symmetry level of $f$ is the smallest integer $r$ such that
 $f$ is $r$-symmetric.
 
@@ -236,12 +236,12 @@ If $f$ is a symmetric function, then for any
 input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
 $1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
 $f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
-The class of $r$-symmetric functions have also been
+For $r \geq 1$, the class of $r$-symmetric functions has been
 studied in the literature on discrete dynamical systems (see e.g., 
 \cite{Barrett-etal-2007,Rosenkrantz-etal-2015,MR-2007}).
 
 Other forms of symmetry which can be more general than the permutations 
-corresponding to symmetry groups have been considered (see e.g.,
+corresponding to symmetry groups have also been considered (see e.g.,
 \cite{Maurer-2015,KS-2000}).
 A Boolean function $f(x_1, x_2, \ldots, x_n)$
 is \textbf{strongly asymmetric}
@@ -289,8 +289,9 @@ are NCFs and symmetric.
 \subsection{Related Work}
 \label{sse:related}
 
-The study of symmetry properties of Boolean functions
-was initiated by Shannon \cite{Shannon-1938}.
+The usefulness of symmetry properties in synthesizing 
+combinational logic functions was first noted 
+by Shannon \cite{Shannon-1938}.
 Over the years, a considerable amount of research on detecting 
 and exploiting symmetry properties 
 of Boolean functions has been reported in the literature.
@@ -303,7 +304,7 @@ variables.
 Several researchers have developed techniques for exploiting symmetries
 for automated logic synthesis 
 (e.g., \cite{AP-2008,Hu-etal-2008,KS-2000,Darga-etal-2008}).
-Reference \cite{Maurer-2015} provides a thorough discussion of known
+Maurer \cite{Maurer-2015} provides a thorough discussion of known
 symmetry detection algorithms and presents a new universal algorithm 
 for detecting any form of permutation-based symmetry in Boolean functions. 
 

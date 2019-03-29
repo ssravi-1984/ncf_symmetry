@@ -26,8 +26,8 @@ Our final result (Proposition~\ref{pro:ncf_symmetric})
 identifies all the functions that are symmetric and
 canalyzing as well as those that are symmetric and NCFs.
 
-\subsection{Symmetric Pairs of Variables in an NCF: A Characterization
-and Its Applications}
+\subsection{Symmetric Pairs of Variables in an NCF:\newline 
+A Characterization and its Applications}
 \label{sse:ncf_strong_sym}
 
 \begin{theorem}\label{thm:ncf_symmetric_variables}
@@ -206,7 +206,7 @@ with at most $r-1$ layers, and has an unnormalized nested canalyzing
 representation with at most $r$ layers.   \QED
 \end{corollary}
 
-\subsection{Testing Whether an $r$-Symmetric Function is an NCF}
+\subsection{Testing Whether an $r$-Symmetric Function\newline is an NCF}
 \label{sse:rsym_to_ncf}
 
 Theorem~\ref{thm:ncf_r_symmetric} shows that given an NCF $f$,
@@ -262,18 +262,18 @@ $f$ is an NCF; if so, the algorithm also constructs a default-normalized
 representation for $f$.
 We use the following notation.
 At beginning of iteration $j$,~
-$\ell_j$ denotes the number of remaining groups,
+$r_j$ denotes the number of remaining groups,
 $X_j$ denotes a set of variables with
 exactly one variable from each remaining group,
 $T_j$ denotes the table which provides values for the function and
 $\mu_j$ denotes the number of rows of $T_j$.
-Initially (i.e., $j = 1$),~ $\ell_1 = r$ (the number of symmetry groups of $f$),
+Initially (i.e., $j = 1$),~ $r_1 = r$ (the number of symmetry groups of $f$),
 $X_1$ is constructed by choosing one 
 variable (arbitrarily) from each of the $r$ groups,
 $T_1 = T$ (the given table $T$ for $f$) and 
 $\mu_1 = \mu$ (the number of rows of $T$);
 further, the NCF representation for $f$ is empty.
-The algorithm carries out iteration $j$ if $\ell_j \geq 1$; 
+The algorithm carries out iteration $j$ if $r_j \geq 1$; 
 in that iteration, the algorithm performs Steps I, II and III
 as described below.
 
@@ -293,8 +293,8 @@ canalyzed values for $x_i$ found in Step~I.
 \item Set $X_{j+1}$ = $X_j - \{x_i\}$.  
 \item Obtain $T_{j+1}$ by retaining only those rows of $T_j$ where all the
 variables in the group containing $x_i$ are set to $\overline{\alpha}$. 
-\item Set $\ell_{j+1} = \ell_j - 1$.
-\item If $\ell_{j+1} \geq 1$, start the next iteration; 
+\item Set $r_{j+1} = r_j - 1$.
+\item If $r_{j+1} \geq 1$, start the next iteration; 
       otherwise, \textbf{stop}.
 \end{enumerate}
 
@@ -313,7 +313,7 @@ discussed in Section~\ref{sse:ncf_layer}.
 
 To estimate the running time, we note that in iteration $j$, we can
 determine whether there is a canalyzing variable in $X_j$
-in $O(\ell_j \mu_j)$ = $O(r \mu_j)$ time using 
+in $O(r_j \mu_j)$ = $O(r \mu_j)$ time using 
 Observation~\ref{obs:rsym_canalyzing}.
 (This is done by considering each variable in $X_j$.)
 Once a canalyzing variable is identified, the other steps in that iteration
@@ -560,7 +560,8 @@ $x_n:~ 1 ~\longrightarrow~ 0$.
 \noindent
 Note that if $x_i = 0$ for all $i$, $1 \leq i \leq n$, then the
 value of $f_n$ is 0 if $n$ is odd and 1 if $n$ is even.  Also, note
-that the above representation is unnormalized. To normalize the
+that the above representation is not default-normalized. 
+To obtain a default-normalized 
 representation, the last line would be changed to have canalyzing
 value 0, and the same canalyzed value as the preceding line.
 
@@ -569,7 +570,7 @@ value 0, and the same canalyzed value as the preceding line.
 
 \begin{theorem}\label{thm:count_strongly_asymmetric}
 For any $n \geq 2$, the number of Boolean functions with $n$ variables 
-that are both strongly asymmetric and NCFs is $n! \, 2^{n-1}$.
+that are both strongly asymmetric and NCFs is~ $n! \, 2^{n-1}$.
 \end{theorem}
 
 \noindent

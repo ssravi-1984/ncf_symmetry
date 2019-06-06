@@ -3,7 +3,7 @@
 Many researchers have studied symmetry properties of various Boolean
 functions.  A class of Boolean functions, called nested canalyzing
 functions (NCFs), has been used to model certain biological phenomena.
-The purpose of this brief contribution is to bring out some interesting
+We identigy some interesting
 relationships between NCFs, symmetric Boolean functions and a
 generalization of symmetric Boolean functions, which we call
 r-symmetric functions (where r is the symmetry level).  Using a

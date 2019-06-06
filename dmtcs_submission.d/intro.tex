@@ -4,7 +4,7 @@
 \subsection{Canalyzing and Nested Canalyzing Functions}
 \label{sse:ncf_def}
 
-Rsearch on the symmetry properties of Boolean
+Research on the symmetry properties of Boolean
 functions has received a lot of attention from the
 logic design and automated synthesis communities. 
 (Additional discussion on this is provided in Section~\ref{sse:related}.)
@@ -80,8 +80,8 @@ For $1 \leq i \leq n$, line $i$ of this representation has the form
 \noindent 
 where $x_{\pi(i)}$ is the \textbf{canalyzing variable} that is
 \textbf{tested} in line $i$, 
-and $a_i$ and $b_i$ are respectively the canalyzing and 
-canalyzed values in line $i$,~ $1 \leq i \leq n$.
+and $a_i$ and $b_i$ are respectively the \emph{canalyzing} and 
+\emph{canalyzed} values in line $i$,~ $1 \leq i \leq n$.
 Each such line is called a \textbf{rule}.
 When none of the conditions ``$x_{\pi(i)} ~=~ a_i$" 
 is satisfied, we have line $n+1$ with the ``Default" rule
@@ -228,7 +228,7 @@ $f$ is $r$-symmetric.
 In the literature (see e.g., \cite{Crama-Hammer-2011,HT-2016,Toth-etal-1977}),
 a 1-symmetric function $f$ is referred to simply
 as a \textbf{symmetric} function or 
-as a \textbf{totally symmetric function} \cite{Biswas-1970,BS-1968}.
+as a \textbf{totally symmetric function} \citep{Biswas-1970,BS-1968}.
 Thus, in any symmetric function, each pair of variables is symmetric.
 As a simple example, the function $f_2(x_1, x_2, x_3)$ = 
 $x_1 \oplus x_2 \oplus x_3$ (defined above) is symmetric.
@@ -251,7 +251,7 @@ there exists an input $(a_1, a_2, \ldots,  a_n)$
 to $f$ such that $f(a_1, a_2, \ldots, a_n)$ $\neq$
 $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
 In general, there are functions with $n$ variables that are properly
-$n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
+$n$-symmetric, but not strongly asymmetric \citep{KS-2000}.
 However, in the case of NCFs with $n$ variables, we will show 
 (see Section~\ref{sec:ncf_and_symmetry}) that the notion of 
 strong asymmetry coincides with that 
@@ -291,45 +291,45 @@ are NCFs and symmetric.
 
 The usefulness of symmetry properties in synthesizing 
 combinational logic functions was first noted 
-by Shannon \cite{Shannon-1938}.
+by \citet{Shannon-1938}.
 Over the years, a considerable amount of research on detecting 
 and exploiting symmetry properties 
 of Boolean functions has been reported in the literature.
-For example, references \cite{Biswas-1970,TM-1996} present methods 
+For example, \citet{Biswas-1970} and \citet{TM-1996} present methods 
 to determine whether a given Boolean function is symmetric.
-Born and Scidmore \cite{BS-1968} show how certain Boolean functions
+\citet*{BS-1968} show how certain Boolean functions
 can be converted into symmetric functions by introducing additional
 variables. 
 %% (e.g., \cite{BS-1968,Biswas-1970,TM-1996,KS-2000,Darga-etal-2008,Maurer-2015}).
 Several researchers have developed techniques for exploiting symmetries
 for automated logic synthesis 
 (e.g., \cite{AP-2008,Hu-etal-2008,KS-2000,Darga-etal-2008}).
-Maurer \cite{Maurer-2015} provides a thorough discussion of known
+\citet{Maurer-2015} provides a thorough discussion of known
 symmetry detection algorithms and presents a new universal algorithm 
 for detecting any form of permutation-based symmetry in Boolean functions. 
 
 The term \textbf{canalization}, coined by
-Waddington \cite{Waddington-1942}, is generally used to describe
+\citet{Waddington-1942}, is generally used to describe
 the stability of a biological system with changes
 in external conditions.
-In 1969, Kauffman \cite{Kauffman-1969} introduced canalyzing Boolean functions
+\citet{Kauffman-1969} introduced canalyzing Boolean functions
 to explain the stability of gene regulatory networks.
 The subclass of NCFs was
-introduced later by Kauffman et al. \cite{Kauffman-etal-2003} 
+introduced later by \citet{Kauffman-etal-2003} 
 to facilitate a rigorous analysis of the Boolean network model
 for gene regulatory networks.
 It is known that the class of NCFs coincides with that
-of unate cascade Boolean functions \cite{Jarrah-etal-2007}.
+of unate cascade Boolean functions \citep{Jarrah-etal-2007}.
 In the literature on computational learning theory,
-NCFs are referred to as $1$-\textbf{decision lists} \cite{KV-1994}.
+NCFs are referred to as $1$-\textbf{decision lists} \citep{KV-1994}.
 Many researchers have pointed out the usefulness of NCFs 
 in modeling biological phenomena 
 (e.g., \cite{Layne-2011,
 Layne-etal-2012,Li-etal-2011,Li-etal-2012,Li-etal-2013}).
 Properties of NCFs such as sensitivity and 
 stability have also been studied in the 
-literature \cite{Kauffman-etal-2004, Layne-2011,Layne-etal-2012,
-Li-etal-2011,Li-etal-2013,Klotz-etal-2013, Stearns-etal-2018}. 
+literature (e.g., \cite{Kauffman-etal-2004, Layne-2011,Layne-etal-2012,
+Li-etal-2011,Li-etal-2013,Klotz-etal-2013, Stearns-etal-2018}). 
 
 To our knowledge, relationships between NCFs and symmetric
 Boolean functions have not been addressed in the literature.

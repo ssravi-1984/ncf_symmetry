@@ -349,8 +349,66 @@ be solved efficiently. \QED
 
 The notion of strong asymmetry of Boolean functions was defined 
 in Section~\ref{sec:prelim}.
-In general, there are functions with $n$ variables that are properly
-$n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
+%% In general, there are functions with $n$ variables that are properly
+%% $n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
+For general Boolean functions, the notions of ``$n$-symmetry" and
+``strong asymmetry" are not equivalent. 
+We illustrate this by presenting an example of a Boolean function
+which is properly $n$-symmetric but not strongly asymmetric.
+
+\medskip
+
+\noindent
+\textbf{Example 6:}
+Consider the Boolean function $f$ of four variables, 
+namely $a$, $b$, $c$ and $d$,
+whose truth table is shown in Table~\ref{tab:not_str_ssym_ex}.
+Function $f$ is symmetric under the permutation $cdab$.
+For convenience, we give the truth table for $f$ in a form
+that makes its symmetry under the permutation $cdab$ clear.
+We now argue that the function is
+not pairwise symmetric for any pair of variables.
+
+\medskip
+
+\noindent
+\begin{minipage}{0.05\textwidth}
+\hspace*{0.08in}
+\end{minipage}
+\begin{minipage}{0.85\textwidth}
+\begin{description}
+\item{(i)} $f(0100) \neq f(1000)$, so $a$ and $b$ are not symmetric.
+\item{(ii)} $f(0011) \neq f(1001)$, so $a$ and $c$ are not symmetric.
+\item{(iii)} $f(0001) \neq f(1000)$, so $a$ and $d$ are not symmetric.
+\item{(iv)} $f(0100) \neq f(0010)$, so $b$ and $c$ are not symmetric.
+\item{(v)} $f(0011) \neq f(0110)$, so $b$ and $d$ are not symmetric.
+\item{(vi)} $f(0001) \neq f(0010)$, so $c$ and $d$ are not symmetric.
+\end{description}
+\end{minipage}
+
+%%%% Truth table for the Boolean function in Example 6.
+
+\begin{table}[tb]
+\begin{center}
+\begin{tabular}{|l|l|c||l|l|c|}\hline
+$a~b$ & $c~d$ & $f$ & $a~b$ & $c~d$ & $f$ \\ \hline\hline
+0~0 & 0~1 & 0 & 0~1 & 1~1 & 1 \\ \hline
+0~1 & 0~0 & 0 & 1~1 & 0~1 & 1  \\ \hline
+0~0 & 1~0 & 1 & 1~0 & 1~1 & 1 \\ \hline
+1~0 & 0~0 & 1 & 1~1 & 1~0 & 1 \\ \hline
+0~0 & 1~1 & 0 & 0~0 & 0~0 & 0 \\ \hline
+1~1 & 0~0 & 0 & 0~1 & 0~1 & 0 \\ \hline
+0~1 & 1~0 & 1 & 1~0 & 1~0 & 0 \\ \hline
+1~0 & 0~1 & 1 & 1~1 & 1~1 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\caption{An Example of a Boolean Function which is
+properly $n$-symmetric but not strongly asymmetric.}
+\label{tab:not_str_ssym_ex}
+\end{table}
+
+%%%%% End of truth table.
+
 We now show that any $n$ variable NCF that is properly $n$-symmetric
 is also strongly asymmetric.
 As a consequence, we observe that there are NCFs with $n$ variables

@@ -1,0 +1,714 @@
+\section{Symmetry of Nested Canalyzing Functions}
+\label{sec:ncf_and_symmetry}
+
+\subsection{Overview}
+\label{sse:res_overview}
+Our first result (Theorem~\ref{thm:ncf_symmetric_variables})
+provides a characterization of pairs of variables of an NCF
+that are part of the same symmetry group. 
+This characterization allows us to give a simple closed form
+expression (Theorem~\ref{thm:ncf_r_symmetric}) 
+for the symmetry level of an NCF specified using
+its default-normalized representation.
+We also present an efficient algorithm (Theorem~\ref{thm:rsym_canalyzing})
+for the converse problem, that is,
+testing whether a given $r$-symmetric function $f$ is an NCF;
+if so, our algorithm constructs a default-normalized 
+representation for $f$.
+Next, we show that for any NCF $f$ with $n$ variables,
+the two statements ``$f$ is strongly asymmetric" ~and~
+``the symmetry level of $f$ is $n$"~ are equivalent 
+(Theorem~\ref{thm:ncf_strong_asymmetry}).
+We use this result to derive a closed form expression 
+for the number of $n$-variable NCFs that are 
+also strongly asymmetric (Theorem~\ref{thm:count_strongly_asymmetric}).
+Our final result (Proposition~\ref{pro:ncf_symmetric})
+identifies all the functions that are symmetric and
+canalyzing as well as those that are symmetric and NCFs.
+
+\subsection{Symmetric Pairs of Variables in an NCF:
+A Characterization and\newline its Applications}
+\label{sse:ncf_strong_sym}
+
+\begin{theorem}\label{thm:ncf_symmetric_variables}
+Two variables of an NCF $f$ are symmetric iff
+in the default-normalized representation of $f$,
+they occur in the same layer and have the same canalyzing value.
+\end{theorem}
+\noindent
+\textbf{Proof:}~
+Suppose that two variables of an NCF $f$ occur in the same layer of a
+default-normalized representation, and the lines containing these variables
+have the same canalyzing value.  Then in any input assignment, the
+values of these two variables can be interchanged, and the evaluation
+of the lines in that layer will have the same effect.  Thus, the
+variables are symmetric.
+
+For the converse, consider the default-normalized NCF representation of $f$. 
+As mentioned earlier, we assume without loss of generality that the
+canalyzing variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.
+Let  $x_j$ and $x_k$ be two variables that occur in different
+layers of $f$, or occur in the same layer, but with different
+canalyzing values.  Without loss of generality, 
+assume that $j < k$, so that the line for
+$x_j$ occurs above the line for $x_k$.
+Suppose that line $i$ of $f$, $1 \leq i \leq n$, is 
+
+\smallskip
+
+\hspace*{0.25in}
+$x_i : a_i ~\longrightarrow~ b_i$. 
+
+\smallskip
+
+\noindent
+Consider the following assignment $\alpha$ = $(c_1, c_2, \ldots,  c_n)$ 
+to the variables $x_1$, $x_2$, $\ldots$, $x_n$ of $f$.
+\begin{enumerate}
+\item For $1 \leq i < j$, set $c_i = \overline{a_i}$. 
+\item For $i = j$, set $c_j =a_j$. 
+\item For $i = k$, set $c_k =\overline{a_j}$. 
+\item For $j < i < k$, and for  $k < i \leq n$, 
+if $b_i = b_j$,\\ then set $c_i =  \overline{a_i}$,
+else set $c_i =  a_i$.
+\end{enumerate}
+Note that $f(\alpha) = b_j$, since the variables in all lines above
+line $j$ have the complement of their canalyzing value, and variable
+$x_j$ has its canalyzing value.
+
+\medskip
+
+Now, let $\alpha'$ be the assignment that is obtained from $\alpha$
+by interchanging the values of variables $x_j$ and $x_k$, so that
+after the interchange, variable $x_j$ has value $\overline{a_j}$ and
+variable $x_k$ has value $a_j$.  We will show that $f(\alpha') =
+\overline{b_j}$, so variables $x_j$ and $x_k$ are not symmetric.
+
+In line $k$ of $f$, canalyzing value $a_k$ is either the same or
+the complement of canalyzing value $a_j$, and canalyzed value $b_k$
+is either the same or the complement of canalyzed value $b_j$,
+Thus, there are four possible cases for the form of line $k$.  We
+now consider each of the four cases.
+
+\medskip
+
+\noindent
+{\bf Case 1:} Line $k$ has the form $x_k : a_j ~\longrightarrow~ b_j$.  
+
+\smallskip
+
+Since line $k$ has
+the same canalyzing value and canalyzed value as line $j$, line
+$k$ must occur in a lower layer than that of line $j$.  Thus, there
+is at least one line between line $j$ and line $k$ for which the
+canalyzed value is $\overline{b_j}$.  Let line $q$ be the first
+such line.  Note that for all $i$ such that $1 \leq i < q$, the
+value of variable $x_i$ in assignment $\alpha'$ does not match the
+canalyzing value of line $i$, but the value of variable $x_q$ does
+match the canalyzing value of line $q$.  Since canalyzed value
+$b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
+\overline{b_j}$.
+
+\medskip
+
+\noindent
+{\bf Case 2:} Line $k$ has the form  $x_k : a_j ~\longrightarrow~ \overline{b_j}$.  
+
+\smallskip
+
+Let line $q$ be the first line such that $j < q \leq k$ and the canalyzed
+value of line $q$ is $\overline{b_j}$.  Note that $q$ might possibly
+equal $k$.  For all $i$ such that $1 \leq i < q$, the value of
+variable $x_i$ in assignment $\alpha'$ does not match the canalyzing
+value of line $i$, but the value of variable $x_q$ does match the
+canalyzing value of line $q$.  Since canalyzed value $b_q$ equals
+$\overline{b_j}$, we have that $f(\alpha') = \overline{b_j}$.
+
+\medskip
+
+\noindent
+{\bf Case 3:} Line $k$ has the form $x_k : \overline{a_j} ~\longrightarrow~ b_j$.  
+
+\smallskip
+
+Suppose there is a line below line $j$ for which the canalyzed value is
+$\overline{b_j}$.  Let $q$ be the first such line.  Note that for
+all $i$ such that $1 \leq i < q$, the value of variable $x_i$ in
+assignment $\alpha'$ does not match the canalyzing value of line
+$i$, but the value of variable $x_q$ does match the canalyzing value
+of line $q$.  Since canalyzed value $b_q$ equals $\overline{b_j}$,
+we have that $f(\alpha') = \overline{b_j}$.
+
+\smallskip
+
+Now suppose there is no line below line $j$ for which the canalyzed
+value is $\overline{b_j}$.  Then lines $j$ and $k$ both occur in
+the last layer of $f$.  Thus, for every line $i$, $1 \leq i \leq
+n$, the value of variable $x_i$ in assignment $\alpha'$ does not
+match the canalyzing value of line $i$.  Consequently, $f(\alpha')
+= \overline{b_j}$, the complement of the canalyzed value in the
+last layer of $f$.
+
+\medskip
+
+\noindent
+{\bf Case 4:} Line $k$ has the form  $x_k : \overline{a_j} ~\longrightarrow~ \overline{b_j}$. 
+
+\smallskip
+
+Suppose there is a line, other than line $k$, below line $j$ for
+which the canalyzed value is $\overline{b_j}$.  Let $q$ be the
+first such line.  Note that for all $i$ such that $1 \leq i < q$,
+the value of variable $x_i$ in assignment $\alpha'$ does not match
+the canalyzing value of line $i$, but the value of variable $x_q$
+does match the canalyzing value of line $q$.  Since canalyzed value
+$b_q$ equals $\overline{b_j}$, we have that $f(\alpha') =
+\overline{b_j}$.
+
+Now suppose that line $k$ is the only line below line $j$ for which
+the canalyzed value is $\overline{b_j}$.  Since line $j$ has
+canalyzed value $b_j$, line $k$ is the only line in its layer.
+Since $f$ is default-normalized, the last layer of $f$ contains at least
+two lines.  Thus, there is a last layer following the layer containing
+line $k$.  The canalyzed value of all the lines in this last layer
+is $b_j$.  Thus, for every line $i$, $1 \leq i \leq n$, the value
+of variable $x_i$ in assignment $\alpha'$ does not match the
+canalyzing value of line $i$.  Consequently, $f(\alpha') =
+\overline{b_j}$, the complement of the canalyzed value in the last
+layer of $f$.  \QED
+
+\begin{theorem}\label{thm:ncf_r_symmetric}
+Suppose the default-normalized representation of a given NCF contains 
+$r_1$ layers with only one distinct canalyzing value,
+and $r_2$ layers with two distinct canalyzing values.
+Then the function is properly $(r_1 + 2 r_2)$-symmetric.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~
+From Theorem~\ref{thm:ncf_symmetric_variables}, 
+any pair of variables occurring in the same layer, 
+with the same canalyzing value, are symmetric.
+Thus the function is at most $(r_1 + 2 r_2)$-symmetric.
+Moreover, any pair of variables from different layers, or with different canalyzing values
+are not symmetric, so there are at least $(r_1 + 2 r_2)$ symmetry groups.
+\QED
+
+\begin{corollary}\label{cor:ncf_not_rsymm}
+For every $n \geq 2$, there is an $n$-variable NCF that is not $n-1$ symmetric. \QED
+\end{corollary}
+
+\begin{corollary}\label{cor:ncf_r_symmetric_layers}
+(i) An NCF with a default-normalized nested canalyzing representation consisting
+of $q$ layers is $2q$-symmetric, and is not $(q-1)$-symmetric.
+(ii) An $r$-symmetric NCF has a default-normalized nested canalyzing representation
+with at most $r-1$ layers, and has an unnormalized nested canalyzing
+representation with at most $r$ layers.   \QED
+\end{corollary}
+
+\subsection{Testing Whether an $r$-Symmetric Function is an NCF}
+\label{sse:rsym_to_ncf}
+
+Theorem~\ref{thm:ncf_r_symmetric} shows that given an NCF $f$,
+the problem of finding the smallest integer $r$ such that
+$f$ is $r$-symmetric can be solved efficiently.
+We now show that the converse problem, that is, testing whether a given
+$r$-symmetric Boolean function is an NCF,
+can also be solved efficiently.
+When the answer is ``yes", a
+default-normalized representation (defined in Section~\ref{sec:prelim})
+of $f$ can also be constructed efficiently.
+
+Let $f(x_1, x_2, \ldots, x_n)$ be an $r$-symmetric 
+Boolean function of $n$ variables.
+We assume that the symmetry groups 
+of $f$, denoted by $g_1$, $g_2$, $\ldots$, $g_r$,
+are given.
+Let $m_i = |g_i|$, $1 \leq i \leq m$.
+Thus, in group $g_i$, the number
+of variables which can take on the value 1 varies from 0
+to $m_i$, $1 \leq i \leq r$.
+We also assume that $f$ is
+given as a table $T$ of the following form:
+each row of $T$ specifies an $r$-tuple $(c_1, c_2, \ldots, c_r)$,
+where $c_i$ is the number of variables of group $g_i$ which
+have the value 1, along with the \{0,1\} value of $f$ for that $r$-tuple.
+Thus, $\mu$, the number of rows in $T$, 
+is given by  $\mu = \prod_{i=1}^r (m_i+1)$.
+As will be seen, our algorithm for determining whether $f$ is
+an NCF runs in $O(r\mu)$ time.
+The algorithm relies on the following observation.
+
+\begin{observation}\label{obs:rsym_canalyzing}
+Suppose $f(x_1, x_2, \ldots, x_n)$ is an $r$-symmetric Boolean function.
+Consider any variable $x_i$ and suppose
+the number of variables in the group
+containing $x_i$ is $\nu_i$, $1 \leq i \leq n$.
+\begin{enumerate}
+\item Function $f$ is canalyzing in variable $x_i$
+with canalyzing value 1 iff all the table entries where the number
+of 1's in the group containing $x_i$ is nonzero have the same value
+of $f$. (This value of $f$ is the canalyzed value when $x_i = 1$.)
+\item Function $f$ is canalyzing in variable $x_i$ with
+canalyzing value 0 iff all the table entries where the number of
+1's in the group containing $x_i$ is less than $\nu_i$ have the same
+value of $f$. (This value of $f$ is the canalyzed value when $x_i = 0$.)
+\QED
+\end{enumerate}
+\end{observation}
+We now explain how Observation~\ref{obs:rsym_canalyzing} can be
+used to develop an iterative algorithm for determining whether 
+$f$ is an NCF; if so, the algorithm also constructs a default-normalized 
+representation for $f$.
+We use the following notation.
+At beginning of iteration $j$,~
+$r_j$ denotes the number of remaining groups,
+$X_j$ denotes a set of variables with
+exactly one variable from each remaining group,
+$T_j$ denotes the table which provides values for the function and
+$\mu_j$ denotes the number of rows of $T_j$.
+Initially (i.e., $j = 1$),~ $r_1 = r$ (the number of symmetry groups of $f$),
+$X_1$ is constructed by choosing one 
+variable (arbitrarily) from each of the $r$ groups,
+$T_1 = T$ (the given table $T$ for $f$) and 
+$\mu_1 = \mu$ (the number of rows of $T$);
+further, the NCF representation for $f$ is empty.
+The algorithm carries out iteration $j$ if $r_j \geq 1$; 
+in that iteration, the algorithm performs Steps I, II and III
+as described below.
+
+\smallskip
+\noindent
+I. Use Observation~\ref{obs:rsym_canalyzing} to determine whether there is
+a canalyzing variable $x_i \in X_j$. 
+
+\smallskip
+\noindent
+II. If yes, perform the following steps. 
+\begin{enumerate}
+\item Let $\alpha$ and $\beta$ be the respective canalyzing and 
+canalyzed values for $x_i$ found in Step~I. 
+\item For each variable $x_p$ in the group containing $x_i$, append the rule~
+``$x_p : \alpha ~\longrightarrow~ \beta$"~ to the NCF representation of $f$.
+\item Set $X_{j+1}$ = $X_j - \{x_i\}$.  
+\item Obtain $T_{j+1}$ by retaining only those rows of $T_j$ where all the
+variables in the group containing $x_i$ are set to $\overline{\alpha}$. 
+\item Set $r_{j+1} = r_j - 1$.
+\item If $r_{j+1} \geq 1$, start the next iteration; 
+      otherwise, \textbf{stop}.
+\end{enumerate}
+
+\smallskip
+\noindent
+III. (Here, Step~I didn't find a canalyzing variable.)~ 
+Output ``$f$ is not an NCF" and \textbf{stop}.
+
+\medskip
+\noindent
+The correctness of the algorithm is a direct consequence of
+Observation~\ref{obs:rsym_canalyzing}. If the algorithm is successful,
+it produces a simplified NCF representation of $f$; this can then be
+efficiently converted into the default-normalized representation as
+discussed in Section~\ref{sse:ncf_layer}.
+
+To estimate the running time, we note that in iteration $j$, we can
+determine whether there is a canalyzing variable in $X_j$
+in $O(r_j \mu_j)$ = $O(r \mu_j)$ time using 
+Observation~\ref{obs:rsym_canalyzing}.
+(This is done by considering each variable in $X_j$.)
+Once a canalyzing variable is identified, the other steps in that iteration
+can be completed in $O(\mu_j)$ time.
+Thus, the time for iteration $j$ is $O(r \mu_j)$.
+We note that in each iteration, the number of rows in the table
+is reduced by a factor of at least 2; that is, $\mu_{j+1} \leq \mu_j/2$.
+To see why, suppose the canalyzing variable $x_i$ found in iteration $j$
+is in group $g_p$ with $m_p$ variables. 
+Thus, in $T_j$, there are $m_p+1 \geq 2$ possibilities for the number of 1's 
+in group $g_p$. 
+As indicated in Substep~4 of Step~II above, $T_{j+1}$ 
+contains only those rows of $T_j$ where all the variables 
+in $g_p$ have the same value.
+In other words, there is only one possibility for the number of
+1's in group $g_p$.
+Thus, $\mu_{j+1}$, the number of rows in $T_{j+1}$,
+is at most $\mu_j/(m_p+1)$ $\leq$ $\mu_j/2$.
+It follows by simple induction that $\mu_j \leq \mu/2^{j-1}$.
+Thus, the running time over all the $r$ iterations is given by
+$O(r [\sum_{j=1}^{r}(\mu/2^{j-1})])$ = $O(r\mu)$, since the
+geometric sum is bounded by $2\mu$.
+The following theorem summarizes this result. 
+
+\begin{theorem}\label{thm:rsym_canalyzing}
+The problem of testing whether a given 
+$r$-symmetric function $f$ is an NCF can 
+be solved efficiently. \QED
+\end{theorem}
+
+\subsection{Strong Asymmetry and NCFs}
+\label{sse:strong_asym_ncf}
+
+The notion of strong asymmetry of Boolean functions was defined 
+in Section~\ref{sec:prelim}.
+%% In general, there are functions with $n$ variables that are properly
+%% $n$-symmetric, but not strongly asymmetric \cite{KS-2000}.
+For general Boolean functions, the notions of ``$n$-symmetry" and
+``strong asymmetry" are not equivalent. 
+We illustrate this by presenting an example of a Boolean function
+which is properly $n$-symmetric but not strongly asymmetric.
+
+\medskip
+
+\noindent
+\textbf{Example 6:}
+Consider the Boolean function $f$ of four variables, 
+namely $a$, $b$, $c$ and $d$,
+whose truth table is shown in Table~\ref{tab:not_str_ssym_ex}.
+Function $f$ is symmetric under the permutation $cdab$.
+For convenience, we give the truth table for $f$ in a form
+that makes its symmetry under the permutation $cdab$ clear.
+So, the function $f$ is not strongly asymmetric.
+We now demonstrate that the function is properly $4$-symmetric
+by observing that it is not symmetric with respect to any pair of variables.
+
+\medskip
+
+\noindent
+\begin{minipage}{0.01\textwidth}
+%\hspace*{0.03in}
+\end{minipage}
+\begin{minipage}{0.85\textwidth}
+\begin{description}
+\item{(i)} $f(0100) \neq f(1000)$, so $a$ and $b$ are not symmetric.
+\item{(ii)} $f(0011) \neq f(1001)$, so $a$ and $c$ are not symmetric.
+\item{(iii)} $f(0001) \neq f(1000)$, so $a$ and $d$ are not symmetric.
+\item{(iv)} $f(0100) \neq f(0010)$, so $b$ and $c$ are not symmetric.
+\item{(v)} $f(0011) \neq f(0110)$, so $b$ and $d$ are not symmetric.
+\item{(vi)} $f(0001) \neq f(0010)$, so $c$ and $d$ are not symmetric.
+\end{description}
+\end{minipage}
+
+%%%% Truth table for the Boolean function in Example 6.
+
+\begin{table}[tb]
+\begin{center}
+\begin{tabular}{|l|l|c||l|l|c|}\hline
+$a~b$ & $c~d$ & {Value of $f$} & $a~b$ & $c~d$ & {Value of $f$} \\ \hline\hline
+0~0 & 0~1 & 0 & 0~1 & 1~1 & 1 \\ \hline
+0~1 & 0~0 & 0 & 1~1 & 0~1 & 1  \\ \hline
+0~0 & 1~0 & 1 & 1~0 & 1~1 & 1 \\ \hline
+1~0 & 0~0 & 1 & 1~1 & 1~0 & 1 \\ \hline
+0~0 & 1~1 & 0 & 0~0 & 0~0 & 0 \\ \hline
+1~1 & 0~0 & 0 & 0~1 & 0~1 & 0 \\ \hline
+0~1 & 1~0 & 1 & 1~0 & 1~0 & 0 \\ \hline
+1~0 & 0~1 & 1 & 1~1 & 1~1 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\caption{An example of a Boolean function with 4 variables which is
+properly $4$-symmetric but not\newline strongly asymmetric.}
+\label{tab:not_str_ssym_ex}
+\end{table}
+
+%%%%% End of truth table.
+
+We now show that any $n$ variable NCF that is properly $n$-symmetric
+is also strongly asymmetric.
+As a consequence, we observe that there are NCFs with $n$ variables
+that are properly $n$-symmetric.
+
+\begin{theorem}\label{thm:ncf_strong_asymmetry}
+An NCF with $n$ variables is strongly asymmetric iff
+it is properly $n$-symmetric.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ 
+If an NCF is $(n-1)$-symmetric, then consider a permutation that
+interchanges two variables from a symmetry group with at least two
+members.  The value of the function is invariant under any such
+permutation, so the function is not strongly asymmetric.
+
+For the converse, consider an $n$ variable NCF that is properly $n$-symmetric.
+Let $f$ be the default-normalized NCF representation for the function.  For
+purposes of notational simplicity, without loss of generality,
+we assume that the canalyzing
+variable in line $i$ of $f$ is $x_i$, $1 \leq i \leq n$.  Let $\pi$
+be any permutation of $\{1, 2, \ldots, n\}$ \emph{except} the
+identity permutation.  We will construct an assignment $(c_1, c_2,
+\ldots,  c_n)$ to the variables of $f$ such that $f(c_1, c_2, \ldots,
+c_n)$ $\neq$ $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.
+
+Let $k$ be the smallest index such that $k \neq \pi(k)$.  Since
+$\pi$ is a permutation, $k < n$.  Overall, for $1 \leq i < k$,
+$\pi(i) = i$,~ $\pi(k) > k$,~ and for $k < i \leq n$,~ $\pi(i) \geq k$.
+
+\smallskip
+
+Suppose that line $i$ of $f$, $1 \leq i \leq n$, is 
+
+\smallskip
+
+\hspace*{0.25in} $x_i : a_i ~\longrightarrow~ b_i$. 
+
+\smallskip
+
+\noindent
+Assignment $(c_1, c_2, \ldots,  c_n)$ is constructed as follows.
+\begin{enumerate}
+\item For $1 \leq i < k$, set $c_i = \overline{a_i}$.  
+\item For $i = k$, set $c_k =a_k$. 
+\item For $i > k$, let $i' = \pi^{-1}(i)$, so that $\pi(i')
+= i$.  Thus, after the permutation of values, variable $x_{i'}$
+will have value $c_i$.  If $b_{i'} = b_k$, then set $c_i =
+\overline{a_{i'}}$, else set $c_i =  a_{i'}$.
+\end{enumerate}
+Since $c_k$ matches the canalyzing value of line $k$ of $f$, and
+$c_i$ does not match the canalyzing value of any other earlier line
+$i$, $1 \leq i < k$, we have that $f(c_1, c_2, \ldots,  c_n) = b_k$.
+
+Now consider $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$.  We
+first note that for $1 \leq i < k$, $c_{\pi(i)}$ does not match the
+canalyzing value of line $i$.
+
+Let $k' = \pi^{-1}(k)$, so that $\pi(k') = k$.  Canalyzing value
+$a_{k'}$ is either the same or the complement of $a_k$, and canalyzed
+value $b_{k'}$ is either the same or the complement of $b_k$, Thus,
+there are four possible cases for the form of line $k'$ of $f$.  We
+will show that in each of the four cases, $f(c_{\pi(1)}, c_{\pi(2)},
+\ldots, c_{\pi(n)}) = \overline{b_k}$.
+
+\medskip
+
+\noindent
+{\bf Case 1:} Line $k'$ has the form  $x_{k'} : a_k ~\longrightarrow~ b_k$.  
+
+\smallskip
+
+Since line $k'$
+has the same canalyzing value and canalyzed value as line $k$, and
+$f$ is properly $n$-symmetric, line $k'$ must occur in a lower layer
+than that of line $k$.  Thus, there is at least one line between
+line $k$ and line $k'$ for which the canalyzed value is $\overline{b_k}$.
+Let line $q$ be the first such line.  Note that for all $i$ such
+that $1 \leq i < q$, $c_{\pi(i)}$ does not match the canalyzing
+value of line $i$, but $c_{\pi(q)}$ does match the canalyzing value
+of line $q$.  Since canalyzed value $b_q$ equals $\overline{b_k}$,
+we have that $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) =
+\overline{b_k}$.
+
+\medskip
+
+\noindent
+{\bf Case 2:} Line $k'$ has the form $x_{k'} : a_k ~\longrightarrow~ \overline{b_k}$.
+
+\smallskip
+
+Let line $q$ be the first line such that $k < q \leq k'$ and
+the canalyzed value of line $q$ is $\overline{b_k}$.
+Note that for all $i$ such that $1 \leq i < q$, 
+$c_{\pi(i)}$ does not match the canalyzing value of line $i$,
+so $f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
+
+\medskip
+
+\noindent
+{\bf Case 3:} Line $k'$ has the form $x_{k'} : \overline{a_k} ~\longrightarrow~ b_k$. 
+
+\smallskip
+
+Suppose there is a line below line $k$ for which the canalyzed
+value is $\overline{b_k}$.  Let $q$ be the first such line.  Note
+that for all $i$ such that $1 \leq i < q$, $c_{\pi(i)}$ does not
+match the canalyzing value of line $i$, but $c_{\pi(q)}$ does match
+the canalyzing value of line $q$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
+\ldots, c_{\pi(n)}) = \overline{b_k}$.
+
+Now suppose there is no line below line $k$ for which the canalyzed
+value is $\overline{b_k}$.  
+Then line $k$ occurs in the last layer of $f$.  
+Since $f$ is both default-normalized and properly $n$-symmetric,
+this last layer contains exactly two lines.  Thus $k = n-1$ and $k'
+= n$.  Note that for all $i$, $c_{\pi(i)}$ does not match the
+canalyzing value of line $i$.  Thus, $f(c_{\pi(1)}, c_{\pi(2)},
+\ldots, c_{\pi(n)}) = \overline{b_k}$.
+
+\medskip
+
+\noindent
+{\bf Case 4:} Line $k'$ has the form $x_{k'} : \overline{a_k} ~\longrightarrow~ 
+              \overline{b_k}$. 
+
+\smallskip
+
+Suppose there is a line, other than line $k'$, below line $k$ for
+which the canalyzed value is $\overline{b_k}$.  Let $q$ be the
+first such line.  Note that for all $i$ such that $1 \leq i < q$,
+$c_{\pi(i)}$ does not match the canalyzing value of line $i$, but
+$c_{\pi(q)}$ does match the canalyzing value of line $q$.  Thus,
+$f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)}) = \overline{b_k}$.
+
+Now suppose that line $k'$ is the only line below line $k$ for which
+the canalyzed value is $\overline{b_k}$.  Since line $k$ has
+canalyzed value $b_k$, line $k'$ is the only line in its layer.
+Since $f$ is default-normalized, there is a last layer following the layer
+containing line $k'$.  Thus, for all $i$, $c_{\pi(i)}$ does not
+match the canalyzing value of line $i$; therefore, 
+$f(c_{\pi(1)}, c_{\pi(2)}, \ldots, c_{\pi(n)})$ ~=~ $\overline{b_k}$.  \QED
+
+\medskip
+
+\noindent
+We now provide
+examples of properly $n$-symmetric $n$-variable NCFs satisfying the
+conditions of Theorem \ref{thm:ncf_r_symmetric}.
+For each $n > 1$, let $f_n$ be the function of $n$ variables, namely
+$x_1, \ldots, x_n$, defined by the following formula:
+
+\smallskip
+
+\hspace*{0.5in} $x_1 \vee (\overline{x}_2 \wedge ( x_3 \vee (\overline{x}_4 \wedge (\cdots ))$
+
+\smallskip
+
+\noindent
+For instance,
+\begin{align*}
+f_6 &~=~  x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge 
+      (x_5 \vee \overline{x}_6)) \\
+f_7 &~=~  x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge (x_5 
+          \vee (\overline{x}_6 \wedge  x_7)).
+\end{align*}
+Function $f_n(x_1, x_2, \ldots, x_n)$ is the NCF corresponding to
+the following NCF representation:
+
+\medskip
+
+\noindent
+\hspace*{0.25in}
+$x_1:~ 1 ~\longrightarrow~ 1$ \\
+\hspace*{0.25in}
+$x_2:~ 1 ~\longrightarrow~ 0$ \\
+\hspace*{0.25in}
+$x_3:~ 1 ~\longrightarrow~ 1$ \\
+\hspace*{0.75in}
+$\vdots$ 
+
+\smallskip
+
+\noindent
+If $n$ is odd, the last line is 
+
+\smallskip
+
+\noindent
+\hspace*{0.25in}
+$x_n:~ 1 ~\longrightarrow~ 1$ 
+
+\smallskip
+
+\noindent
+and if $n$ is even, the last line is 
+
+\smallskip
+
+\noindent
+\hspace*{0.25in}
+$x_n:~ 1 ~\longrightarrow~ 0$. 
+
+\smallskip
+
+\noindent
+Note that if $x_i = 0$ for all $i$, $1 \leq i \leq n$, then the
+value of $f_n$ is 0 if $n$ is odd and 1 if $n$ is even.  Also, note
+that the above representation is not default-normalized. 
+To obtain a default-normalized 
+representation, the last line would be changed to have canalyzing
+value 0, and the same canalyzed value as the preceding line.
+
+\subsection{Number of Strongly Asymmetric NCFs}
+\label{sse:number_strongly_asymmetric}
+
+\begin{theorem}\label{thm:count_strongly_asymmetric}
+For any $n \geq 2$, the number of Boolean functions with $n$ variables 
+that are both strongly asymmetric and NCFs is~ $n! \, 2^{n-1}$.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~
+Consider a default-normalized representation of a strongly asymmetric NCF $f$.
+The representation has $n-1$ layers.
+The first $n-2$ layers each contain one line, and the last layer contains two lines.
+
+Consider the canalyzed values in $f$. The canalyzed value in the
+first layer can be either 0 or 1.  The canalyzed value in every
+other layer is the complement of the canalyzed value in the preceding
+layer.  Thus, there are 2 possibilities for the sequence of canalyzed
+values in $f$.
+
+The canalyzing variable in each of the first $n-2$ lines (one per
+layer) can be any variable that has not yet occurred in a preceding
+line.  The last layer contains the remaining two variables.  Thus,
+there are $n! /[n-(n-2)]!$ = $n!/2$ possibilities for the pattern of 
+canalyzing variable occurrences in $f$.
+
+For each of the first $n-2$ variables, the canalyzing value for the line
+containing that variable can be either 0 or 1.  
+%% The last two lines, the canalyzed values on those two lines must be
+%% the same because of the default-normalized representation. 
+For the last two lines, the canalyzing values for the variables 
+in those lines must be complements of each other; otherwise, by 
+Theorem~\ref{thm:ncf_symmetric_variables}, those two variables 
+will be symmetric.
+Thus, the number of possible canalyzing values over all the $n$
+lines is $2^{n-2} \times 2$ = $2^{n-1}$.
+
+Hence, the number of Boolean functions with $n$ variables that
+are both strongly asymmetric and NCFs is equal to 
+$2 \times (n!/2) \times 2^{n-1}$ ~=~ $n!\,2^{n-1}$.  \QED
+
+
+\subsection{Symmetric Canalyzing and Nested Canalyzing Functions}
+\label{sse:sym_and_cf_ncf}
+
+\begin{proposition}\label{pro:ncf_symmetric}
+(i) The only symmetric canalyzing functions are OR, AND, NOR, NAND, 
+the constant function 0 and the constant function 1.
+(ii) The only symmetric NCFs are OR, AND, NOR and NAND.
+\end{proposition}
+%%\medskip
+\noindent
+\textbf{Proof:}~
+
+\smallskip
+
+\noindent
+\textbf{Part (i):}~
+Suppose symmetric function $f$ is also a canalyzing function. 
+Then there is a variable $x$, and values $a$ and $b$ 
+such that whenever $x = a$, function $f$ has value $b$.  
+Since $f$ is symmetric, $f$  has
+value $b$ whenever any of its variables has value $a$.  
+Thus, if at least one of its variables has value $a$, then $f$ has value $b$.  
+If $f$ has value $\overline{b}$ when none of its variables has
+value $a$, the four possible combinations of values for $a$ and $b$
+correspond to the four functions OR, AND, NOR, and NAND.  If $f$
+has value $b$ when none of its variables has value $a$, then $f$
+is the constant function $b$.
+
+\smallskip
+
+\noindent
+\textbf{Part (ii):}~
+Suppose that symmetric function $f$ is also an NCF.  
+Since constant functions are not NCFs,
+$f$ has value $\overline{b}$ when none of its variables has value $a$.
+The four possible combinations of values for $a$ and $b$ correspond
+to the four functions OR, AND, NOR and NAND, each of which is an
+NCF.  \QED
+
+
+
+
+
+
+
+

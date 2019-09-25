@@ -1,0 +1,277 @@
+\section{Other Definitions and Preliminary Results}
+\label{sec:prelim}
+
+\subsection{Overview}
+
+We present some definitions and recall
+a known result regarding NCFs which allow us
+to define a normalized representation for NCFs.
+This representation plays an important role in several
+problems considered in later sections.
+We also show (Theorem~\ref{thm:approx_sym_level_hard}) 
+that, in general, the symmetry level
+of a Boolean function cannot be efficiently approximated to within any
+factor $\rho \geq 1$, unless \textbf{P} = \cnp.
+
+\medskip
+
+\subsection{Layers and Normalized Representation}
+\label{sse:ncf_layer}
+
+Recall that any NCF $f$ with $n$ variables,
+denoted by $x_1$, $x_2$, $\ldots$, $x_n$,~
+is specified using a variable ordering 
+$x_{\pi(1)}$, $x_{\pi(2)}$, $\ldots$,  $x_{\pi(n)}$,
+where $\pi$ is a permutation of $\{1, 2, \ldots, n\}$.
+Throughout this paper, we will assume without loss of generality
+that the variable ordering uses the identity permutation 
+so that $x_i$ is the variable tested in line $i$, $1 \leq i \leq n$. 
+We assume that an NCF $f$ with $n$
+variables is specified using the simplified representation with $n$ lines. 
+Unless otherwise mentioned, the ``Default" line (which is assigned the number $n+1$)
+in the simplified representation of an NCF is \emph{not} considered
+in the results stated in this section.
+We will use the following result from \cite{Stearns-etal-2018}.
+
+\begin{observation} \label{obs:ncf_transformations}
+Let $f$ be an NCF with $n$ variables specified using $n$ lines
+in the simplified representation. 
+%\begin{description}
+\begin{enumerate}
+\item 
+For any $q \geq 2$ and for any $i$, $1 \leq i \leq n-q+1$,
+if the $q$ consecutive lines $i$, $i+1$, $\ldots$, $i+q-1$~
+have the same canalyzed value, then the function remains
+unchanged if these $q$ lines are permuted in any order
+without changing the other lines.
+
+\item 
+Suppose lines $n-1$ and $n$ in the specification of $f$ 
+have complementary canalyzed values.
+Then, the function remains unchanged 
+if the canalyzing value and canalyzed value in line $n$
+are both complemented. 
+(Here, the value on the ``Default" line is also complemented.)
+\QED
+\end{enumerate}
+%\end{description}
+\end{observation}
+
+%%\noindent
+\citet{Li-etal-2013} defined the concept of a 
+{\bf layer} of an NCF in terms of
+an algebraic representation of the NCF as an extended monomial.
+For our purposes, we use the following definition based on the
+simplified representation of NCFs.
+
+\begin{definition}
+\label{def:layer}
+A {\bf layer} of an NCF representation is a maximal length sequence 
+of lines with the same canalyzed value.
+\end{definition}
+%%Note that the ``Default" line in the representation of an NCF is
+%%\emph{not} considered in the definition of a layer.
+
+\noindent
+\textbf{Example 4:}~ Consider the following function $f$ of six variables
+$x_1$, $x_2$, $\ldots$, $x_6$. 
+
+\bigskip
+
+\noindent
+\begin{tabular}{ll}
+\hspace*{0.25in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & $x_2:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & $x_3:~$  $0 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & $x_4:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.25in} & $x_5:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.25in} & $x_6:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & Default:~ $1$ \\
+\end{tabular}
+
+\medskip
+\noindent
+This function has 3 layers, with 
+Layer~1 consisting of the lines with $x_1$, $x_2$ and $x_3$, 
+Layer~2 consisting of the lines with $x_4$ and $x_5$, and
+Layer~3 consisting of the line with $x_6$.  %\qed
+
+\medskip
+From Part~1 of Observation~\ref{obs:ncf_transformations},
+it follows that the lines within the same layer of an NCF
+representation can be permuted without changing the function.
+Part~2 of Observation~\ref{obs:ncf_transformations} points
+out that for any NCF $f$ with $n \geq 2$ variables, there is a simplified 
+representation in which lines $n-1$ and $n$ are in the same layer.
+We can now define the notion of a \textbf{default-normalized} 
+representation for NCFs.
+
+\begin{definition}
+\label{def:normalized}
+Let $f$ be an NCF with $n \geq 2$ variables specified using
+the simplified representation with 
+the variable ordering $\langle x_1, x_2, \ldots, x_n\rangle$.
+We say that the representation is {\bf default-normalized} if
+lines $n-1$ and $n$ have the same canalyzed value.
+\end{definition}
+
+\noindent
+\textbf{Example 5:}~ 
+Consider the NCF $f$ shown in Example~4. 
+This representation is \emph{not} default-normalized since lines 5 and 6
+have different canalyzed values.
+If we change line 6 to ``$x_6$:~ 0 $\longrightarrow$ 1" and the
+value on the ``Default" line to 0, then we obtain 
+a default-normalized representation. 
+
+\medskip
+From Observation \ref{obs:ncf_transformations},
+we note that in polynomial time, for any NCF representation with more than one line,
+we can first modify the last line if necessary 
+so that it has the same canalyzed value as the preceding line,
+thereby obtaining an equivalent default-normalized NCF representation.
+We state this formally below.
+
+\begin{observation}\label{obs:normalization_poly}
+Given an NCF representation for a Boolean function $f$, a default-normalized
+representation for $f$ can be obtained in polynomial time. \QED
+\end{observation}
+
+In view of Observation~\ref{obs:normalization_poly},
+we will assume from now on that any NCF is specified in default-normalized form.
+
+\subsection{Complexity of Approximating the Symmetry Level of a 
+General Boolean Function}
+\label{sse:symmetry_level_hardness}
+
+Recall that the symmetry level of a Boolean function $f$ is the smallest
+integer $r$ such that the following condition holds:
+the  inputs to $f$ can be partitioned into $r$ subsets 
+(symmetry groups) so that the value of $f$ depends only on 
+how many of the inputs in each group have the value 1.
+We now show that given a Boolean function $f$
+in the form of a Boolean expression, it is \cnp-hard to 
+approximate\footnote{An algorithm approximates the symmetry
+level of a Boolean function $f$ within the factor $\rho$ if it finds a
+partition of the inputs to $f$ into at most $\rho \times r^*$ symmetry
+groups, where $r^*$ is the symmetry level of $f$.}
+the symmetry level of $f$ to within any factor $\rho \geq 1$.
+This result holds even when the function is given as an expression
+in conjunctive normal form (CNF), that is, in the form of a conjunction
+of clauses where each clause is a disjunction of literals. 
+
+\newcommand{\cala}{\mbox{$\mathcal{A}$}}
+
+\begin{theorem}\label{thm:approx_sym_level_hard}
+Unless \textbf{P} = \cnp,
+for any $\rho \geq 1$, there is no polynomial time 
+algorithm for approximating the 
+symmetry level of a Boolean function $f$ 
+specified as a Boolean expression to within the factor $\rho$.
+This result holds even when $f$ is a CNF expression.
+\end{theorem}
+
+\noindent
+\textbf{Proof:}~ For some $\rho \geq 1$, suppose there is an efficient algorithm \cala{} 
+that approximates the symmetry level of a Boolean function
+specified as a Boolean expression to within the factor $\rho$.
+Without loss of generality, we can assume that $\rho$ is an integer.
+We will show that \cala{} can be used to efficiently solve
+the CNF Satisfiability problem (SAT) which is known 
+to be \cnp-hard \citep{GJ-1979}.
+
+Let $g$ be a CNF formula representing an instance of SAT.
+Let $X$ = $\{x_1, x_2, \ldots, x_n\}$ denote the set of
+Boolean variables used in $g$.
+We create another CNF formula $f$ as follows.
+Let $Y = \{y_1, y_2, \ldots, y_{\rho+1}\}$ and
+$Z = \{z_1, z_2, \ldots, z_{\rho+1}\}$ be two 
+new sets of variables, with each set containing $\rho+1$ variables.
+The expression for $f$, which is a function of $n+2\rho+2$
+variables, namely $x_1, \ldots, x_n$, $y_1, \ldots, y_{\rho+1}$,
+$z_1, \ldots, z_{\rho+1}$, is the following:
+\[
+    g(x_1, \ldots x_n) \wedge (y_1 \vee \overline{z_1}) 
+                       \wedge (y_2 \vee \overline{z_2}) 
+                       \wedge \ldots \wedge
+                              (y_{\rho+1} \vee \overline{z_{\rho+1}}).
+\]
+Since $g$ is a CNF formula, so is $f$.
+We have the following claims.
+
+\medskip
+
+\noindent
+\textbf{Claim 1:}~ If $g$ is \emph{not} satisfiable, 
+the symmetry level of $f$ is 1.
+
+\smallskip
+
+\noindent
+\textbf{Proof of Claim 1:}~ If $g$ is not satisfiable, $f$ is also
+not satisfiable; that is, for all inputs, the value of $f$ is 0.
+Thus, all the variables in $X \cup Y \cup Z$ can be included in one
+symmetry group.
+The value of $f$ is 0 regardless of how many variables in the
+group have the value 1.  \hfill$\Box$
+
+\medskip
+
+\noindent
+\textbf{Claim 2:}~ If $g$ \emph{is} satisfiable, 
+the symmetry level of $f$ is at least $\rho+1$.
+
+\smallskip
+
+\noindent
+\textbf{Proof of Claim 2:}~ Suppose $g$ is satisfiable.
+We argue that if $i \neq j$, variables $y_i$ and $y_j$
+cannot be in the same symmetry group for the function $f$.
+To see this, consider any two variables $y_i$ and $y_j$ with $i \neq j$,
+and construct an assignment $\alpha$ to
+the variables of $f$ in the following manner.
+\begin{enumerate}
+\item For the variables in $X$, choose an assignment that
+satisfies $g$.
+\item Let $y_i = 0$, $z_i = 1$, $y_j = 1$ and $z_j = 0$.
+\item For $1 \leq p \leq \rho+1$, $p \neq i$ and $p \neq j$,
+let $y_p = 1$ and $z_p$ = 0.
+\end{enumerate}
+Since this assignment $\alpha$ sets the clause $(y_i \vee \overline{z_i})$ to 0,
+the value of $f$ under the assignment $\alpha$ is 0.
+Now, consider the assignment $\alpha'$ that is obtained by interchanging
+the values of $y_i$ and $y_j$ in $\alpha$ without changing the
+values assigned to the other variables. 
+It can be seen that under assignment $\alpha'$, the value of $f$ is 1.
+In both $\alpha$ and $\alpha'$, the number of 1-valued variables in 
+the set $\{y_i, y_j\}$ is 1; however, the two assignments lead to 
+different values for $f$.
+Therefore, if $g$ is satisfiable, for $i \neq j$, $y_i$ and $y_j$ cannot
+be in the same symmetry group for $f$.
+Since there are $\rho+1$ variables in $Y$, the number of symmetry groups 
+for $f$ must be at least $\rho+1$, and this 
+completes our proof of Claim~2. \hfill$\Box$
+
+\medskip
+ 
+We now continue with the proof of Theorem~\ref{thm:approx_sym_level_hard}.
+Suppose we execute the approximation algorithm \cala{} 
+on the function $f$ defined above.
+If $g$ is \emph{not} satisfiable, then from Claim~1, 
+the symmetry level of $f$ is 1. 
+Since \cala{} is a $\rho$-approximation algorithm,
+it should produce at most $\rho$ symmetry groups.
+On the other hand, if $g$ is satisfiable, by Claim~2, the symmetry
+level of $f$ is at least $\rho+1$; so, \cala{} will produce at least
+$\rho+1$ groups.
+In other words, $g$ is not satisfiable iff the number
+of symmetry groups produced by \cala{} is at most $\rho$.
+Since \cala{} runs in polynomial time, we have an efficient 
+algorithm for SAT, contradicting the assumption that 
+\textbf{P} $\neq$ \cnp.  \QED
+
+\medskip
+
+In contrast to the above result,
+we will show in the next section that the symmetry level 
+of an NCF can be computed efficiently.

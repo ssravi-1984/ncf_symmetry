@@ -1,0 +1,160 @@
+\documentclass[
+%%% one of
+submission
+%final
+%proceedings
+%%% if you compile a final version for the old OJS platform
+% , ojs
+%%% if all authors have the same affiliation
+% , nomarks
+]{dmtcs-episciences}
+
+% DON'T LOAD ANY STYLES THAT CHANGE THE PAGE LAYOUT
+% AND DON'T CHANGE THE PAGE LAYOUT BY HAND, EITHER.
+
+
+\usepackage[utf8]{inputenc}
+%\usepackage{subfigure}
+
+% graphicx is now loaded automatically no need to put this in here anymore.
+%
+%\usepackage{graphicx}
+
+% We strongly recommend to use natbib. Your colleagues deserve to be
+% named in your text. PLEASE, ADAPT YOUR TEXT ACCORDINGLY, such that
+% citations are grammatically correct.
+\usepackage[round]{natbib}
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{amsmath}
+%\usepackage[latin1]{inputenc}
+%\usepackage{varioref}
+%\usepackage{cite}
+% \usepackage{times}
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%% Some theorem-like environments needed.
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+
+\author{Daniel J. Rosenkrantz\affiliationmark{1}
+  \and Madhav V. Marathe\affiliationmark{2}%\newline
+  \and S.~S.~ Ravi\affiliationmark{1}%\newline
+  \and Richard E. Stearns\affiliationmark{1}
+}
+\title[Symmetry and NCFs]
+      {Symmetry Properties of Nested Canalyzing Functions}
+% put your affiliation here, not your full address.
+% If you like to give away your email or other parts of your address,
+% THIS IS NOT THE RIGHT PLACE, your address will change, this paper
+% will not.
+% Just watch that your personal data that you want to communicate on
+% the episcience server is always up to date.
+\affiliation{
+  % one line per affiliation, no postal codes, grant numbers or similar
+  Biocomplexity Institute and Initiative, University of Virginia and
+  Department of Computer Science, University at Albany 
+  -- State University of New York, USA\\
+  Biocomplexity Institute and Initiative \& Department of 
+  Computer Science, University of Virginia, USA
+}
+\keywords{Boolean functions, Nested canalyzing functions, Symmetry,
+Algorithms.}
+% don't try to cheat here, we will check the dates!
+\received{2019-xx-xx}
+\revised{2019-xx-xx}
+\accepted{2019-xx-xx}
+
+\begin{document}
+\publicationdetails{VOL}{xxxx}{ISS}{NUM}{SUBM}
+\maketitle
+
+
+%%% The following command controls the indent for description
+%%% environmet.
+
+%\renewcommand{\IEEEiedlistdecl}{\IEEEsetlabelindent{xx}}
+%\setlength{\IEEElabelindent}{-5pt}
+%\setlength{\labelsep}{3pt}
+%\setlength{\IEEElabelindent}{0pt}
+
+\newcommand{\QED}{\hfill\rule{2mm}{2mm}}
+%% \newcommand{\qed}{\hfill$\Box$}
+
+\newcommand{\cpoly}{\textbf{P}}
+\newcommand{\cnp}{\textbf{NP}}
+\newcommand{\cnump}{\textbf{\#P}}
+\newcommand{\wtg}{\mbox{$\mathcal{G}$}}
+
+\newcommand{\arr}{\mbox{$\:\longrightarrow\:$}}
+
+\smallskip
+
+\begin{abstract}
+%%The abstract goes here.
+\input{abstract}
+\end{abstract}
+
+\input{intro}   %% Introduction (definitions, summary of results and related work)
+
+\input{preliminaries}   %% Preliminaries and normalized representation for NCFs
+
+\input{symmetry_properties}   %% Main results. 
+
+\input{summary}  %% Brief summary to end the paper.
+
+
+\acknowledgments
+This work has been partially supported by
+DTRA CNIMS (Contract HDTRA1-11-D-0016-0001),
+NSF DIBBS Grant ACI-1443054, 
+NSF BIG DATA Grant IIS-1633028 and
+NSF EAGER Grant CMMI-1745207.
+The U.S. Government is authorized to reproduce and
+distribute reprints for Governmental purposes notwithstanding
+any copyright annotation thereon.
+
+\bigskip%\bigskip
+
+\medskip
+
+\noindent
+\textbf{Disclaimer:}~ The views and conclusions contained
+herein are those of the authors and should
+not be interpreted as necessarily representing the
+official policies or endorsements, either expressed
+or implied, of the U.S. Government.
+
+
+% references section
+\bibliographystyle{abbrvnat}
+% use the following instead if you encounter problems 
+%\bibliographystyle{alpha}
+\bibliography{refs}
+
+\end{document}

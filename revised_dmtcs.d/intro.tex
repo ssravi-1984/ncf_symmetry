@@ -1,0 +1,340 @@
+\section{Introduction} 
+\label{sec:intro}
+
+\subsection{Canalyzing and Nested Canalyzing Functions}
+\label{sse:ncf_def}
+
+Research on the symmetry properties of Boolean
+functions has received a lot of attention from the
+logic design and automated synthesis communities. 
+(Additional discussion on this is provided in Section~\ref{sse:related}.)
+In this paper, we focus on the symmetry properties of
+a class of Boolean functions (called \textbf{nested canalyzing functions})
+which are used to model biological phenomena.
+To define this class, we start with a simpler
+class of functions, called \textbf{canalyzing} Boolean functions.
+This class, introduced in \cite{Kauffman-1969}, is defined as follows.
+
+\begin{definition}\label{def:canalyzing}
+Given a set $X = $ $\{x_1, x_2, \ldots, x_n\}$ of $n$  Boolean variables,
+a Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{canalyzing}
+if there is a variable $x_i \in X$ and values $a$, $b$ $\in \{0,1\}$ such that
+\[
+f(x_1, \ldots, x_{i-1}, a, x_{i+1}, \ldots, x_n) ~=~ b, 
+\]
+for all combinations of values assigned to the variables in $X - \{x_i\}$.
+\end{definition}
+
+\medskip
+
+\noindent
+\textbf{Example 1:}~ Consider the function 
+$f(x_1, x_2, x_3)$ $~=~$ $\overline{x_1} \wedge (x_2 \vee \overline{x_3})$.
+This function is canalyzing since if we set to $x_1 = 1$,
+$f(1, x_2, x_3) ~=~ 0$, for all combinations of values for 
+$x_2$ and $x_3$. %\qed
+
+\medskip
+
+Another class of Boolean functions, called \textbf{nested canalyzing functions} (NCFs),
+was introduced later in \cite{Kauffman-etal-2003} to carry out a detailed
+analysis of the behavior of certain biological systems.
+We follow the presentation in \cite{Layne-2011} in defining NCFs.
+(For a Boolean value $b$,~ the complement is denoted by $\overline{b}$.)
+
+\begin{definition}\label{def:nested_canalyzing}
+Let $X = $ $\{x_1, x_2, \ldots, x_n\}$ denote a set of $n$  Boolean variables.
+Let $\pi$ be a permutation of $\{1, 2, \ldots, n\}$.
+A Boolean function $f(x_1, x_2, \ldots, x_n)$ over $X$ is \textbf{nested canalyzing}
+in the variable order $x_{\pi(1)}, x_{\pi(2)}, \ldots, x_{\pi(n)}$ with
+\textbf{canalyzing values} $a_1, a_2, \ldots, a_n$ and 
+\textbf{canalyzed values} $b_1, b_2, \ldots, b_n$ 
+if $f$ can be expressed in the following form:
+\[
+f(x_1, x_2, \ldots, x_n) ~=~ 
+   \begin{cases}
+       \:b_1 & \mathrm{if~~} x_{\pi(1)} ~=~ a_1 \\
+       \:b_2 & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~}\\
+             & x_{\pi(2)} ~=~ a_2 \\
+       \:\vdots & \vdots \\ %\smallskip
+       \:b_n & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots \\
+             & x_{\pi(n-1)} ~\neq~ a_{n-1} \mathrm{~~and~~}\\
+             & x_{\pi(n)} ~=~ a_n \\ %\smallskip
+       \:\overline{b_n} & \mathrm{if~~} x_{\pi(1)} ~\neq~ a_1 \mathrm{~~and~~} \ldots\\
+                        & x_{\pi(n)} ~\neq~ a_n. \\
+   \end{cases}
+\]
+\end{definition}
+%% \clearpage
+For convenience, we will use a notation introduced in \cite{Stearns-etal-2018}
+to represent NCFs.
+For $1 \leq i \leq n$, line $i$ of this representation has the form
+
+\medskip
+
+\noindent
+\hspace*{0.5in} $x_{\pi(i)}:~ a_i ~~\longrightarrow~~ b_i$
+
+\medskip
+
+\noindent 
+where $x_{\pi(i)}$ is the \textbf{canalyzing variable} that is
+\textbf{tested} in line $i$, 
+and $a_i$ and $b_i$ are respectively the \emph{canalyzing} and 
+\emph{canalyzed} values in line $i$,~ $1 \leq i \leq n$.
+Each such line is called a \textbf{rule}.
+When none of the conditions ``$x_{\pi(i)} ~=~ a_i$" 
+is satisfied, we have line $n+1$ with the ``Default" rule
+for which the canalyzed value is~ $\overline{b_n}$: 
+
+\medskip
+
+\noindent
+\hspace*{0.5in} Default:~ $\overline{b_n}$
+
+\medskip
+\noindent
+As in \cite{Stearns-etal-2018}, we will refer to the above specification
+of an NCF as the \textbf{simplified representation} and assume
+(without loss of generality) that each NCF is specified in this manner.
+The simplified representation provides the following 
+computational view of an NCF. 
+The lines that define an NCF are 
+considered sequentially in a top-down manner.
+The computation stops at the first line where the 
+specified condition is satisfied, and the value of the function
+is the canalyzed value on that line. 
+We now present an example of an NCF using the two representations
+mentioned above.
+
+
+\medskip
+\noindent
+\textbf{Example 2:}~ Consider the function 
+$f(x_1, x_2, x_3) ~=~ \overline{x_1} \wedge (x_2 \vee \overline{x_3})$
+used in Example~1.
+This function is nested canalyzing using the identity permutation $\pi$ on $\{1,2,3\}$
+with canalyzing values $1,1,0$ and canalyzed values $0, 1, 1$.
+We first show how this function can be expressed using the syntax of
+Definition~\ref{def:nested_canalyzing}.
+
+\[
+f(x_1, x_2, x_3) ~=~ 
+   \begin{cases}
+       \:0 & \mathrm{if~~} x_{1} ~=~ 1 \\
+       \:1 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
+            x_{2} ~=~ 1 \\
+       \:1 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~}
+            x_{2} ~\neq~ 1 \mathrm{~~and~~}\\ 
+           &x_{3} = 0 \\
+       \:0 & \mathrm{if~~} x_{1} ~\neq~ 1 \mathrm{~~and~~} 
+             x_{2} ~\neq~ 1 \mathrm{~~and~~}\\ 
+           & x_{3} ~\neq~ 0 \\ 
+   \end{cases}
+\]
+
+\medskip
+\noindent
+A simplified representation of the same function is as follows.
+
+\bigskip
+
+\noindent
+\begin{tabular}{ll}
+\hspace*{0.25in} & $x_1:~$  $1 ~\longrightarrow~ 0$ \\ [0.5ex]
+\hspace*{0.25in} & $x_2:~$  $1 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.25in} & $x_3:~$  $0 ~\longrightarrow~ 1$ \\ [0.5ex]
+\hspace*{0.25in} & Default:~ $0$ \\
+\end{tabular}
+
+\noindent
+%\qed
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+We will also consider a more general form of NCFs defined below.
+
+\begin{definition}\label{def:generalized ncf}
+A {\bf generalized NCF} is a function represented as either a constant
+or an NCF representation of a subset (not necessarily proper) 
+of the function's variables.
+\end{definition}
+
+\noindent
+\textbf{Example 3:}~ For $b \in \{0,1\}$, the constant function which takes 
+on the value $b$ for every input is a generalized NCF since 
+it can be represented by the following rule: 
+
+\smallskip
+
+\hspace*{1.1in} Default:~ $b$ 
+
+\smallskip
+
+\noindent
+The following generalized NCF specification for 
+a function $f(x_1, x_2, x_3, x_4)$ indicates that the function
+depends only on variables $x_1$ and $x_3$.
+
+\medskip
+
+\noindent
+\begin{tabular}{ll}
+\hspace*{1.1in} & $x_1:~$  $0 ~\longrightarrow~ 1$ \\ [1ex]
+\hspace*{1.1in} & $x_3:~$  $1 ~\longrightarrow~ 0$ \\ [1ex]
+\hspace*{1.1in} & Default:~ $1$ \\
+\end{tabular}
+
+\noindent
+%\qed
+
+%% \bigskip
+
+%% \noindent
+%% \textbf{Note:} If a generalized NCF is not a constant, 
+%% there is an assignment to its variables
+%% such that the value of the function is 0,
+%% and there is an assignment to its variables
+%% such that the value of the function is 1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
+
+\subsection{Symmetric Boolean Functions}
+\label{sse:symmetry}
+
+A pair of variables of a Boolean function $f(x_1, x_2, \ldots, x_n)$ is
+said to be \textbf{symmetric} if their values can be interchanged without
+affecting the value of the function.
+As a simple example, each pair of variables in the function 
+$f_2(x_1, x_2, x_3)$ = $x_1 \oplus x_2 \oplus x_3$ is symmetric,
+where `$\oplus$' represents the Exclusive-Or operator.
+This form of interchange symmetry partitions the set of variables into a set of
+\textbf{symmetry groups}, where the members of each group are pairwise symmetric.
+A Boolean function $f$ is 
+$r$-\textbf{symmetric} if it has at most $r$ symmetry groups.
+In this case, the value of $f$
+depends only on how many of the variables in each symmetry group have the value 1.
+We say that $f$ is \textbf{properly} $r$-\textbf{symmetric} if
+it is $r$-symmetric, but not $(r-1)$-symmetric.
+For example, the function $f_3(x_1, x_2, x_3) = (x_1 \wedge x_2) \vee\, \overline{x_3}$~
+is not 1-symmetric since $f_3(1, 0, 1) \neq f_3(1, 1, 0)$; however, 
+it is 2-symmetric with the symmetric groups being $\{x_1, x_2\}$ and $\{x_3\}$.
+For a Boolean function $f$, the integer $r$ such that $f$ is properly $r$-symmetric
+is referred to as the \textbf{symmetry level} of $f$.
+Thus, the symmetry level of $f$ is the smallest integer $r$ such that
+$f$ is $r$-symmetric.
+
+In the literature (see e.g., \cite{Crama-Hammer-2011,HT-2016,Toth-etal-1977}),
+a 1-symmetric function $f$ is referred to simply
+as a \textbf{symmetric} function or 
+as a \textbf{totally symmetric function} \citep{Biswas-1970,BS-1968}.
+Thus, in any symmetric function, each pair of variables is symmetric.
+As a simple example, the function $f_2(x_1, x_2, x_3)$ = 
+$x_1 \oplus x_2 \oplus x_3$ (defined above) is symmetric.
+If $f$ is a symmetric function, then for any
+input $(a_1, a_2, \ldots, a_n)$ to $f$, where $a_i \in \{0,1\}$ for
+$1 \leq i \leq n$, and any permutation $\pi$ of $\{1, 2, \ldots, n\}$,
+$f(a_1, a_2, \ldots, a_n)$ = $f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
+For $r \geq 1$, the class of $r$-symmetric functions has been
+studied in the literature on discrete dynamical systems (see e.g., 
+\cite{Barrett-etal-2007,Rosenkrantz-etal-2015,MR-2007}).
+
+Other forms of symmetry which can be more general than the permutations 
+corresponding to symmetry groups have also been considered (see e.g.,
+\cite{Maurer-2015,KS-2000}).
+A Boolean function $f(x_1, x_2, \ldots, x_n)$
+is \textbf{strongly asymmetric}
+if for any permutation $\pi$ of $\{1, 2, \ldots, n\}$
+\emph{except} the identity permutation,
+there exists an input $(a_1, a_2, \ldots,  a_n)$
+to $f$ such that $f(a_1, a_2, \ldots, a_n)$ $\neq$
+$f(a_{\pi(1)}, a_{\pi(2)}, \ldots, a_{\pi(n)})$.
+In general, there are functions with $n$ variables that are properly
+$n$-symmetric, but not strongly asymmetric \citep{KS-2000}.
+However, in the case of NCFs with $n$ variables, we will show 
+(see Section~\ref{sec:ncf_and_symmetry}) that the notion of 
+strong asymmetry coincides with that 
+of being properly $n$-symmetric.
+
+%\noindent
+
+\subsection{Summary of Results}
+\label{sse:contrib}
+
+Our focus is on the relationships between 
+NCFs and symmetric Boolean functions.
+Using a normalized representation for NCFs 
+(defined in Section~\ref{sec:prelim}), we develop a
+characterization of when two variables of an NCF are symmetric.
+Using this characterization, we show
+that the symmetry level of an NCF $f$
+can be easily computed given a normalized representation of $f$.
+(In contrast, we show that 
+one cannot even efficiently approximate the symmetry level of
+a general Boolean function to within any factor $\geq 1$, 
+unless \textbf{P} = \cnp.)
+We also present an efficient algorithm to test whether a given
+$r$-symmetric function $f$ is an NCF. 
+Further, we show that for any NCF $f$ with $n$ variables, the notion of
+strong asymmetry considered in the literature is equivalent to
+the property that $f$ is $n$-symmetric.
+We use this result to derive a closed form expression for the
+number of $n$-variable Boolean functions
+that are NCFs and strongly asymmetric.
+In addition, we identify all the Boolean functions that are 
+canalyzing and symmetric as well as those that 
+are NCFs and symmetric.
+
+\subsection{Related Work}
+\label{sse:related}
+
+The usefulness of symmetry properties in synthesizing 
+combinational logic functions was first noted 
+by \citet{Shannon-1938}.
+Over the years, a considerable amount of research on detecting 
+and exploiting symmetry properties 
+of Boolean functions has been reported in the literature.
+For example, \citet{Biswas-1970} and \citet{TM-1996} present methods 
+to determine whether a given Boolean function is symmetric.
+\citet*{BS-1968} show how certain Boolean functions
+can be converted into symmetric functions by introducing additional
+variables. 
+%% (e.g., \cite{BS-1968,Biswas-1970,TM-1996,KS-2000,Darga-etal-2008,Maurer-2015}).
+Several researchers have developed techniques for exploiting symmetries
+for automated logic synthesis 
+(e.g., \cite{AP-2008,Hu-etal-2008,KS-2000,Darga-etal-2008}).
+\citet{Maurer-2015} provides a thorough discussion of known
+symmetry detection algorithms and presents a new universal algorithm 
+for detecting any form of permutation-based symmetry in Boolean functions. 
+
+The term \textbf{canalization}, coined by
+\citet{Waddington-1942}, is generally used to describe
+the stability of a biological system with changes
+in external conditions.
+\citet{Kauffman-1969} introduced canalyzing Boolean functions
+to explain the stability of gene regulatory networks.
+The subclass of NCFs was
+introduced later by \citet{Kauffman-etal-2003} 
+to facilitate a rigorous analysis of the Boolean network model
+for gene regulatory networks.
+It is known that the class of NCFs coincides with that
+of unate cascade Boolean functions \citep{Jarrah-etal-2007}.
+In the literature on computational learning theory,
+NCFs are referred to as $1$-\textbf{decision lists} \citep{KV-1994}.
+Many researchers have pointed out the usefulness of NCFs 
+in modeling biological phenomena 
+(e.g., \cite{Layne-2011,
+Layne-etal-2012,Li-etal-2011,Li-etal-2012,Li-etal-2013}.
+Properties of NCFs such as sensitivity and 
+stability have also been studied in the 
+literature (e.g., \cite{Kauffman-etal-2004, Layne-2011,Layne-etal-2012,
+Li-etal-2011,Li-etal-2013,Klotz-etal-2013, Stearns-etal-2018,
+Paul-etal-2019,2017b-Kadelka-etal}).
+Generalized versions of nested canalyzing functions where the 
+variables and function values can be from a domain 
+of size three or more have also been studied 
+(e.g., \cite{2017a-Kadelka-etal}).
+
+To our knowledge, relationships between NCFs and symmetric
+Boolean functions have not been addressed in the literature.

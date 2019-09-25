@@ -1,22 +1,21 @@
 
-
 Many researchers have studied symmetry properties of various Boolean
 functions.  A class of Boolean functions, called nested canalyzing
 functions (NCFs), has been used to model certain biological phenomena.
-We identigy some interesting
-relationships between NCFs, symmetric Boolean functions and a
-generalization of symmetric Boolean functions, which we call
-r-symmetric functions (where r is the symmetry level).  Using a
-normalized representation for NCFs, we develop a characterization
-of when two variables of an NCF are symmetric.  Using this
-characterization, we show that the symmetry level of an NCF f can
-be easily computed given a standard representation of f.  We also
-present an efficient algorithm for testing whether a given r-symmetric
-function is an NCF.  Further, we show that for any NCF f with n
-variables, the notion of strong asymmetry considered in the literature
-is equivalent to the property that f is n-symmetric.  We use this
-result to derive a closed form expression for the number of n-variable
-Boolean functions that are NCFs and strongly asymmetric.  We also
-identify all the Boolean functions that are NCFs and symmetric.
+We identify some interesting relationships between NCFs, symmetric
+Boolean functions and a generalization of symmetric Boolean functions,
+which we call $r$-symmetric functions (where $r$ is the symmetry
+level).  Using a normalized representation for NCFs, we develop a
+characterization of when two variables of an NCF are symmetric.
+Using this characterization, we show that the symmetry level of an
+NCF $f$ can be easily computed given a standard representation of
+$f$.  We also present an efficient algorithm for testing whether a
+given $r$-symmetric function is an NCF.  Further, we show that for
+any NCF $f$ with $n$ variables, the notion of strong asymmetry
+considered in the literature is equivalent to the property that $f$
+is $n$-symmetric.  We use this result to derive a closed form
+expression for the number of $n$-variable Boolean functions that
+are NCFs and strongly asymmetric.  We also identify all the Boolean
+functions that are NCFs and symmetric.
 
 

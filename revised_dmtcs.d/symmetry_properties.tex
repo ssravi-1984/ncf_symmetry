@@ -190,7 +190,8 @@ From Theorem~\ref{thm:ncf_symmetric_variables},
 any pair of variables occurring in the same layer, 
 with the same canalyzing value, are symmetric.
 Thus the function is at most $(r_1 + 2 r_2)$-symmetric.
-Moreover, any pair of variables from different layers, or with different canalyzing values
+Moreover, any pair of variables from different layers, 
+or with different canalyzing values
 are not symmetric, so there are at least $(r_1 + 2 r_2)$ symmetry groups.
 \QED
 
@@ -201,9 +202,8 @@ For every $n \geq 2$, there is an $n$-variable NCF that is not $n-1$ symmetric. 
 \begin{corollary}\label{cor:ncf_r_symmetric_layers}
 (i) An NCF with a default-normalized nested canalyzing representation consisting
 of $q$ layers is $2q$-symmetric, and is not $(q-1)$-symmetric.
-(ii) An $r$-symmetric NCF has a default-normalized nested canalyzing representation
-with at most $r-1$ layers, and has an unnormalized nested canalyzing
-representation with at most $r$ layers.   \QED
+(ii) An $r$-symmetric NCF has a default-normalized 
+nested canalyzing representation with at most $r$ layers. \QED
 \end{corollary}
 
 \subsection{Testing Whether an $r$-Symmetric Function is an NCF}
@@ -224,7 +224,7 @@ Boolean function of $n$ variables.
 We assume that the symmetry groups 
 of $f$, denoted by $g_1$, $g_2$, $\ldots$, $g_r$,
 are given.
-Let $m_i = |g_i|$, $1 \leq i \leq m$.
+Let $m_i = |g_i|$, $1 \leq i \leq r$.
 Thus, in group $g_i$, the number
 of variables which can take on the value 1 varies from 0
 to $m_i$, $1 \leq i \leq r$.
@@ -235,6 +235,8 @@ where $c_i$ is the number of variables of group $g_i$ which
 have the value 1, along with the \{0,1\} value of $f$ for that $r$-tuple.
 Thus, $\mu$, the number of rows in $T$, 
 is given by  $\mu = \prod_{i=1}^r (m_i+1)$.
+Since there are $\mu$ rows and each row is an $r$-tuple,
+the size of the table $T$ is $O(r\mu)$.
 As will be seen, our algorithm for determining whether $f$ is
 an NCF runs in $O(r\mu)$ time.
 The algorithm relies on the following observation.
@@ -336,13 +338,30 @@ It follows by simple induction that $\mu_j \leq \mu/2^{j-1}$.
 Thus, the running time over all the $r$ iterations is given by
 $O(r [\sum_{j=1}^{r}(\mu/2^{j-1})])$ = $O(r\mu)$, since the
 geometric sum is bounded by $2\mu$.
+Recall that the size of input table $T$ 
+(which specifies the $r$-symmetric function $f$)
+is $O(r\mu)$. 
+Thus, the running time of the algorithm
+is linear in the size of the input.
 The following theorem summarizes this result. 
 
 \begin{theorem}\label{thm:rsym_canalyzing}
-The problem of testing whether a given 
-$r$-symmetric function $f$ is an NCF can 
-be solved efficiently. \QED
+Suppose an $r$-symmetric function $f$ is given as a table where
+each row has an $r$-tuple of the form $(c_1, c_2, \ldots, c_r)$,
+with $c_i$ being the number of variables in group $g_i$ that have value 1,
+along with the \{0,1\} value of the function for that row.
+The problem of testing whether $f$ 
+is an NCF can be solved in time that 
+is linear in the size of the input. \QED
 \end{theorem}
+
+When an $r$-symmetric function $f$ with $n$ variables is
+specified using the table representation described in the
+statement of Theorem~\ref{thm:rsym_canalyzing},
+the size of the table is $O(n^r)$.
+When $r$ is \emph{fixed}, the size of 
+this representation and the running time 
+of the above algorithm are both polynomial functions of $n$. 
 
 \subsection{Strong Asymmetry and NCFs}
 \label{sse:strong_asym_ncf}
@@ -565,7 +584,8 @@ $x_1, \ldots, x_n$, defined by the following formula:
 
 \smallskip
 
-\hspace*{0.5in} $x_1 \vee (\overline{x}_2 \wedge ( x_3 \vee (\overline{x}_4 \wedge (\cdots ))$
+\hspace*{0.5in} $x_1 \vee (\overline{x}_2 \wedge 
+    ( x_3 \vee (\overline{x}_4 \wedge (\cdots ))))$
 
 \smallskip
 
@@ -573,9 +593,9 @@ $x_1, \ldots, x_n$, defined by the following formula:
 For instance,
 \begin{align*}
 f_6 &~=~  x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge 
-      (x_5 \vee \overline{x}_6)) \\
+      (x_5 \vee \overline{x}_6))))~~~ \mathrm{and}\\
 f_7 &~=~  x_1 \vee (\overline{x}_2 \wedge (x_3 \vee (\overline{x}_4 \wedge (x_5 
-          \vee (\overline{x}_6 \wedge  x_7)).
+          \vee (\overline{x}_6 \wedge  x_7))))).
 \end{align*}
 Function $f_n(x_1, x_2, \ldots, x_n)$ is the NCF corresponding to
 the following NCF representation:

@@ -212,12 +212,14 @@ nested canalyzing representation with at most $r$ layers. \QED
 Theorem~\ref{thm:ncf_r_symmetric} shows that given an NCF $f$,
 the problem of finding the smallest integer $r$ such that
 $f$ is $r$-symmetric can be solved efficiently.
-We now show that the converse problem, that is, testing whether a given
-$r$-symmetric Boolean function is an NCF,
-can also be solved efficiently.
-When the answer is ``yes", a
-default-normalized representation (defined in Section~\ref{sec:prelim})
-of $f$ can also be constructed efficiently.
+We now consider the converse problem, that is, testing whether a given
+$r$-symmetric Boolean function is an NCF.
+For this problem, we present an algorithm whose running time
+is linear in the size of the representation 
+of the $r$-symmetric function $f$.
+When the answer is ``yes", the algorithm also constructs a
+default-normalized representation 
+(defined in Section~\ref{sec:prelim}) of $f$.
 
 Let $f(x_1, x_2, \ldots, x_n)$ be an $r$-symmetric 
 Boolean function of $n$ variables.
@@ -321,7 +323,7 @@ Observation~\ref{obs:rsym_canalyzing}.
 Once a canalyzing variable is identified, the other steps in that iteration
 can be completed in $O(\mu_j)$ time.
 Thus, the time for iteration $j$ is $O(r \mu_j)$.
-We note that in each iteration, the number of rows in the table
+We claim that in each iteration, the number of rows in the table
 is reduced by a factor of at least 2; that is, $\mu_{j+1} \leq \mu_j/2$.
 To see why, suppose the canalyzing variable $x_i$ found in iteration $j$
 is in group $g_p$ with $m_p$ variables. 
@@ -709,7 +711,7 @@ the constant function 0 and the constant function 1.
 
 \noindent
 \textbf{Part (i):}~
-Suppose symmetric function $f$ is also a canalyzing function. 
+Suppose that symmetric function $f$ is also a canalyzing function. 
 Then there is a variable $x$, and values $a$ and $b$ 
 such that whenever $x = a$, function $f$ has value $b$.  
 Since $f$ is symmetric, $f$  has

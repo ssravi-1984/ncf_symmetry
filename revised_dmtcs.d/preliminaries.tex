@@ -137,8 +137,9 @@ Given an NCF representation for a Boolean function $f$, a default-normalized
 representation for $f$ can be obtained in polynomial time. \QED
 \end{observation}
 
+\noindent
 In view of Observation~\ref{obs:normalization_poly},
-we will assume from now on that any NCF is specified in default-normalized form.
+we assume henceforth that any NCF is specified in default-normalized form.
 
 \subsection{Complexity of Approximating the Symmetry Level of a 
 General Boolean Function}
@@ -231,7 +232,7 @@ To see this, consider any two variables $y_i$ and $y_j$ with $i \neq j$,
 and construct an assignment $\alpha$ to
 the variables of $f$ in the following manner.
 \begin{enumerate}
-\item For the variables in $X$, choose an assignment that
+\item For the variables in $X$, choose any assignment that
 satisfies $g$.
 \item Let $y_i = 0$, $z_i = 1$, $y_j = 1$ and $z_j = 0$.
 \item For $1 \leq p \leq \rho+1$, $p \neq i$ and $p \neq j$,

@@ -356,15 +356,16 @@ is linear in the size of the input. \QED
 \end{theorem}
 
 When an $r$-symmetric function $f$ with $n$ variables is
-specified using the table representation described in the
+specified by giving the table representation described in the
 statement of Theorem~\ref{thm:rsym_canalyzing},
-the size of the table is $O(n^r)$.
+the size of the given table is $O(n^r)$.
 When $r$ is \emph{fixed}, the size of 
 this representation and the running time 
 of the above algorithm are both polynomials functions of $n$. 
-However, when $r$ is a function of $n$, the size
+When $r$ is not fixed, while the size
 of the input and the running time of the algorithm are
-not polynomial functions of $n$. 
+not necessarily polynomial functions of $n$, 
+the running time remains linear in the input size.
 
 \subsection{Strong Asymmetry and NCFs}
 \label{sse:strong_asym_ncf}
@@ -432,6 +433,9 @@ properly $4$-symmetric but not\newline strongly asymmetric.}
 
 %%%%% End of truth table.
 
+\medskip
+
+\noindent
 We now show that any $n$ variable NCF that is properly $n$-symmetric
 is also strongly asymmetric.
 As a consequence, we observe that there are NCFs with $n$ variables
